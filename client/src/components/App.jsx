@@ -1,5 +1,5 @@
-import "./App.css";
-import useApplicationData from "./hooks/useApplicationData";
+import "./App.scss";
+import useApplicationData from "../hooks/useApplicationData";
 
 const App = () => {
   const { state, dispatch } = useApplicationData();
