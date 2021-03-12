@@ -33,6 +33,20 @@ Immediately see if you can run npm test and yarn test. if not hit me up.
 yarn storybook
 ```
 
+- run jest
+
+pick your flavour
+
+```
+yarn test
+```
+
+or
+
+```
+npm test
+```
+
 ### Backend
 
 - development server
