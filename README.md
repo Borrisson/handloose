@@ -42,3 +42,7 @@ rails s -p 3001 -b 0.0.0.0
 The -p flag changes port to 3001 and -b stands for IP binding, it will bind the server to localhost. This is only needed if using a VM.
 
 > **_NOTE:_** You can use "rails s -p 3001" simply if not using VM.
+
+- test server
+
+This has not been setup yet!
