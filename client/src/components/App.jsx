@@ -7,12 +7,7 @@ const App = () => {
   const userList = state.users.map((user) => (
     <li key={user.id}>{user.name}</li>
   ));
-  return (
-    <div className="App">
-      <h1> Users </h1>
-      <ul> {userList} </ul>
-    </div>
-  );
+  return <SideBar />;
 };
 
 export default App;
