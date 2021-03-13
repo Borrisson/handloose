@@ -6,7 +6,6 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
-import User from "./User";
 
 export default function SideBar(props) {
   return (
@@ -19,7 +18,13 @@ export default function SideBar(props) {
       <SidebarContent>
         <Menu iconShape="square">
           <MenuItem>Dashboard</MenuItem>
-          <User />
+          {props.currentUser && <MenuItem>Logout</MenuItem>}
+          {!props.currentUser && (
+            <>
+              <MenuItem onClick={props.onCreateAccount}>Register</MenuItem>
+              <MenuItem onClick={props.onLogin}>Login</MenuItem>
+            </>
+          )}
         </Menu>
       </SidebarContent>
       <SidebarFooter>
