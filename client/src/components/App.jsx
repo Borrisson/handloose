@@ -1,4 +1,4 @@
-import "./App.scss";
+import "./styles/App.scss";
 import useApplicationData from "../hooks/useApplicationData";
 
 const App = () => {
