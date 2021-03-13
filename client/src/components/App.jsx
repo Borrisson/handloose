@@ -10,7 +10,6 @@ const App = () => {
   return (
     <div className="App">
       <h1> Users </h1>
-      <SideBar />
       <ul> {userList} </ul>
     </div>
   );
