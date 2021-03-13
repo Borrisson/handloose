@@ -2,15 +2,15 @@ import {
   ProSidebar,
   Menu,
   MenuItem,
-  SubMenu,
   SidebarHeader,
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
+import User from "./User";
 
 export default function SideBar(props) {
   return (
-    <ProSidebar rtl={true} image="../../public/static/media/background.jpg">
+    <ProSidebar className="Sidebar" rtl={true} image="background.jpg">
       <SidebarHeader>
         {/**
          *  You can add a header for the sidebar ex: logo
@@ -19,10 +19,7 @@ export default function SideBar(props) {
       <SidebarContent>
         <Menu iconShape="square">
           <MenuItem>Dashboard</MenuItem>
-          <SubMenu title="Components">
-            <MenuItem>Component 1</MenuItem>
-            <MenuItem>Component 2</MenuItem>
-          </SubMenu>
+          <User />
         </Menu>
       </SidebarContent>
       <SidebarFooter>

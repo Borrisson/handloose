@@ -3,6 +3,7 @@
 
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-logo {
@@ -38,4 +39,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.sidebar {
+  align-self: right;
 }
