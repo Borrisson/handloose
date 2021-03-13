@@ -1,6 +1,14 @@
 import "./styles/App.scss";
 import useApplicationData from "../hooks/useApplicationData";
-import SideBar from "./sidebar/Sidebar";
+import {
+  ProSidebar,
+  Menu,
+  MenuItem,
+  SubMenu,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarContent,
+} from "react-pro-sidebar";
 
 const App = () => {
   const { state, dispatch } = useApplicationData();
@@ -8,10 +16,27 @@ const App = () => {
     <li key={user.id}>{user.name}</li>
   ));
   return (
-    <div className="App">
-      <h1> Users </h1>
-      <ul> {userList} </ul>
-    </div>
+    <ProSidebar rtl={true} image="../../static/media/background.jpg">
+      <SidebarHeader>
+        {/**
+         *  You can add a header for the sidebar ex: logo
+         */}
+      </SidebarHeader>
+      <SidebarContent>
+        <Menu iconShape="square">
+          <MenuItem>Dashboard</MenuItem>
+          <SubMenu title="Components">
+            <MenuItem>Component 1</MenuItem>
+            <MenuItem>Component 2</MenuItem>
+          </SubMenu>
+        </Menu>
+      </SidebarContent>
+      <SidebarFooter>
+        {/**
+         *  You can add a footer for the sidebar ex: copyright
+         */}
+      </SidebarFooter>
+    </ProSidebar>
   );
 };
 
