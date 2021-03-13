@@ -1,5 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
-@import "~react-pro-sidebar/dist/scss/styles.scss";
+@import "Sidebar.scss";
 
 .App {
   text-align: center;
@@ -39,8 +39,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.sidebar {
-  align-self: right;
 }

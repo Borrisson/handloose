@@ -1,0 +1,16 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  .item {
+    flex: 3;
+  }
+  .sidebar-footer {
+    align-items: center;
+  }
+  .sidebar-header {
+    align-items: center;
+  }
+}
+
+@import "~react-pro-sidebar/dist/scss/styles.scss";

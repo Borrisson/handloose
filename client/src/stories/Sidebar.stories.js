@@ -6,7 +6,6 @@ export default {
   component: SideBar,
   argTypes: {
     backgroundColor: { control: "color" },
-    argTypes: { onClick: { action: "clicked" } },
   },
 };
 
