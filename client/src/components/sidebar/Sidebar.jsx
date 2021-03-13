@@ -10,7 +10,7 @@ import {
 
 export default function SideBar(props) {
   return (
-    <ProSidebar rtl={true} image="../../static/media/background.jpg">
+    <ProSidebar rtl={true} image="../../public/static/media/background.jpg">
       <SidebarHeader>
         {/**
          *  You can add a header for the sidebar ex: logo
