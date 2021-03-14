@@ -50,17 +50,11 @@ const App = () => {
     <li key={user.id}>{user.name}</li>
   ));
 
-  const game = {
-    width: "50px",
-    height: "50px",
-    type: Phaser.AUTO,
-    scene: {},
-  };
 
   return (
     <>
-      <IonPhaser game={game} />
       <SideBar />
+      <IonPhaser game={game} />
     </>
   );
 };
