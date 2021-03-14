@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from "../components/sidebar/Sidebar";
+import SideBar from "../components/Sidebar";
 
 export default {
   title: "SideBar/Login",
