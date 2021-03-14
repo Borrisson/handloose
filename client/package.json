@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@ion-phaser/core": "^1.2.3",
+    "@ion-phaser/react": "^1.2.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
