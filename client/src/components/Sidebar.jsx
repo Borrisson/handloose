@@ -12,11 +12,11 @@ export default function SideBar(props) {
     <ProSidebar className="sidebar" rtl={true} image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
         <MenuItem className="sidebar item">
-          <img src="logo.gif"></img>
+          <img alt="logo" src="logo.gif"></img>
         </MenuItem>
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
-        <Menu>
+        <Menu className="sidebar sidebar-menu">
           <MenuItem className="sidebar item">Dashboard</MenuItem>
           {props.currentUser && (
             <MenuItem className="sidebar item">Logout</MenuItem>
@@ -25,11 +25,14 @@ export default function SideBar(props) {
             <>
               <MenuItem
                 className="sidebar item"
-                onClick={props.onCreateAccount}
+                onClick={() => props.handleShow("register")}
               >
                 Register
               </MenuItem>
-              <MenuItem className="sidebar item" onClick={props.onLogin}>
+              <MenuItem
+                className="sidebar item"
+                onClick={() => props.handleShow("login")}
+              >
                 Login
               </MenuItem>
             </>

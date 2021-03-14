@@ -1,27 +1,25 @@
 import "./styles/App.scss";
+import { useState } from "react";
 import useApplicationData from "../hooks/useApplicationData";
-import SideBar from "./sidebar/Sidebar";
+import SideBar from "./Sidebar";
 import Login from "./Login";
-import Phaser from "phaser";
-import { IonPhaser } from "@ion-phaser/react";
+import Register from "./Register";
 
 const App = () => {
   const { state, dispatch } = useApplicationData();
-  const userList = state.users.map((user) => (
-    <li key={user.id}>{user.name}</li>
-  ));
+  const [show, setShow] = useState({
+    login: false,
+    register: false,
+  });
 
-  const game = {
-    width: "50px",
-    height: "50px",
-    type: Phaser.AUTO,
-    scene: {},
-  };
+  const handleClose = (key) => setShow({ [key]: false });
+  const handleShow = (key) => setShow({ [key]: true });
 
   return (
     <>
-      <IonPhaser game={game} />
-      <SideBar />
+      <SideBar handleShow={handleShow} />
+      <Login handleClose={handleClose} show={show.login} />
+      <Register handleClose={handleClose} show={show.register} />
     </>
   );
 };
