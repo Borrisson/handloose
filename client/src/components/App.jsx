@@ -1,24 +1,27 @@
 import "./styles/App.scss";
+import { useState } from "react";
 import useApplicationData from "../hooks/useApplicationData";
 import SideBar from "./Sidebar";
 import Login from "./Login";
-
-
-
-
-
-
+import Game from "./Game";
+import Register from "./Register";
 
 const App = () => {
   const { state, dispatch } = useApplicationData();
-  const userList = state.users.map((user) => (
-    <li key={user.id}>{user.name}</li>
-  ));
+  const [show, setShow] = useState({
+    login: false,
+    register: false,
+  });
 
+  const handleClose = (key) => setShow({ [key]: false });
+  const handleShow = (key) => setShow({ [key]: true });
 
   return (
     <>
-      <SideBar />
+      <SideBar handleShow={handleShow} />
+      <Game />
+      <Login handleClose={handleClose} show={show.login} />
+      <Register handleClose={handleClose} show={show.register} />
     </>
   );
 };
