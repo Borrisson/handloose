@@ -3,7 +3,6 @@ import { useState } from "react";
 import useApplicationData from "../hooks/useApplicationData";
 import SideBar from "./Sidebar";
 import Login from "./Login";
-import Game from "./Game";
 import Register from "./Register";
 
 const App = () => {
@@ -19,7 +18,6 @@ const App = () => {
   return (
     <>
       <SideBar handleShow={handleShow} />
-      <Game />
       <Login handleClose={handleClose} show={show.login} />
       <Register handleClose={handleClose} show={show.register} />
     </>
