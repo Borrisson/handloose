@@ -9,14 +9,14 @@ import {
 
 export default function SideBar(props) {
   return (
-    <ProSidebar className="sidebar" image="background.jpg">
+    <ProSidebar className="sidebar" rtl={true} image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
         <MenuItem className="sidebar item">
           <img alt="logo" src="logo.gif"></img>
         </MenuItem>
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
-        <Menu>
+        <Menu className="sidebar sidebar-menu">
           <MenuItem className="sidebar item">Dashboard</MenuItem>
           {props.currentUser && (
             <MenuItem className="sidebar item">Logout</MenuItem>
