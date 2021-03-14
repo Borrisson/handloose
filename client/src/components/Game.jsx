@@ -4,7 +4,7 @@ import { IonPhaser } from "@ion-phaser/react";
 
 export default function Game() {
   const game = {
-    width: "100%",
+    width: "90%",
     height: "100%",
     type: Phaser.AUTO,
     pixelArt: true,
@@ -21,11 +21,10 @@ export default function Game() {
           repeat: -1
         });
         
-        const logo = this.add.sprite(720, 350);
+        const logo = this.add.sprite(800, 350);
         logo.setScale(2);
         logo.play('logo');
       },
-      
     }
   }
   return (
