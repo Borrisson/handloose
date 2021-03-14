@@ -25,11 +25,14 @@ export default function SideBar(props) {
             <>
               <MenuItem
                 className="sidebar item"
-                onClick={props.onCreateAccount}
+                onClick={() => props.handleShow("register")}
               >
                 Register
               </MenuItem>
-              <MenuItem className="sidebar item" onClick={props.onLogin}>
+              <MenuItem
+                className="sidebar item"
+                onClick={() => props.handleShow("login")}
+              >
                 Login
               </MenuItem>
             </>

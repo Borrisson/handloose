@@ -1,23 +1,13 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
 
-export default function Login() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+export default function Register({ handleClose, show }) {
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button>
       <Modal
         show={show}
-        onHide={handleClose}
-        backdrop="static"
+        onHide={() => handleClose("register")}
         keyboard={false}
       >
         <Modal.Header closeButton>
