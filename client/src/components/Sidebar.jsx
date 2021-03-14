@@ -12,7 +12,7 @@ export default function SideBar(props) {
     <ProSidebar className="sidebar" rtl={true} image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
         <MenuItem className="sidebar item">
-          <img src="logo.gif"></img>
+          <img alt="logo" src="logo.gif"></img>
         </MenuItem>
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
