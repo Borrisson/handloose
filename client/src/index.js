@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom'
 import "./index.scss";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+import Game from "./components/Game"
 
 
 
 
 ReactDOM.render(
   <React.StrictMode>
+    <Game />
     <App />
   </React.StrictMode>,
   document.getElementById("root")

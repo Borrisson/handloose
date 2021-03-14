@@ -2,7 +2,7 @@ import "./styles/App.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import SideBar from "./Sidebar";
 import Login from "./Login";
-import Game from "./Game"
+
 
 
 
@@ -19,7 +19,6 @@ const App = () => {
   return (
     <>
       <SideBar />
-      <Game />
     </>
   );
 };
