@@ -9,7 +9,9 @@ const dataReducer = (state, action) => {
         loading: false,
       };
     default:
-      return state;
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      );
   }
 };
 

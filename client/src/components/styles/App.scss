@@ -1,5 +1,9 @@
+@import "~bootstrap/scss/bootstrap";
+@import "Sidebar.scss";
+
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-logo {
