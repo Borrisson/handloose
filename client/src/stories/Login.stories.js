@@ -12,3 +12,6 @@ export default {
 const Template = (args) => <Login {...args} />;
 
 export const Form = Template.bind({});
+Form.args = {
+  show: true,
+};

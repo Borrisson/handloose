@@ -14,7 +14,7 @@ export default function Register({ handleClose, show }) {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={(evt) => evt.preventDefault()}>
             <Form.Group controlId="formUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control type="username" placeholder="Enter Username" />
