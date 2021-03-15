@@ -4,6 +4,10 @@ div.modal-content {
 	background-color: black;
 	color:palevioletred;
 	border-color: palevioletred;
+
+	div.modal-header {
+		border-color: palevioletred;
+	}
 	
 	div > input {
 		@include modalColorTheme(cyan);
