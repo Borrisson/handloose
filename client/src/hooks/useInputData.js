@@ -1,10 +1,7 @@
 import { useState } from "react";
 
-export default function useInputData() {
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-  });
+export default function useInputData(initial) {
+  const [input, setInput] = useState(initial);
 
   function handleChange(evt) {
     const value = evt.target.value;
