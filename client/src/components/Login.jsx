@@ -2,20 +2,10 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
+import useInputData from "../hooks/useInputData";
 
 export default function Login({ handleClose, show }) {
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-  });
-
-  function handleChange(evt) {
-    const value = evt.target.value;
-    setInput({
-      ...input,
-      [evt.target.type]: value,
-    });
-  }
+  const { input, handleChange } = useInputData({ email: "", password: "" });
 
   return (
     <>

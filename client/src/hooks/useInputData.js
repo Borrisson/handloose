@@ -7,7 +7,7 @@ export default function useInputData(initial) {
     const value = evt.target.value;
     setInput({
       ...input,
-      [evt.target.type]: value,
+      [evt.target.name]: value,
     });
   }
   return { input, handleChange };
