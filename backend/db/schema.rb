@@ -10,46 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_185109) do
+ActiveRecord::Schema.define(version: 0) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "games", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "score"
-    t.integer "key_stroke_frequency"
-    t.integer "longest_streak"
-    t.bigint "users_id", null: false
-    t.index ["users_id"], name: "index_games_on_users_id"
-  end
-
-  create_table "hits", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "character"
-    t.bigint "games_id", null: false
-    t.index ["games_id"], name: "index_hits_on_games_id"
-  end
-
-  create_table "misses", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "character"
-    t.bigint "games_id", null: false
-    t.index ["games_id"], name: "index_misses_on_games_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "email"
-    t.string "password_digest"
-  end
-
-  add_foreign_key "games", "users", column: "users_id"
-  add_foreign_key "hits", "games", column: "games_id"
-  add_foreign_key "misses", "games", column: "games_id"
 end
