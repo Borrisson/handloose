@@ -1,0 +1,30 @@
+@mixin colorTheme($color) {
+	background-color: inherit;
+	border-color: $color;
+	color: $color;
+}
+
+@mixin buttonColorTheme($color) {
+   @include colorTheme($color);
+	&:hover {
+		background-color: $color;
+		border-color: $color;
+		color:black;
+	}
+}
+
+@mixin modalColorTheme($color) {
+	@include colorTheme($color);
+ &:focus {
+	background-color: inherit;
+	color: inherit;
+	border-color: inherit;
+	box-shadow: none;
+ }
+ &::placeholder {
+	 color:inherit;
+ }
+ &:focus::placeholder {
+    color: inherit;
+ }
+}

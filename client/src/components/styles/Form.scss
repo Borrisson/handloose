@@ -1,0 +1,31 @@
+@import "_partials.scss";
+
+div.modal-content {
+	background-color: black;
+	color:palevioletred;
+	border-color: palevioletred;
+
+	div.modal-header {
+		border-color: palevioletred;
+	}
+	
+	div > input {
+		@include modalColorTheme(cyan);
+	}
+}
+
+.btn-primary {
+@include  buttonColorTheme(rebeccapurple);
+}
+
+.close {
+	color: snow;
+
+	&:hover {
+		color: white;
+	}
+}
+
+.btn-secondary {
+	@include  buttonColorTheme(palevioletred);
+}
