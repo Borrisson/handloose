@@ -13,8 +13,11 @@ require("faker")
 
   3.times do
     game = user.games.create!(score: Faker::Number.number(digits: 5), key_stroke_frequency: Faker::Number.number(digits: 2), longest_streak: Faker::Number.decimal_part(digits: 2))
-    140.times do
-      game.accuracies.create!(character: Faker::String.random(length: 1), hit: Faker::Boolean.boolean)
-    end
   end
+end
+
+game = user.games.create!(score: Faker::Number.number(digits: 5), key_stroke_frequency: Faker::Number.number(digits: 2), longest_streak: Faker::Number.decimal_part(digits: 2))
+
+140.times do
+  game.accuracies.create!(character: Faker::String.random(length: 1), hit: Faker::Boolean.boolean)
 end
