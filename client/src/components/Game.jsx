@@ -25,7 +25,12 @@ import Menu from "./scenes/menu"
 import Levels from "./scenes/levels";
 
 export default class Game extends React.Component {
-  componentDidMount() {
+  componentDidMount() { //initial state
+    //const [ state, setState ] = useState({ width: "80%",
+      // height: "100%",
+      // type: Phaser.AUTO,
+      // pixelArt: true,
+      // scene: [Title, Menu, Levels]}) 
     const config = {
       width: "80%",
       height: "100%",
