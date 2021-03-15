@@ -21,4 +21,10 @@
 	border-color: inherit;
 	box-shadow: none;
  }
+ &::placeholder {
+	 color:inherit;
+ }
+ &:focus::placeholder {
+    color: inherit;
+ }
 }
