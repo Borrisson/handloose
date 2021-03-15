@@ -19,7 +19,7 @@ export default class Title extends Phaser.Scene {
       repeat: -1
     });
     
-    const start = this.add.text(850, 500, 'Press Space to Start')
+    const start = this.add.text(850, 500, 'Start')
     
     const logo = this.add.sprite(800, 350);
     logo.setScale(2);
