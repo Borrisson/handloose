@@ -17,6 +17,7 @@ export default function Login({ handleClose, show }) {
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
+                name="email"
                 type="email"
                 placeholder="Enter email"
                 value={input.email}
@@ -28,6 +29,7 @@ export default function Login({ handleClose, show }) {
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                name="password"
                 type="password"
                 placeholder="Password"
                 value={input.password}

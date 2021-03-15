@@ -2,6 +2,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useInputData from "../hooks/useInputData";
+import axios from "axios";
 
 export default function Register({ handleClose, show }) {
   const { input, handleChange } = useInputData({
@@ -10,6 +11,26 @@ export default function Register({ handleClose, show }) {
     password: "",
     password_confirmation: "",
   });
+
+  function handleSubmit(evt) {
+    console.log(input);
+    axios.post("http://localhost:3001/api/users", {
+      user: {
+        name: input.name,
+        email: input.email,
+        password: input.password,
+        password_confirmation: input.password_confirmation
+      }
+    },
+    { withCredentials: true }
+    ).then (response => {
+      console.log("registration res", response);
+    }).catch(error => {
+      console.log("registration error", error);
+    })
+    evt.preventDefault();
+  }
+  
 
   return (
     <>
@@ -22,7 +43,7 @@ export default function Register({ handleClose, show }) {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={(evt) => evt.preventDefault()}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Username</Form.Label>
               <Form.Control
