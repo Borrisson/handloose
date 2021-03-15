@@ -54,8 +54,10 @@
     "@storybook/react": "^6.1.21",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
+    "@testing-library/react-hooks": "^5.1.0",
     "@testing-library/user-event": "^12.8.3",
     "jest-canvas-mock": "^2.3.1",
-    "jest-esm-transformer": "^1.0.0"
+    "jest-esm-transformer": "^1.0.0",
+    "react-test-renderer": "^17.0.1"
   }
 }
