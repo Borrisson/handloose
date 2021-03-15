@@ -10,38 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_203140) do
+ActiveRecord::Schema.define(version: 0) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accuracies", force: :cascade do |t|
-    t.string "character", null: false
-    t.boolean "hit", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "game_id"
-    t.index ["game_id"], name: "index_accuracies_on_game_id"
-  end
-
-  create_table "games", force: :cascade do |t|
-    t.integer "score"
-    t.integer "key_stroke_frequency"
-    t.integer "longest_streak"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_games_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  add_foreign_key "accuracies", "games"
-  add_foreign_key "games", "users"
 end
