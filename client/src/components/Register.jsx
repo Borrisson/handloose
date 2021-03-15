@@ -13,19 +13,20 @@ export default function Register({ handleClose, show }) {
   });
 
   function handleSubmit(evt) {
+    console.log(input);
     axios.post("http://localhost:3001/api/users", {
       user: {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        password_confirmation: this.state.password_confirmation
+        name: input.name,
+        email: input.email,
+        password: input.password,
+        password_confirmation: input.password_confirmation
       }
     },
     { withCredentials: true }
     ).then (response => {
       console.log("registration res", response);
     }).catch(error => {
-      console.log("resistration error", error);
+      console.log("registration error", error);
     })
     evt.preventDefault();
   }
