@@ -19,15 +19,19 @@ export default class Title extends Phaser.Scene {
       repeat: -1
     });
     
-    const start = this.add.text(850, 500, 'Start')
+    const start = this.add.text(825, 490, 'Start').setInteractive();
     
     const logo = this.add.sprite(800, 350);
     logo.setScale(2);
     logo.play('logo');
 
-    start.setInteractive();
-  
-
+    
+    start.on('pointerout', function () {
+      start.setTint(0xffffff);
+    }, this)
+    start.on('pointerover', function () {
+      start.setTint(0x6AA84F);
+    }, this)
     start.on('pointerdown', function () {
 
         this.scene.start('Menu')

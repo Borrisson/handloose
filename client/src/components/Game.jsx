@@ -22,6 +22,7 @@ import Phaser from "phaser";
 import React from 'react';
 import Title from "./scenes/title"
 import Menu from "./scenes/menu"
+import Levels from "./scenes/levels";
 
 export default class Game extends React.Component {
   componentDidMount() {
@@ -30,7 +31,7 @@ export default class Game extends React.Component {
       height: "100%",
       type: Phaser.AUTO,
       pixelArt: true,
-      scene: [Title, Menu]
+      scene: [Title, Menu, Levels]
     }
     new Phaser.Game(config);
   }
