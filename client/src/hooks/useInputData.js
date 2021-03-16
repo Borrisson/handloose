@@ -48,7 +48,26 @@ export default function useInputData(initial) {
     evt.preventDefault();
   }
 
-  function handleReset() {}
+  function handleReset() {
+    if (typeof input !== "object") {
+      setInput("");
+    } else {
+      const buffer = { ...input };
 
-  return { input, handleChange, handleRegister, handleLogin, handleReset };
+      for (const key in buffer) {
+        buffer[key] = "";
+      }
+
+      setInput(buffer);
+    }
+  }
+
+  return {
+    input,
+    handleChange,
+    handleRegister,
+    handleLogin,
+    handleReset,
+    setInput,
+  };
 }

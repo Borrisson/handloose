@@ -37,4 +37,9 @@ describe("useInputData", () => {
     act(() => result.current.handleReset());
     expect(result.current.input).toEqual({ email: "", password: "" });
   });
+  it("should reset a string state (no object) with handleReset", () => {
+    const { result } = renderHook(() => useInputData("hello"));
+    act(() => result.current.handleReset());
+    expect(result.current.input).toEqual("");
+  });
 });
