@@ -15,7 +15,7 @@ describe("useInputData", () => {
     expect(result.current.input).not.toEqual({ email: "" });
   });
 
-  it("should update the respective state when value changes", () => {
+  it("should update the respective state of an object state when value changes", () => {
     const { result } = renderHook(() =>
       useInputData({ email: "", password: "" })
     );
@@ -30,6 +30,19 @@ describe("useInputData", () => {
     expect(result.current.input).toEqual({ email: "hello", password: "" });
   });
 
+  it("should update the state correctly if not provided an initial state", () => {
+    const { result } = renderHook(() => useInputData());
+    act(() =>
+      result.current.handleChange({
+        target: {
+          value: "hello",
+          name: "email",
+        },
+      })
+    );
+    expect(result.current.input).toEqual({ email: "hello" });
+  });
+
   it("should reset all input fields with handleReset", () => {
     const { result } = renderHook(() =>
       useInputData({ email: "my@email.example", password: "password" })
@@ -37,6 +50,7 @@ describe("useInputData", () => {
     act(() => result.current.handleReset());
     expect(result.current.input).toEqual({ email: "", password: "" });
   });
+
   it("should reset a string state (no object) with handleReset", () => {
     const { result } = renderHook(() => useInputData("hello"));
     act(() => result.current.handleReset());

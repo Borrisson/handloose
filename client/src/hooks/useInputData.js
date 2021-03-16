@@ -70,6 +70,5 @@ export default function useInputData(initial) {
     handleRegister,
     handleLogin,
     handleReset,
-    setInput,
   };
 }
