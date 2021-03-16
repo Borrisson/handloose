@@ -4,13 +4,24 @@ import Form from "react-bootstrap/Form";
 import useInputData from "../hooks/useInputData";
 
 export default function Register({ handleClose, show }) {
-  const { input, handleChange, handleRegister } = useInputData({
+  const { input, handleChange, handleReset, submitRegister } = useInputData({
     name: "",
     email: "",
     password: "",
     password_confirmation: "",
   });
 
+  function handleRegister(evt) {
+    evt.preventDefault();
+    submitRegister(evt)
+      .then((response) => {
+        handleReset();
+        console.log("registration res", response);
+      })
+      .catch((error) => {
+        console.log("registration error", error);
+      });
+  }
   return (
     <>
       <Modal

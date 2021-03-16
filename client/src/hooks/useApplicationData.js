@@ -5,13 +5,17 @@ import axios from "axios";
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(dataReducer, {
     user: "",
-    loading: true,
+    games: [],
+    accuracy: [],
   });
   useEffect(() => {
-    axios({
-      method: "GET",
-      url: "/api/users",
-    })
+    axios(
+      {
+        method: "GET",
+        url: "/api/users",
+      },
+      { withCredentials: true }
+    )
       .then(({ data }) => {
         console.log(data);
         dispatch({
