@@ -22,6 +22,7 @@ export default function useInputData(initial) {
         { withCredentials: true }
       )
       .then((response) => {
+        handleReset();
         console.log("registration res", response);
       })
       .catch((error) => {
@@ -40,6 +41,7 @@ export default function useInputData(initial) {
         { withCredentials: true }
       )
       .then((response) => {
+        handleReset();
         console.log("login res", response);
       })
       .catch((error) => {
