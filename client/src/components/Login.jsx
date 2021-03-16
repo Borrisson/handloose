@@ -15,6 +15,7 @@ export default function Login({ logged_in, handleClose, show }) {
       .then((response) => {
         handleReset();
         logged_in(response.data.user);
+        handleClose("login");
       })
       .catch((error) => {
         console.log("submitLogin error", error);

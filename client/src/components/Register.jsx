@@ -17,6 +17,7 @@ export default function Register({ logged_in, handleClose, show }) {
       .then((response) => {
         handleReset();
         logged_in(response.data.user);
+        handleClose("register");
       })
       .catch((error) => {
         console.log("registration error", error);
