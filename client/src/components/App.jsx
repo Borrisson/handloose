@@ -22,7 +22,6 @@ const App = () => {
       user,
     });
   }
-  console.log(state);
 
   return (
     <>
