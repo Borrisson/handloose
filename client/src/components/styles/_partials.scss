@@ -1,20 +1,20 @@
-@mixin colorTheme($color) {
-	background-color: inherit;
-	border-color: $color;
-	color: $color;
+@mixin colorTheme($color1, $color2) {
+	border-color: $color1;
+	color: $color1;
+	background-color: $color2;
 }
 
-@mixin buttonColorTheme($color) {
-   @include colorTheme($color);
+@mixin buttonColorTheme($color1, $color2) {
+   @include colorTheme($color1, $color2);
 	&:hover {
-		background-color: $color;
-		border-color: $color;
+		background-color: $color1;
+		border-color: $color1;
 		color:black;
 	}
 }
 
-@mixin modalColorTheme($color) {
-	@include colorTheme($color);
+@mixin modalColorTheme($color1, $color2) {
+	@include colorTheme($color1, $color2);
  &:focus {
 	background-color: inherit;
 	color: inherit;
@@ -27,4 +27,6 @@
  &:focus::placeholder {
     color: inherit;
  }
+
 }
+
