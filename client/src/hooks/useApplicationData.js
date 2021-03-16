@@ -20,6 +20,14 @@ const useApplicationData = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  function handleLogout() {
+    return axios.delete(`api/sessions/${state.user.id}`).then(() =>
+      dispatch({
+        type: DESTROY_USER,
+      })
+    );
+  }
+
   function loggedIn(user) {
     dispatch({
       type: SET_USER,
@@ -27,17 +35,11 @@ const useApplicationData = () => {
     });
   }
 
-  function logout() {
-    dispatch({
-      type: DESTROY_USER,
-    });
-  }
-
   return {
     state,
     dispatch,
     loggedIn,
-    logout,
+    handleLogout,
   };
 };
 

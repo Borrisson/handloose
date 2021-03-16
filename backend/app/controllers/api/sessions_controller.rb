@@ -15,7 +15,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-    @user = user.find(params[:id])
-    @user.destory
+    @user = User.find(params[:id])
+    @user.destroy
   end
 end

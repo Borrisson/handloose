@@ -7,7 +7,12 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 
-export default function SideBar(props) {
+export default function SideBar({
+  currentUser,
+  handleShow,
+  handleLogout,
+  onAbout,
+}) {
   return (
     <ProSidebar className="sidebar" rtl={true} image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
@@ -18,26 +23,28 @@ export default function SideBar(props) {
       <SidebarContent className="sidebar sidebar-body">
         <Menu className="sidebar sidebar-menu">
           <MenuItem className="sidebar item">Dashboard</MenuItem>
-          {props.currentUser && (
-            <MenuItem className="sidebar item">Logout</MenuItem>
+          {currentUser && (
+            <MenuItem className="sidebar item" onClick={handleLogout}>
+              Logout
+            </MenuItem>
           )}
-          {!props.currentUser && (
+          {!currentUser && (
             <>
               <MenuItem
                 className="sidebar item"
-                onClick={() => props.handleShow("register")}
+                onClick={() => handleShow("register")}
               >
                 Register
               </MenuItem>
               <MenuItem
                 className="sidebar item"
-                onClick={() => props.handleShow("login")}
+                onClick={() => handleShow("login")}
               >
                 Login
               </MenuItem>
             </>
           )}
-          <MenuItem className="sidebar item" onClick={props.onAbout}>
+          <MenuItem className="sidebar item" onClick={onAbout}>
             About
           </MenuItem>
         </Menu>
