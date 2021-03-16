@@ -5,9 +5,10 @@ import SideBar from "./Sidebar";
 import Login from "./Login";
 import Register from "./Register";
 import { SET_USER } from "../reducer/data_reducer";
+import axios from "axios";
 
 const App = () => {
-  const { state, dispatch } = useApplicationData();
+  const { state, dispatch, loggedIn, logout } = useApplicationData();
   const [show, setShow] = useState({
     login: false,
     register: false,
@@ -16,25 +17,17 @@ const App = () => {
   const handleClose = (key) => setShow({ [key]: false });
   const handleShow = (key) => setShow({ [key]: true });
 
-  function logged_in(user) {
-    dispatch({
-      type: SET_USER,
-      user,
-    });
+  function handleLogout(id) {
+    return axios.destroy(`api/sessions/${id}`);
   }
-
   return (
     <>
       <SideBar handleShow={handleShow} currentUser={state.user} />
-      <Login
-        handleClose={handleClose}
-        show={show.login}
-        logged_in={logged_in}
-      />
+      <Login handleClose={handleClose} show={show.login} loggedIn={loggedIn} />
       <Register
         handleClose={handleClose}
         show={show.register}
-        logged_in={logged_in}
+        loggedIn={loggedIn}
       />
     </>
   );

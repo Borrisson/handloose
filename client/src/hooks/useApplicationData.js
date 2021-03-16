@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import dataReducer, { SET_USER } from "../reducer/data_reducer";
+import dataReducer, { DESTROY_USER, SET_USER } from "../reducer/data_reducer";
 import axios from "axios";
 
 const useApplicationData = () => {
@@ -20,9 +20,24 @@ const useApplicationData = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  function loggedIn(user) {
+    dispatch({
+      type: SET_USER,
+      user,
+    });
+  }
+
+  function logout() {
+    dispatch({
+      type: DESTROY_USER,
+    });
+  }
+
   return {
     state,
     dispatch,
+    loggedIn,
+    logout,
   };
 };
 
