@@ -4,7 +4,7 @@ import axios from "axios";
 
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(dataReducer, {
-    user: "",
+    user: {},
     games: [],
     accuracy: [],
   });
