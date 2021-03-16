@@ -12,10 +12,9 @@ const useApplicationData = () => {
     axios
       .get("/api/users", { withCredentials: true })
       .then(({ data }) => {
-        console.log(data);
         dispatch({
           type: SET_USER,
-          users: data,
+          user: data,
         });
       })
       .catch((err) => console.log(err));
