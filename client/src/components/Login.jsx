@@ -1,21 +1,29 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import useInputData from "../hooks/useInputData";
+import { useState } from "react";
 
 export default function Login({ loggedIn, handleClose, show }) {
   const { input, handleChange, handleReset, submitLogin } = useInputData({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
   function handleLogin(evt) {
     evt.preventDefault();
     submitLogin(evt)
       .then((response) => {
-        handleReset();
-        loggedIn(response.data.user);
-        handleClose("login");
+        if (response.data.status !== 401) {
+          handleReset();
+          loggedIn(response.data.user);
+          handleClose("login");
+          setError("");
+        } else {
+          setError(response.data.message);
+        }
       })
       .catch((error) => {
         console.log("submitLogin error", error);
@@ -30,6 +38,7 @@ export default function Login({ loggedIn, handleClose, show }) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleLogin}>
+            {error && <Alert variant="danger">{error}</Alert>}
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
