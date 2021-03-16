@@ -15,5 +15,26 @@ describe("useInputData", () => {
     expect(result.current.input).not.toEqual({ email: "" });
   });
 
-  it("should update the respective state when value changes", () => {});
+  it("should update the respective state when value changes", () => {
+    const { result } = renderHook(() =>
+      useInputData({ email: "", password: "" })
+    );
+    act(() =>
+      result.current.handleChange({
+        target: {
+          value: "hello",
+          name: "email",
+        },
+      })
+    );
+    expect(result.current.input).toEqual({ email: "hello", password: "" });
+  });
+
+  it("should reset all input fields with handleReset", () => {
+    const { result } = renderHook(() =>
+      useInputData({ email: "my@email.example", password: "password" })
+    );
+    act(() => result.current.handleReset());
+    expect(result.current.input).toEqual({ email: "", password: "" });
+  });
 });

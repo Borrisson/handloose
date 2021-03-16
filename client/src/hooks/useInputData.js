@@ -48,5 +48,7 @@ export default function useInputData(initial) {
     evt.preventDefault();
   }
 
-  return { input, handleChange, handleRegister, handleLogin };
+  function handleReset() {}
+
+  return { input, handleChange, handleRegister, handleLogin, handleReset };
 }
