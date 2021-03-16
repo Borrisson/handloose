@@ -3,11 +3,23 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useInputData from "../hooks/useInputData";
 
-export default function Login({ handleClose, show }) {
-  const { input, handleChange, handleLogin } = useInputData({
+export default function Login({ logged_in, handleClose, show }) {
+  const { input, handleChange, handleReset, submitLogin } = useInputData({
     email: "",
     password: "",
   });
+
+  function handleLogin(evt) {
+    evt.preventDefault();
+    submitLogin(evt)
+      .then((response) => {
+        handleReset();
+        logged_in(response.data.user);
+      })
+      .catch((error) => {
+        console.log("submitLogin error", error);
+      });
+  }
 
   return (
     <>

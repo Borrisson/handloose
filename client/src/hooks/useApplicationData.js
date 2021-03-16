@@ -1,21 +1,20 @@
 import { useEffect, useReducer } from "react";
-import dataReducer, { SET_USERS } from "../reducer/data_reducer";
+import dataReducer, { SET_USER } from "../reducer/data_reducer";
 import axios from "axios";
 
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(dataReducer, {
-    users: [],
-    loading: true,
+    user: "",
+    games: [],
+    accuracy: [],
   });
   useEffect(() => {
-    axios({
-      method: "GET",
-      url: "/api/users",
-    })
+    axios
+      .get("/api/users", { withCredentials: true })
       .then(({ data }) => {
         console.log(data);
         dispatch({
-          type: SET_USERS,
+          type: SET_USER,
           users: data,
         });
       })

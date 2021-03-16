@@ -9,7 +9,7 @@ class Api::SessionsController < ApplicationController
       render json: {
         status: :created,
         logged_in: "true",
-        user: user,
+        user: user.name,
       }
     else
       render json: { status: 401 }

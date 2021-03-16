@@ -12,42 +12,24 @@ export default function useInputData(initial) {
     });
   }
 
-  function handleRegister(evt) {
-    axios
-      .post(
-        "/api/users",
-        {
-          user: input,
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        handleReset();
-        console.log("registration res", response);
-      })
-      .catch((error) => {
-        console.log("registration error", error);
-      });
-    evt.preventDefault();
+  function submitRegister(evt) {
+    return axios.post(
+      "/api/users",
+      {
+        user: input,
+      },
+      { withCredentials: true }
+    );
   }
 
-  function handleLogin(evt) {
-    axios
-      .post(
-        "/api/sessions",
-        {
-          user: input,
-        },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        handleReset();
-        console.log("login res", response);
-      })
-      .catch((error) => {
-        console.log("login error", error);
-      });
-    evt.preventDefault();
+  function submitLogin(evt) {
+    return axios.post(
+      "/api/sessions",
+      {
+        user: input,
+      },
+      { withCredentials: true }
+    );
   }
 
   function handleReset() {
@@ -67,8 +49,8 @@ export default function useInputData(initial) {
   return {
     input,
     handleChange,
-    handleRegister,
-    handleLogin,
+    submitRegister,
+    submitLogin,
     handleReset,
   };
 }
