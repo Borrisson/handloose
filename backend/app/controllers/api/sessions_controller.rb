@@ -1,17 +1,15 @@
 class Api::SessionsController < ApplicationController
-
   def create
-    puts "here"
     user = User
-            .find_by(email: params["user"]["email"])
-            .try(:authenticate, params["user"]["password"])
+      .find_by(email: params["user"]["email"])
+      .try(:authenticate, params["user"]["password"])
 
-    if user 
+    if user
       session[:user_id] = user.id
       render json: {
         status: :created,
-        logged_in: 'true',
-        user: user
+        logged_in: "true",
+        user: user,
       }
     else
       render json: { status: 401 }
@@ -19,7 +17,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-   @user = user.find(params[:id])
-   @user.destory
+    @user = user.find(params[:id])
+    @user.destory
   end
 end
