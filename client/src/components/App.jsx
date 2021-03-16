@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <>
-      <SideBar handleShow={handleShow} />
+      <SideBar handleShow={handleShow} currentUser={state.user} />
       <Login handleClose={handleClose} show={show.login} />
       <Register handleClose={handleClose} show={show.register} />
     </>
