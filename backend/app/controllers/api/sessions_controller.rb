@@ -1,6 +1,8 @@
 class Api::SessionsController < ApplicationController
   def create
-    if @user = User.authenticate_with_credentials(params[:email], params[:password])
+    if @user = User
+      .find_by(email: params["user"]["email"])
+      .try(:authenticate, params["user"]["password"])
       session[:user_id] = @user.id
       render json: {
         status: :created,
