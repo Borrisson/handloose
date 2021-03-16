@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
         user: user,
       }
     else
-      render json: { status: 401, message: "Email does not exist in our database" }
+      render json: { status: 401, message: "Email and/or password does not match our records" }
     end
   end
 
