@@ -15,7 +15,7 @@ export default function useInputData(initial) {
   function handleRegister(evt) {
     axios
       .post(
-        "http://localhost:3001/api/users",
+        "/api/users",
         {
           user: input,
         },
@@ -34,7 +34,7 @@ export default function useInputData(initial) {
   function handleLogin(evt) {
     axios
       .post(
-        "http://localhost:3001/api/sessions",
+        "/api/sessions",
         {
           user: input,
         },
