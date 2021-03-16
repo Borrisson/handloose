@@ -4,7 +4,7 @@ import useApplicationData from "../hooks/useApplicationData";
 import SideBar from "./Sidebar";
 import Login from "./Login";
 import Register from "./Register";
-import { SET_USERS, SET_USER } from "../reducer/data_reducer";
+import { SET_USER } from "../reducer/data_reducer";
 
 const App = () => {
   const { state, dispatch } = useApplicationData();
