@@ -4,7 +4,10 @@ import Form from "react-bootstrap/Form";
 import useInputData from "../hooks/useInputData";
 
 export default function Login({ handleClose, show }) {
-  const { input, handleChange } = useInputData({ email: "", password: "" });
+  const { input, handleChange, handleLogin } = useInputData({
+    email: "",
+    password: "",
+  });
 
   return (
     <>
@@ -13,7 +16,7 @@ export default function Login({ handleClose, show }) {
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={(evt) => evt.preventDefault()}>
+          <Form onSubmit={handleLogin}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
