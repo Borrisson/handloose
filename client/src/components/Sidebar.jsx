@@ -7,12 +7,7 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 
-export default function SideBar({
-  currentUser,
-  handleShow,
-  handleLogout,
-  onAbout,
-}) {
+export default function SideBar({ currentUser, handleShow, handleLogout }) {
   return (
     <ProSidebar className="sidebar" rtl={true} image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
