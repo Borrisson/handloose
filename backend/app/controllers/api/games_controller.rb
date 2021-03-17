@@ -1,6 +1,7 @@
 class Api::GamesController < ApplicationController
   def index
-    @games = Game.find params[:user_id]
+    @games = Game.where user_id: params[:user_id]
+    render json: @games
   end
 
   def create
