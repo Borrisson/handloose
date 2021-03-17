@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users, except: [:destroy, :update] do
-      resources :games, except: [:destroy, :update]
+      resources :games, except: [:destroy, :update] do
+        resources :accuracies, except: [:destroy, :update]
+      end
     end
     resources :sessions, only: [:create, :destroy]
   end
