@@ -1,5 +1,9 @@
 import { useEffect, useReducer } from "react";
-import dataReducer, { DESTROY_USER, SET_USER } from "../reducer/data_reducer";
+import dataReducer, {
+  DESTROY_USER,
+  SET_APPLICATION_DATA,
+  SET_USER,
+} from "../reducer/data_reducer";
 import axios from "axios";
 
 const useApplicationData = () => {
@@ -10,12 +14,17 @@ const useApplicationData = () => {
   });
 
   useEffect(() => {
-    axios
-      .get("/api/users", { withCredentials: true })
-      .then(({ data }) => {
+    Promise.all([
+      axios.get("/api/users", { withCredentials: true }),
+      axios.get("/api/games", { withCredentials: true }),
+      axios.get("/api/accuracies", { withCredentials: true }),
+    ])
+      .then(([users, games, accuracies]) => {
         dispatch({
-          type: SET_USER,
-          user: data,
+          type: SET_APPLICATION_DATA,
+          user: { ...users.data },
+          games: [...games.data],
+          accuracies: [...accuracies.data],
         });
       })
       .catch((err) => console.log(err));
