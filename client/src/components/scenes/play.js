@@ -10,7 +10,7 @@ export default class Play extends Phaser.Scene {
   }
   create() {
     const kb = this.add.sprite(600, 200, 'keyboardPlay').setScale(6)
-    const a = this.physics.add.sprite(275, 1000, 'text')
+    const a = this.physics.add.text(275, 1000, 'a')
     a.setScale(6).setVelocityY(-100);
     this.input.keyboard.on('keydown-A', function (){
      kb.setFrame(1); 
