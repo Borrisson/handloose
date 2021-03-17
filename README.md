@@ -24,7 +24,7 @@ Immediately see if you can run npm test and yarn test. if not hit me up.
 - start development
 
 ```
-	yarn start
+yarn start
 ```
 
 - start storybook
