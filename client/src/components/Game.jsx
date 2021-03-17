@@ -20,9 +20,9 @@
 
 import Phaser from "phaser";
 import React from 'react';
-import Title from "./scenes/title"
 import Menu from "./scenes/menu"
 import Levels from "./scenes/levels";
+import Play from "./scenes/play";
 
 export default class Game extends React.Component {
   componentDidMount() { //initial state
@@ -36,7 +36,13 @@ export default class Game extends React.Component {
       height: "100%",
       type: Phaser.AUTO,
       pixelArt: true,
-      scene: [Title, Menu, Levels]
+      physics: {
+        default: 'arcade',
+        arcade: {
+          debug: false
+        }
+      },
+      scene: [Menu, Levels, Play]
     }
     new Phaser.Game(config);
   }
