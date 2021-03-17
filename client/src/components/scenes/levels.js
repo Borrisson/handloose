@@ -6,8 +6,17 @@ export default class Levels extends Phaser.Scene {
   }
   preload() {
     this.load.spritesheet('keyboard', 'assets/keyboards.png', {frameWidth: 123, frameHeight: 33})
+    this.load.spritesheet('slider', 'assets/slider.png', { frameWidth: 44, frameHeight: 7})
   }
   create() {
+    const left = this.add.text(450, 750, "<==").setInteractive();
+    const right = this.add.text(750, 750, "==>").setInteractive();
+
+    const slide = this.add.sprite(625, 700, "slider").setScale(5);
+    let frame = 0
+    slide.setFrame(frame);
+
+
     let selected = false;
 
     const lvl1 = this.add.text(500, 400, "Level 1").setInteractive();
@@ -20,10 +29,27 @@ export default class Levels extends Phaser.Scene {
     const lvl8 = this.add.text(700, 500, "Level 8").setInteractive();
     const lvl9 = this.add.text(700, 550, "Level 9").setInteractive();
     const lvl10 = this.add.text(700, 600, "Level 10").setInteractive();
+
+  
     const back = this.add.text(1400, 950, "Back").setInteractive();
-    const play = this.add.text(600, 700, "Play").setInteractive();
+
+    const play = this.add.text(600, 850, "Play").setInteractive();
+
     const kb = this.add.sprite(500, 200, 'keyboard').setScale(5);
     kb.setFrame(0);
+
+    left.on('pointerdown', function () {
+      if (frame > 0) {
+        frame --;
+        slide.setFrame(frame);
+      }
+    })
+    right.on('pointerdown', function () {
+      if (frame < 3) {
+        frame ++;
+        slide.setFrame(frame);
+      }
+    })
 
     lvl1.on('pointerover', function () { 
       if (!selected) {
