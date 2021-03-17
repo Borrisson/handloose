@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         resources :accuracies, except: [:destroy, :update, :show]
       end
     end
+    resources :games, except: [:destroy, :update, :show]
     resources :sessions, only: [:create, :destroy]
+    resources :accuracies, except: [:destroy, :update, :show]
   end
 end
