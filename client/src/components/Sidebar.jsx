@@ -23,12 +23,12 @@ export default function SideBar({
       <SidebarContent className="sidebar sidebar-body">
         <Menu className="sidebar sidebar-menu">
           <MenuItem className="sidebar item">Dashboard</MenuItem>
-          {currentUser && (
+          {currentUser.name && (
             <MenuItem className="sidebar item" onClick={handleLogout}>
               Logout
             </MenuItem>
           )}
-          {!currentUser && (
+          {!currentUser.name && (
             <>
               <MenuItem
                 className="sidebar item"

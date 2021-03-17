@@ -10,7 +10,10 @@ const App = () => {
   const [show, setShow] = useState({
     login: false,
     register: false,
+    about: false,
   });
+
+  console.log(state);
   const handleClose = (key) => setShow({ [key]: false });
   const handleShow = (key) => setShow({ [key]: true });
 

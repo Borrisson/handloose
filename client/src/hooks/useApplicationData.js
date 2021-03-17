@@ -21,11 +21,10 @@ const useApplicationData = () => {
   }, []);
 
   function handleLogout() {
-    return axios.delete(`api/sessions/${state.user.id}`).then(() =>
-      dispatch({
-        type: DESTROY_USER,
-      })
-    );
+    dispatch({
+      type: DESTROY_USER,
+    });
+    return axios.delete(`api/sessions/${state.user.id}`);
   }
 
   function loggedIn(user) {

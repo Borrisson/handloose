@@ -2,6 +2,9 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 export default function About({ show, handleClose }) {
+  const IMPROVE = "IMPROVE";
+  const HOW_TO = "HOW_TO";
+
   return (
     <>
       <Modal
