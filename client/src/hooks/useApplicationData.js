@@ -6,8 +6,9 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(dataReducer, {
     user: {},
     games: [],
-    accuracy: [],
+    accuracies: [],
   });
+
   useEffect(() => {
     axios
       .get("/api/users", { withCredentials: true })
