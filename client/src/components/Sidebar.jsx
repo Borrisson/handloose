@@ -14,6 +14,13 @@ export default function SideBar({ currentUser, handleShow, handleLogout }) {
         <MenuItem className="sidebar item">
           <img alt="logo" src="logo.gif"></img>
         </MenuItem>
+        {currentUser.name && (
+        <MenuItem
+            className="Welcome"
+          >
+            Welcome! {currentUser.name}
+          </MenuItem>
+          )}
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
         <Menu className="sidebar sidebar-menu">
