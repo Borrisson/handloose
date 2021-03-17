@@ -1,4 +1,6 @@
 class Api::SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:create]
+
   def create
     user = User
       .find_by(email: params["user"]["email"])
@@ -8,16 +10,14 @@ class Api::SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: {
         status: :created,
-        logged_in: "true",
-        user: user.name,
+        user: user,
       }
     else
-      render json: { status: 401 }
+      render json: { status: 401, message: "Email and/or password does not match our records" }
     end
   end
 
   def destroy
-    @user = user.find(params[:id])
-    @user.destory
+    session[:user_id] = nil
   end
 end

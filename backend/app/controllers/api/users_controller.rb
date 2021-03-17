@@ -1,6 +1,9 @@
 class Api::UsersController < ApplicationController
+  skip_before_action :require_login, only: [:create]
+
   def index
-    current_user = User.find_by_id(session[:current_user_id])
+    current_user = User.find_by_id(session[:user_id])
+    render json: current_user
   end
 
   def show

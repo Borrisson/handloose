@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useInputData from "../hooks/useInputData";
 
-export default function Register({ logged_in, handleClose, show }) {
+export default function Register({ loggedIn, handleClose, show }) {
   const { input, handleChange, handleReset, submitRegister } = useInputData({
     name: "",
     email: "",
@@ -16,7 +16,7 @@ export default function Register({ logged_in, handleClose, show }) {
     submitRegister(evt)
       .then((response) => {
         handleReset();
-        logged_in(response.data.user);
+        loggedIn(response.data.user);
         handleClose("register");
       })
       .catch((error) => {
