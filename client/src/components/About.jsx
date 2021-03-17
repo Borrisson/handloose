@@ -48,13 +48,19 @@ export default function About({ show, handleClose }) {
             <Carousel.Item>
               <br />
               <h3>Game options</h3>
+
+              <h5>Slider</h5>
               <p>
                 There is a speed slider that will allow you to change the
                 freqency of key presses, if you would like the characters to
-                appear slower or faster. Lastly, you can pick and choose which
-                characters you would like to play with by clicking the on-screen
-                keyboard keys or you can click on the levels, these are presets
-                that will auto select the keys for you.
+                appear slower or faster.
+              </p>
+              <h5>Character Selection</h5>
+              <p>
+                You can pick and choose which characters you would like to play
+                with by clicking the on-screen keyboard keys or you can click on
+                the levels, these are presets that will auto select the keys for
+                you.
               </p>
               <br />
             </Carousel.Item>
