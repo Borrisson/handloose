@@ -44,7 +44,10 @@ export default function SideBar({
               </MenuItem>
             </>
           )}
-          <MenuItem className="sidebar item" onClick={onAbout}>
+          <MenuItem
+            className="sidebar item"
+            onClick={() => handleShow("about")}
+          >
             About
           </MenuItem>
         </Menu>
