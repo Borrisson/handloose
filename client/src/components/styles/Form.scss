@@ -2,44 +2,47 @@
 @import "_variables.scss";
 
 div.modal-content {
-	@include colorTheme(palevioletred, black);
+  @include colorTheme(palevioletred, black);
 
+  div.modal-header {
+    border-color: inherit;
+  }
 
-	div.modal-header {
-		border-color: inherit;
-	}
-	
-	div > input {
-		@include modalColorTheme($modal-color-theme, $modal-bg-color-theme);
-	}
+  div > input {
+    @include modalColorTheme($modal-color-theme, $modal-bg-color-theme);
+  }
 
-	input:-webkit-autofill,
-	input:-webkit-autofill:hover, 
-	input:-webkit-autofill:focus,
-	select:-webkit-autofill,
-	select:-webkit-autofill:hover,
-	select:-webkit-autofill:focus {
-		border: 1px solid $modal-color-theme;
-		-webkit-text-fill-color: $modal-color-theme;
-		box-shadow: 0 0 0px 1000px $modal-bg-color-theme inset;
-		transition: background-color 5000s ease-in-out 0s;
-	}
-
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 1px solid $modal-color-theme;
+    -webkit-text-fill-color: $modal-color-theme;
+    box-shadow: 0 0 0px 1000px $modal-bg-color-theme inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 .btn-primary {
-@include  buttonColorTheme(rebeccapurple, black);
+  @include buttonColorTheme(rebeccapurple, black);
 }
 
 .close {
-	color: snow;
+  color: snow;
 
-	&:hover {
-		color: white;
-	}
+  &:hover {
+    color: white;
+  }
 }
 
 .btn-secondary {
-	@include  buttonColorTheme(palevioletred, black);
+  @include buttonColorTheme(palevioletred, black);
 }
 
+.alert-danger {
+  background-color: inherit;
+  color: #d42233;
+  border-color: #d42233;
+}
