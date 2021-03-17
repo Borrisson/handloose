@@ -18,7 +18,7 @@ export default function SideBar({ currentUser, handleShow, handleLogout }) {
         <MenuItem
             className="Welcome"
           >
-            Welcome! {currentUser.name}
+           !Welcome, {currentUser.name}
           </MenuItem>
           )}
       </SidebarHeader>
