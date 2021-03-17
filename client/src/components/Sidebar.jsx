@@ -7,7 +7,12 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 
-export default function SideBar({ currentUser, handleShow, handleLogout }) {
+export default function SideBar({
+  currentUser,
+  handleShow,
+  handleLogout,
+  highScore,
+}) {
   return (
     <ProSidebar className="sidebar" rtl={true} image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
@@ -15,12 +20,8 @@ export default function SideBar({ currentUser, handleShow, handleLogout }) {
           <img alt="logo" src="logo.gif"></img>
         </MenuItem>
         {currentUser.name && (
-        <MenuItem
-            className="Welcome"
-          >
-           !Welcome, {currentUser.name}
-          </MenuItem>
-          )}
+          <MenuItem className="Welcome">!Welcome, {currentUser.name}</MenuItem>
+        )}
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
         <Menu className="sidebar sidebar-menu">
@@ -54,6 +55,16 @@ export default function SideBar({ currentUser, handleShow, handleLogout }) {
           </MenuItem>
         </Menu>
       </SidebarContent>
+      <SidebarFooter>
+        <Menu className="sidebar sidebar-menu">
+          <MenuItem className="sidebar item">Highest Score</MenuItem>
+          <MenuItem className="sidebar item">{}</MenuItem>
+          <MenuItem className="sidebar item">Streak</MenuItem>
+          <MenuItem className="sidebar item">{}</MenuItem>
+          <MenuItem className="sidebar item">Score</MenuItem>
+          <MenuItem className="sidebar item">{}</MenuItem>
+        </Menu>
+      </SidebarFooter>
       <SidebarFooter>
         <MenuItem className="sidebar sidebar-footer">Copyright 2021</MenuItem>
       </SidebarFooter>

@@ -13,7 +13,6 @@ const App = () => {
     register: false,
     about: false,
   });
-
   const handleClose = (key) => setShow({ [key]: false });
   const handleShow = (key) => setShow({ [key]: true });
 
