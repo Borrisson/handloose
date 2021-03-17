@@ -5,7 +5,7 @@ class Api::GamesController < ApplicationController
   end
 
   def create
-    @game = Game.create(game_params)
+    Game.create(game_params)
   end
 
   private
