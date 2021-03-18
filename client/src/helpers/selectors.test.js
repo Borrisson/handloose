@@ -1,4 +1,4 @@
-import { getHighestScoreFromUser } from "./selectors";
+import { getHighestScoreFromUser, getLongestStreakFromUser } from "./selectors";
 
 const state = {
   user: {
@@ -15,7 +15,7 @@ const state = {
       created_at: "2021-03-16T23:16:16.244Z",
       id: 1,
       key_stroke_frequency: 80,
-      longest_streak: 2,
+      longest_streak: 6,
       score: 51363153,
       updated_at: "2021-03-16T23:16:16.244Z",
       user_id: 1,
@@ -24,7 +24,7 @@ const state = {
       created_at: "2021-03-16T23:16:16.244Z",
       id: 1,
       key_stroke_frequency: 80,
-      longest_streak: 2,
+      longest_streak: 10,
       score: 1231516,
       updated_at: "2021-03-16T23:16:16.244Z",
       user_id: 1,
@@ -33,7 +33,7 @@ const state = {
       created_at: "2021-03-16T23:16:16.244Z",
       id: 1,
       key_stroke_frequency: 80,
-      longest_streak: 2,
+      longest_streak: 20,
       score: 1265611,
       updated_at: "2021-03-16T23:16:16.244Z",
       user_id: 1,
@@ -42,7 +42,7 @@ const state = {
       created_at: "2021-03-16T23:16:16.244Z",
       id: 1,
       key_stroke_frequency: 80,
-      longest_streak: 2,
+      longest_streak: 70,
       score: 5133513,
       updated_at: "2021-03-16T23:16:16.244Z",
       user_id: 1,
@@ -60,7 +60,7 @@ const state = {
       created_at: "2021-03-16T23:16:16.244Z",
       id: 1,
       key_stroke_frequency: 80,
-      longest_streak: 2,
+      longest_streak: 1,
       score: 53143243513,
       updated_at: "2021-03-16T23:16:16.244Z",
       user_id: 2,
@@ -99,6 +99,14 @@ describe("selectors", () => {
     });
     it("it returns a particular users highest score from a userId", () => {
       expect(getHighestScoreFromUser(state)).toBe(51363153);
+    });
+  });
+  describe("getLongestStreakFromUserId", () => {
+    it("it returns an empty array if no games exist (New registered USER)", () => {
+      expect(getLongestStreakFromUser(NoGamesState)).toHaveLength(0);
+    });
+    it("it returns a particular users longest streak from a userId", () => {
+      expect(getLongestStreakFromUser(state)).toBe(70);
     });
   });
 });
