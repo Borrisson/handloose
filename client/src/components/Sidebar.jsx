@@ -127,7 +127,7 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
             >
               Highest Score
             </MenuItem>
-            <MenuItem className="sidebar item">
+            <MenuItem icon={<i></i>} className="sidebar item">
               {getHighestScoreFromUser(state)}
             </MenuItem>
             <MenuItem
@@ -136,7 +136,7 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
             >
               Streak
             </MenuItem>
-            <MenuItem className="sidebar item">
+            <MenuItem icon={<i></i>} className="sidebar item">
               {getLongestStreakFromUser(state)}
             </MenuItem>
             <MenuItem
@@ -145,7 +145,9 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
             >
               Current Score
             </MenuItem>
-            <MenuItem className="sidebar item">{score}</MenuItem>
+            <MenuItem icon={<i></i>} className="sidebar item">
+              {score}
+            </MenuItem>
           </Menu>
         </SidebarFooter>
       )}
