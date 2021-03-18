@@ -26,7 +26,7 @@ const useApplicationData = () => {
     dispatch({
       type: DESTROY_USER,
     });
-    return axios.delete(`api/sessions/${state.user.id}`);
+    return axios.delete(`/api/sessions/${state.user.id}`);
   }
 
   function handleAppData({ user, games, accuracies }) {
@@ -45,12 +45,17 @@ const useApplicationData = () => {
     });
   }
 
+  function handleGamePost(accuracies) {
+    return axios.post("/api/accuracies", { accuracies });
+  }
+
   return {
     state,
     dispatch,
     handleLogout,
     handleAppData,
     loggedIn,
+    handleGamePost,
   };
 };
 
