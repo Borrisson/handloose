@@ -27,8 +27,8 @@ export default class Play extends Phaser.Scene {
     const kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
     window.kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
     const kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
-    const a = this.physics.add.sprite(477, 1000, 'text', 0);
-    a.setScale(6).setVelocityY(-(window.velocity));
+    window.a = this.physics.add.sprite(477, 1000, 'text', 0);
+    window.a.setScale(6).setVelocityY(-(window.velocity));
     const b = this.physics.add.sprite(777, 1000, 'text', 1);
     const c = this.physics.add.sprite(633, 1000, 'text', 2);
     const d = this.physics.add.sprite(621, 1000, 'text', 3);
