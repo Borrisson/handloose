@@ -14,19 +14,10 @@ const useApplicationData = () => {
   });
 
   useEffect(() => {
-    Promise.all([
-      axios.get("/api/users", { withCredentials: true }),
-      axios.get("/api/games", { withCredentials: true }),
-      axios.get("/api/accuracies", { withCredentials: true }),
-    ])
-      .then(([userData, gamesData, accuraciesData]) => {
-        // These conditionals make sure to pass empty states in the event that the guest user is not logged in
-        const user = userData.data.status === 401 ? {} : userData.data;
-        const games = gamesData.data.status === 401 ? [] : gamesData.data;
-        const accuracies =
-          accuraciesData.data.status === 401 ? [] : accuraciesData.data;
-
-        handleAppData({ user, games, accuracies });
+    axios
+      .get("/api/users", { withCredentials: true })
+      .then(({ data }) => {
+        handleAppData(data);
       })
       .catch((err) => console.log(err));
   }, []);
