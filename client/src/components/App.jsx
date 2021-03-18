@@ -21,6 +21,7 @@ const App = () => {
   });
   const handleClose = (key) => setShow({ [key]: false });
   const handleShow = (key) => setShow({ [key]: true });
+  const [score, setScore] = useState(0);
 
   return (
     <>
@@ -28,6 +29,7 @@ const App = () => {
         handleShow={handleShow}
         handleLogout={handleLogout}
         state={state}
+        score={score}
       />
       <Login
         handleClose={handleClose}

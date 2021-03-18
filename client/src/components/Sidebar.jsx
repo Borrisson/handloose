@@ -12,7 +12,7 @@ import {
   getLongestStreakFromUser,
 } from "../helpers/selectors";
 
-export default function SideBar({ state, handleShow, handleLogout }) {
+export default function SideBar({ state, handleShow, handleLogout, score }) {
   return (
     <ProSidebar className="sidebar" rtl={true} image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
@@ -65,8 +65,8 @@ export default function SideBar({ state, handleShow, handleLogout }) {
           <MenuItem className="sidebar item">
             {getLongestStreakFromUser(state)}
           </MenuItem>
-          <MenuItem className="sidebar item">Score</MenuItem>
-          <MenuItem className="sidebar item">{}</MenuItem>
+          <MenuItem className="sidebar item">Current Score</MenuItem>
+          <MenuItem className="sidebar item">{score}</MenuItem>
         </Menu>
       </SidebarFooter>
       <SidebarFooter>
