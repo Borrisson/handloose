@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
     @accuracies = Accuracy.where(game_id: @games.ids)
 
     render json: {
-      status: :created,
+      status: :ok,
       user: @user,
       games: @games,
       accuracies: @accuracies,

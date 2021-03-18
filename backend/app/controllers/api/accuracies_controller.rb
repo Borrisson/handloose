@@ -1,12 +1,15 @@
 class Api::AccuraciesController < ApplicationController
   def index
     @accuracies
-    if params[:user_id]
+    if params[:game_id]
       @accuracies = Accuracy.where game_id: params[:game_id]
     else
-      @accuracies = Accuracy.joins(:game).where({ game: { user_id: session[:user_id] } })
+      @accuracies = Accuracy.all
     end
-    render json: @accuracies
+    render json: {
+      status: :ok,
+      accuracies: @accuracies,
+    }
   end
 
   def create
