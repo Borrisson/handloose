@@ -1,5 +1,12 @@
 import Phaser from "phaser"
 
+function checkOverlap(spriteA, spriteB) {
+  var boundsA = spriteA.getBounds();
+  var boundsB = spriteB.getBounds();
+
+  return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
+}
+
 export default class Play extends Phaser.Scene {
   constructor() {
     super("play")
@@ -13,16 +20,16 @@ export default class Play extends Phaser.Scene {
   create() {
     console.log(window.velocity);
     this.key_SPACE = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.SPACE)
+    this.key_A = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.A)
     this.pausePhysics = false;
  
 
-    const kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
-    //this.physics.enable(kb1);
-    //kb1.body.setSize(119, 10);
-    const kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
-    const kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
-    const a = this.physics.add.sprite(275, 1000, 'text', 0);
-    a.setScale(6).setVelocityY(-(window.velocity));
+    const kb1 = this.physics.add.sprite(790, 200, 'kb1').setScale(6);
+    window.kb2 = this.physics.add.sprite(765, 260, 'kb2').setScale(6);
+    const kb3 = this.physics.add.sprite(705, 320, 'kb3').setScale(6);
+
+    window.a = this.physics.add.sprite(765, 900, 'text', 0);
+    window.a.setScale(6).setVelocityY(-(window.velocity));
     const b = this.physics.add.sprite(575, 1000, 'text', 1);
     const c = this.physics.add.sprite(431, 1000, 'text', 2);
     const d = this.physics.add.sprite(420, 1000, 'text', 3);
@@ -48,6 +55,7 @@ export default class Play extends Phaser.Scene {
     const x = this.physics.add.sprite(360, 1000, 'text', 23);
     const y = this.physics.add.sprite(624, 1000, 'text', 24);
     const z = this.physics.add.sprite(287, 1000, 'text', 25);
+    
     
     const onEvent = function () {
       b.setScale(6).setVelocityY(-125);
@@ -78,10 +86,10 @@ export default class Play extends Phaser.Scene {
     }
     
     this.input.keyboard.on('keydown-A', function (){
-     kb2.setFrame(1); 
+     window.kb2.setFrame(1); 
     })
     this.input.keyboard.on('keyup-A', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-B', function (){
       kb3.setFrame(5); 
@@ -96,10 +104,10 @@ export default class Play extends Phaser.Scene {
       kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-D', function (){
-      kb2.setFrame(3); 
+      window.kb2.setFrame(3); 
     })
     this.input.keyboard.on('keyup-D', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-E', function (){
       kb1.setFrame(3); 
@@ -108,22 +116,22 @@ export default class Play extends Phaser.Scene {
       kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-F', function (){
-      kb2.setFrame(4); 
+      window.kb2.setFrame(4); 
     })
     this.input.keyboard.on('keyup-F', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-G', function (){
-      kb2.setFrame(5); 
+      window.kb2.setFrame(5); 
     })
     this.input.keyboard.on('keyup-G', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-H', function (){
-      kb2.setFrame(6); 
+      window.kb2.setFrame(6); 
     })
     this.input.keyboard.on('keyup-H', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-I', function (){
       kb1.setFrame(8); 
@@ -132,22 +140,22 @@ export default class Play extends Phaser.Scene {
       kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-J', function (){
-      kb2.setFrame(7); 
+      window.kb2.setFrame(7); 
     })
     this.input.keyboard.on('keyup-J', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-K', function (){
-      kb2.setFrame(8); 
+      window.kb2.setFrame(8); 
     })
     this.input.keyboard.on('keyup-K', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-L', function (){
-      kb2.setFrame(9); 
+      window.kb2.setFrame(9); 
     })
     this.input.keyboard.on('keyup-L', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-M', function (){
       kb3.setFrame(7); 
@@ -186,10 +194,10 @@ export default class Play extends Phaser.Scene {
       kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-S', function (){
-      kb2.setFrame(2); 
+      window.kb2.setFrame(2); 
     })
     this.input.keyboard.on('keyup-S', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-T', function (){
       kb1.setFrame(5); 
@@ -239,8 +247,14 @@ export default class Play extends Phaser.Scene {
     
   }
   
+  
   update() {
-
+    if (checkOverlap(window.a, window.kb2)){
+      if (this.key_A.isDown){
+        window.a.destroy();
+      }
+    }
+    
     
 
     if ( this.key_SPACE.isDown && this.pausePhysics === false) {
