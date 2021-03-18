@@ -9,9 +9,19 @@ export default class Play extends Phaser.Scene {
     this.load.spritesheet('text', 'assets/text.png', {frameWidth: 7, frameHeight: 8})
   }
   create() {
+    this.key_SPACE = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.SPACE)
+    this.pausePhysics = false;
+ 
+
     const kb = this.add.sprite(600, 200, 'keyboardPlay').setScale(6)
     const a = this.physics.add.sprite(275, 1000, 'text', 0)
     a.setScale(6).setVelocityY(-100);
+    const b = this.physics.add.sprite(450, 1000, 'text', 1);
+    
+    const onEvent = function () {
+      b.setScale(6).setVelocityY(-100);
+    }
+    
     this.input.keyboard.on('keydown-A', function (){
      kb.setFrame(1); 
     })
@@ -168,6 +178,24 @@ export default class Play extends Phaser.Scene {
     this.input.keyboard.on('keyup-Z', function() {
       kb.setFrame(0);
     })
+    this.time.delayedCall(2000, onEvent, [], this);
 
+    
+    
+  }
+  
+  update() {
+
+    
+
+    if ( this.key_SPACE.isDown && this.pausePhysics === false) {
+      this.pausePhysics = true;
+      this.physics.pause();
+    } else if (this.pausePhysics === true && this.key_SPACE.isDown){
+      this.pausePhysics = false;
+      this.physics.resume();
+    }
+
+  
   }
 }
