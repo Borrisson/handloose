@@ -7,13 +7,18 @@ import Register from "./Register";
 import About from "./About";
 
 const App = () => {
-  const { state, dispatch, loggedIn, handleLogout } = useApplicationData();
+  const {
+    state,
+    dispatch,
+    handleAppData,
+    loggedIn,
+    handleLogout,
+  } = useApplicationData();
   const [show, setShow] = useState({
     login: false,
     register: false,
     about: false,
   });
-
   const handleClose = (key) => setShow({ [key]: false });
   const handleShow = (key) => setShow({ [key]: true });
 
@@ -22,9 +27,13 @@ const App = () => {
       <SideBar
         handleShow={handleShow}
         handleLogout={handleLogout}
-        currentUser={state.user}
+        state={state}
       />
-      <Login handleClose={handleClose} show={show.login} loggedIn={loggedIn} />
+      <Login
+        handleClose={handleClose}
+        show={show.login}
+        handleAppData={handleAppData}
+      />
       <About handleClose={handleClose} show={show.about} />
       <Register
         handleClose={handleClose}

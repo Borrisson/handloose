@@ -15,8 +15,6 @@ This application will help individuals increase their keyboard typing skill whil
 In order to get your development environment set up.
 Make sure to npm install all dependencies inside CLIENT and all bundle install all inside BACKEND.
 
-Immediately see if you can run npm test and yarn test. if not hit me up.
-
 > **_NOTE:_** Make sure to npm install inside client and bundle install inside backend
 
 ### Client

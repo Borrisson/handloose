@@ -19,7 +19,9 @@ const dataReducer = (state, { type, user, games, accuracies }) => {
     case DESTROY_USER:
       return {
         ...state,
-        user: "",
+        user: {},
+        games: [],
+        accuracies: [],
       };
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${type}`);

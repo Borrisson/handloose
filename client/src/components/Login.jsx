@@ -5,7 +5,7 @@ import Alert from "react-bootstrap/Alert";
 import useInputData from "../hooks/useInputData";
 import { useState } from "react";
 
-export default function Login({ loggedIn, handleClose, show }) {
+export default function Login({ handleAppData, handleClose, show }) {
   const { input, handleChange, handleReset, submitLogin } = useInputData({
     email: "",
     password: "",
@@ -18,7 +18,7 @@ export default function Login({ loggedIn, handleClose, show }) {
       .then((response) => {
         if (response.data.status !== 401) {
           handleReset();
-          loggedIn(response.data.user);
+          handleAppData(response.data);
           handleClose("login");
           setError("");
         } else {

@@ -7,10 +7,14 @@ class Api::SessionsController < ApplicationController
       .try(:authenticate, params["user"]["password"])
 
     if user
+      @games = Game.where user_id: user.id
+      @accuracies = Accuracy.joins(:game).where({ game: { user_id: session[:user_id] } })
       session[:user_id] = user.id
       render json: {
         status: :created,
         user: user,
+        games: @games,
+        accuracies: @accuracies,
       }
     else
       render json: { status: 401, message: "Email and/or password does not match our records" }

@@ -19,13 +19,12 @@ const useApplicationData = () => {
       axios.get("/api/games", { withCredentials: true }),
       axios.get("/api/accuracies", { withCredentials: true }),
     ])
-      .then(([users, games, accuracies]) => {
-        dispatch({
-          type: SET_APPLICATION_DATA,
-          user: { ...users.data },
-          games: [...games.data],
-          accuracies: [...accuracies.data],
-        });
+      .then(([userData, gamesData, accuraciesData]) => {
+        const user = userData.data;
+        const games = gamesData.data;
+        const accuracies = accuraciesData.data;
+
+        handleAppData({ user, games, accuracies });
       })
       .catch((err) => console.log(err));
   }, []);
@@ -35,6 +34,16 @@ const useApplicationData = () => {
       type: DESTROY_USER,
     });
     return axios.delete(`api/sessions/${state.user.id}`);
+  }
+
+  function handleAppData({ user, games, accuracies }) {
+    console.log(games);
+    dispatch({
+      type: SET_APPLICATION_DATA,
+      user: { ...user },
+      games: [...games],
+      accuracies: [...accuracies],
+    });
   }
 
   function loggedIn(user) {
@@ -47,8 +56,9 @@ const useApplicationData = () => {
   return {
     state,
     dispatch,
-    loggedIn,
     handleLogout,
+    handleAppData,
+    loggedIn,
   };
 };
 
