@@ -32,15 +32,17 @@ export default class Game extends React.Component {
       // pixelArt: true,
       // scene: [Title, Menu, Levels]}) 
     const config = {
-      width: "100%",
-      height: "100%",
+      scale: {
+        parent: document.getElementById("phaser-game"),
+        mode: Phaser.Scale.RESIZE,
+      },
       type: Phaser.AUTO,
       parent: document.getElementById('phaser-game'),
       pixelArt: true,
       physics: {
         default: 'arcade',
         arcade: {
-          debug: false
+          debug: true
         }
       },
       scene: [Menu, Levels, Play]

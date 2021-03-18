@@ -17,6 +17,8 @@ export default class Play extends Phaser.Scene {
  
 
     const kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
+    //this.physics.enable(kb1);
+    //kb1.body.setSize(119, 10);
     const kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
     const kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
     const a = this.physics.add.sprite(275, 1000, 'text', 0);
