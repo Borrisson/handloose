@@ -27,7 +27,7 @@ const App = () => {
       <SideBar
         handleShow={handleShow}
         handleLogout={handleLogout}
-        currentUser={state.user}
+        state={state}
       />
       <Login
         handleClose={handleClose}
