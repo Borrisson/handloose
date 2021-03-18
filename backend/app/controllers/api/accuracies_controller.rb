@@ -13,12 +13,20 @@ class Api::AccuraciesController < ApplicationController
   end
 
   def create
-    Accuracy.create(accuracy_params)
+    unless params[:accuracies].empty?
+      Accuracy.create(accuracies_params)
+    else
+      Accuracy.create(accuracy_params)
+    end
   end
 
   private
 
   def accuracy_params
     params.require(:accuracy).permit(:character, :hit, :game_id)
+  end
+
+  def accuracies_params
+    params.permit(accuracies: [:character, :hit, :game_id]).require(:accuracies)
   end
 end
