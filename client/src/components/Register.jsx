@@ -1,7 +1,9 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import useInputData from "../hooks/useInputData";
+import { useState } from "react";
 
 export default function Register({ loggedIn, handleClose, show }) {
   const { input, handleChange, handleReset, submitRegister } = useInputData({
@@ -11,6 +13,8 @@ export default function Register({ loggedIn, handleClose, show }) {
     password_confirmation: "",
   });
 
+  const [error, setError] = useState("");
+
   function handleRegister(evt) {
     evt.preventDefault();
     submitRegister(evt)
@@ -18,9 +22,13 @@ export default function Register({ loggedIn, handleClose, show }) {
         handleReset();
         loggedIn(response.data.user);
         handleClose("register");
+        setError("");
       })
-      .catch((error) => {
-        console.log("registration error", error);
+      .catch((e) => {
+        console.log("registration error", e);
+        if (e.message.match(/422/)) {
+          setError("Email has already been taken");
+        }
       });
   }
   return (
@@ -35,6 +43,7 @@ export default function Register({ loggedIn, handleClose, show }) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleRegister}>
+            {error && <Alert variant="danger">{error}</Alert>}
             <Form.Group>
               <Form.Label>Username</Form.Label>
               <Form.Control
