@@ -9,6 +9,17 @@ import {
 
 import { useState, useEffect } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faQuestion,
+  faChartBar,
+  faUserPlus,
+  faUserTimes,
+  faStar,
+  faRunning,
+} from "@fortawesome/free-solid-svg-icons";
+
 import {
   getHighestScoreFromUser,
   getLongestStreakFromUser,
@@ -63,9 +74,18 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
         <Menu className="sidebar sidebar-menu">
-          <MenuItem className="sidebar item">Dashboard</MenuItem>
+          <MenuItem
+            icon={<FontAwesomeIcon icon={faChartBar} />}
+            className="sidebar item"
+          >
+            Dashboard
+          </MenuItem>
           {state.user.name && (
-            <MenuItem className="sidebar item" onClick={handleLogout}>
+            <MenuItem
+              icon={<FontAwesomeIcon icon={faUserTimes} />}
+              className="sidebar item"
+              onClick={handleLogout}
+            >
               Logout
             </MenuItem>
           )}
@@ -74,12 +94,14 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
               <MenuItem
                 className="sidebar item"
                 onClick={() => handleShow("register")}
+                icon={<FontAwesomeIcon icon={faUserPlus} />}
               >
                 Register
               </MenuItem>
               <MenuItem
                 className="sidebar item"
                 onClick={() => handleShow("login")}
+                icon={<FontAwesomeIcon icon={faUser} />}
               >
                 Login
               </MenuItem>
@@ -88,6 +110,7 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
           <MenuItem
             className="sidebar item"
             onClick={() => handleShow("about")}
+            icon={<FontAwesomeIcon icon={faQuestion} />}
           >
             About
           </MenuItem>
@@ -97,11 +120,21 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
       {state.user.name && (
         <SidebarFooter>
           <Menu className="sidebar sidebar-menu">
-            <MenuItem className="sidebar item">Highest Score</MenuItem>
+            <MenuItem
+              icon={<FontAwesomeIcon icon={faStar} />}
+              className="sidebar item"
+            >
+              Highest Score
+            </MenuItem>
             <MenuItem className="sidebar item">
               {getHighestScoreFromUser(state)}
             </MenuItem>
-            <MenuItem className="sidebar item">Streak</MenuItem>
+            <MenuItem
+              icon={<FontAwesomeIcon icon={faRunning} />}
+              className="sidebar item"
+            >
+              Streak
+            </MenuItem>
             <MenuItem className="sidebar item">
               {getLongestStreakFromUser(state)}
             </MenuItem>
