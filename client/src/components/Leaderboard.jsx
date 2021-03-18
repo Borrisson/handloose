@@ -3,7 +3,7 @@ import LeaderboardItem from "./LeaderboardItem";
 
 export default function About({ show, handleClose }) {
   return (
-    <Table striped bordered hover variant="dark">
+    <Table striped bordered hover variant="dark" responsive>
       <thead>
         <tr>
           <th>#</th>
