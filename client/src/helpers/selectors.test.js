@@ -78,13 +78,27 @@ const state = {
   ],
 };
 
+const NoGamesState = {
+  user: {
+    created_at: "2021-03-16T23:16:16.211Z",
+    email: "mitzi@gleason.name",
+    id: 1,
+    name: "Orlando",
+    password_digest:
+      "$2a$12$kmMuROHXGcGrPRNBo/UZyOFwgyKRZ8NIZeZI.,s13RCbg3ZEyyonxS",
+    updated_at: "2021-03-16T23:16:16.211Z",
+  },
+  games: [],
+  accuracies: [],
+};
+
 describe("selectors", () => {
   describe("getHighestScoreFromUserId", () => {
-    it("it returns an empty array if no match", () => {
-      expect(getHighestScoreFromUser(state, 100)).toHaveLength(0);
+    it("it returns an empty array if no games exist (New registered USER)", () => {
+      expect(getHighestScoreFromUser(NoGamesState)).toHaveLength(0);
     });
     it("it returns a particular users highest score from a userId", () => {
-      expect(getHighestScoreFromUser(state, 1)).toBe(51363153);
+      expect(getHighestScoreFromUser(state)).toBe(51363153);
     });
   });
 });

@@ -7,31 +7,28 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 
-export default function SideBar({
-  currentUser,
-  handleShow,
-  handleLogout,
-  highScore,
-}) {
+import { getHighestScoreFromUser } from "../helpers/selectors";
+
+export default function SideBar({ state, handleShow, handleLogout }) {
   return (
     <ProSidebar className="sidebar" rtl={true} image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
         <MenuItem className="sidebar item">
           <img alt="logo" src="logo.gif"></img>
         </MenuItem>
-        {currentUser.name && (
-          <MenuItem className="Welcome">!Welcome, {currentUser.name}</MenuItem>
+        {state.user.name && (
+          <MenuItem className="Welcome">!Welcome, {state.user.name}</MenuItem>
         )}
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
         <Menu className="sidebar sidebar-menu">
           <MenuItem className="sidebar item">Dashboard</MenuItem>
-          {currentUser.name && (
+          {state.user.name && (
             <MenuItem className="sidebar item" onClick={handleLogout}>
               Logout
             </MenuItem>
           )}
-          {!currentUser.name && (
+          {!state.user.name && (
             <>
               <MenuItem
                 className="sidebar item"
@@ -58,7 +55,9 @@ export default function SideBar({
       <SidebarFooter>
         <Menu className="sidebar sidebar-menu">
           <MenuItem className="sidebar item">Highest Score</MenuItem>
-          <MenuItem className="sidebar item">{}</MenuItem>
+          <MenuItem className="sidebar item">
+            {getHighestScoreFromUser(state)}
+          </MenuItem>
           <MenuItem className="sidebar item">Streak</MenuItem>
           <MenuItem className="sidebar item">{}</MenuItem>
           <MenuItem className="sidebar item">Score</MenuItem>
