@@ -37,7 +37,6 @@ const useApplicationData = () => {
   }
 
   function handleAppData({ user, games, accuracies }) {
-    console.log(games);
     dispatch({
       type: SET_APPLICATION_DATA,
       user: { ...user },
