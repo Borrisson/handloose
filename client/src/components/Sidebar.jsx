@@ -14,13 +14,13 @@ import {
 
 export default function SideBar({ state, handleShow, handleLogout, score }) {
   return (
-    <ProSidebar className="sidebar" rtl={true} image="background.jpg">
+    <ProSidebar className="sidebar" image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
         <MenuItem className="sidebar item">
           <img alt="logo" src="logo.gif"></img>
         </MenuItem>
         {state.user.name && (
-          <MenuItem className="Welcome">!Welcome, {state.user.name}</MenuItem>
+          <MenuItem className="Welcome">Welcome, {state.user.name}!</MenuItem>
         )}
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
