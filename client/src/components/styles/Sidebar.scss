@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import "_variables.scss";
 
 $sidebar-width: 20%;
-$sidebar-color: #adadad;
-$highlight-color: #c4397e;
+$sidebar-color: $modal-color-theme;
+$highlight-color: $modal-alt-color-theme;
 $icon-bg-color: rgba(255, 255, 255, 0.05);
 $icon-size: 35px;
 
