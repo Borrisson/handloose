@@ -5,6 +5,7 @@ import SideBar from "./Sidebar";
 import Login from "./Login";
 import Register from "./Register";
 import About from "./About";
+import useShowData from "../hooks/useShowData";
 
 const App = () => {
   const {
@@ -14,13 +15,9 @@ const App = () => {
     loggedIn,
     handleLogout,
   } = useApplicationData();
-  const [show, setShow] = useState({
-    login: false,
-    register: false,
-    about: false,
-  });
-  const handleClose = (key) => setShow({ [key]: false });
-  const handleShow = (key) => setShow({ [key]: true });
+
+  const { show, handleClose, handleShow } = useShowData();
+
   const [score, setScore] = useState(0);
 
   return (
