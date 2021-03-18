@@ -2,17 +2,17 @@ class Api::SessionsController < ApplicationController
   skip_before_action :require_login, only: [:create]
 
   def create
-    user = User
+    @user = User
       .find_by(email: params["user"]["email"])
       .try(:authenticate, params["user"]["password"])
 
-    if user
-      @games = Game.where user_id: user.id
+    if @user
+      session[:user_id] = @user.id
+      @games = Game.where user_id: session[:user_id]
       @accuracies = Accuracy.joins(:game).where({ game: { user_id: session[:user_id] } })
-      session[:user_id] = user.id
       render json: {
         status: :created,
-        user: user,
+        user: @user,
         games: @games,
         accuracies: @accuracies,
       }
