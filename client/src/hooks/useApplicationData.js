@@ -48,7 +48,7 @@ const useApplicationData = () => {
   function handleGamePost(game, accuracies) {
     return Promise.all([
       axios.post("/api/accuracies", { accuracies }),
-      axios.post("/api/games", game),
+      axios.post("/api/games", { game }),
     ]);
   }
 
