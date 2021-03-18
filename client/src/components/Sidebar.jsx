@@ -19,9 +19,7 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
         <MenuItem className="sidebar item">
           <img alt="logo" src="logo.gif"></img>
         </MenuItem>
-        {state.user.name && (
-          <MenuItem className="Welcome">Welcome, {state.user.name}!</MenuItem>
-        )}
+        {state.user.name && <MenuItem>Welcome, {state.user.name}!</MenuItem>}
       </SidebarHeader>
       <SidebarContent className="sidebar sidebar-body">
         <Menu className="sidebar sidebar-menu">
