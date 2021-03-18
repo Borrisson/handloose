@@ -20,9 +20,10 @@ const useApplicationData = () => {
       axios.get("/api/accuracies", { withCredentials: true }),
     ])
       .then(([userData, gamesData, accuraciesData]) => {
-        const user = userData.data;
-        const games = gamesData.data;
-        const accuracies = accuraciesData.data;
+        const user = userData.data.status === 401 ? {} : userData.data;
+        const games = gamesData.data.status === 401 ? [] : gamesData.data;
+        const accuracies =
+          accuraciesData.data.status === 401 ? [] : accuraciesData.data;
 
         handleAppData({ user, games, accuracies });
       })
