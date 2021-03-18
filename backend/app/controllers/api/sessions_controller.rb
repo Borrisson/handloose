@@ -9,9 +9,7 @@ class Api::SessionsController < ApplicationController
     if @user
       session[:user_id] = @user.id
       @games = Game.where(user_id: session[:user_id]).order("score DESC").limit(10)
-      @accuracies = @games.each do |game|
-        Accuracy.where(game_id: game.id)
-      end
+      @accuracies = Accuracy.where(game_id: @games.ids)
 
       render json: {
         status: :created,

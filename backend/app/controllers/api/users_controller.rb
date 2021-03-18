@@ -2,8 +2,16 @@ class Api::UsersController < ApplicationController
   skip_before_action :require_login, only: [:create]
 
   def index
-    user = User.find_by_id(session[:user_id])
-    render json: user
+    @user = User.find_by_id(session[:user_id])
+    @games = Game.where(user_id: session[:user_id]).order("score DESC").limit(10)
+    @accuracies = Accuracy.where(game_id: @games.ids)
+
+    render json: {
+      status: :created,
+      user: @user,
+      games: @games,
+      accuracies: @accuracies,
+    }
   end
 
   def show
