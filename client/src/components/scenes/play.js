@@ -15,12 +15,60 @@ export default class Play extends Phaser.Scene {
  
 
     const kb = this.add.sprite(600, 200, 'keyboardPlay').setScale(6)
-    const a = this.physics.add.sprite(275, 1000, 'text', 0)
+    const a = this.physics.add.sprite(275, 1000, 'text', 0);
     a.setScale(6).setVelocityY(-(window.velocity));
-    const b = this.physics.add.sprite(450, 1000, 'text', 1);
+    const b = this.physics.add.sprite(575, 1000, 'text', 1);
+    const c = this.physics.add.sprite(431, 1000, 'text', 2);
+    const d = this.physics.add.sprite(420, 1000, 'text', 3);
+    const e = this.physics.add.sprite(409, 1000, 'text', 4);
+    const f = this.physics.add.sprite(492, 1000, 'text', 5);
+    const g = this.physics.add.sprite(564, 1000, 'text', 6);
+    const h = this.physics.add.sprite(636, 1000, 'text', 7);
+    const i = this.physics.add.sprite(780, 1000, 'text', 8);
+    const j = this.physics.add.sprite(707, 1000, 'text', 9);
+    const k = this.physics.add.sprite(780, 1000, 'text', 10);
+    const l = this.physics.add.sprite(852, 1000, 'text', 11);
+    const m = this.physics.add.sprite(721, 1000, 'text', 12);
+    const n = this.physics.add.sprite(648, 1000, 'text', 13);
+    const o = this.physics.add.sprite(840, 1000, 'text', 14);
+    const p = this.physics.add.sprite(912, 1000, 'text', 15);
+    const q = this.physics.add.sprite(263, 1000, 'text', 16);
+    const r = this.physics.add.sprite(481, 1000, 'text', 17);
+    const s = this.physics.add.sprite(348, 1000, 'text', 18);
+    const t = this.physics.add.sprite(553, 1000, 'text', 19);
+    const u = this.physics.add.sprite(697, 1000, 'text', 20);
+    const v = this.physics.add.sprite(504, 1000, 'text', 21);
+    const w = this.physics.add.sprite(336, 1000, 'text', 22);
+    const x = this.physics.add.sprite(360, 1000, 'text', 23);
+    const y = this.physics.add.sprite(624, 1000, 'text', 24);
+    const z = this.physics.add.sprite(287, 1000, 'text', 25);
     
     const onEvent = function () {
-      b.setScale(6).setVelocityY(-100);
+      b.setScale(6).setVelocityY(-125);
+      c.setScale(6).setVelocityY(-110);
+      d.setScale(6).setVelocityY(-100);
+      e.setScale(6).setVelocityY(-90);
+      f.setScale(6).setVelocityY(-80);
+      g.setScale(6).setVelocityY(-75);
+      h.setScale(6).setVelocityY(-120);
+      i.setScale(6).setVelocityY(-115);
+      j.setScale(6).setVelocityY(-65);
+      k.setScale(6).setVelocityY(-105);
+      l.setScale(6).setVelocityY(-95);
+      m.setScale(6).setVelocityY(-85);
+      n.setScale(6).setVelocityY(-70);
+      o.setScale(6).setVelocityY(-25);
+      p.setScale(6).setVelocityY(-35);
+      q.setScale(6).setVelocityY(-45);
+      r.setScale(6).setVelocityY(-60);
+      s.setScale(6).setVelocityY(-130);
+      t.setScale(6).setVelocityY(-135);
+      u.setScale(6).setVelocityY(-30);
+      v.setScale(6).setVelocityY(-20);
+      w.setScale(6).setVelocityY(-40);
+      x.setScale(6).setVelocityY(-140);
+      y.setScale(6).setVelocityY(-15);
+      z.setScale(6).setVelocityY(-145);
     }
     
     this.input.keyboard.on('keydown-A', function (){
