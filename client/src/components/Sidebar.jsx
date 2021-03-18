@@ -7,14 +7,54 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 
+import { useState, useEffect } from "react";
+
 import {
   getHighestScoreFromUser,
   getLongestStreakFromUser,
 } from "../helpers/selectors";
 
 export default function SideBar({ state, handleShow, handleLogout, score }) {
+  const [collapse, setCollapse] = useState(false);
+
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  function handleCollapse() {
+    if (windowSize.width <= 655 && !collapse) {
+      setCollapse(true);
+    }
+
+    if (windowSize.width > 655 && collapse) {
+      setCollapse(false);
+    }
+  }
+
+  handleCollapse();
   return (
-    <ProSidebar className="sidebar" image="background.jpg">
+    <ProSidebar collapsed={collapse} className="sidebar" image="background.jpg">
       <SidebarHeader className="sidebar sidebar-header">
         <MenuItem className="sidebar item">
           <img alt="logo" src="logo.gif"></img>
