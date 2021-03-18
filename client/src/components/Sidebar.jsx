@@ -55,20 +55,23 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
           </MenuItem>
         </Menu>
       </SidebarContent>
-      <SidebarFooter>
-        <Menu className="sidebar sidebar-menu">
-          <MenuItem className="sidebar item">Highest Score</MenuItem>
-          <MenuItem className="sidebar item">
-            {getHighestScoreFromUser(state)}
-          </MenuItem>
-          <MenuItem className="sidebar item">Streak</MenuItem>
-          <MenuItem className="sidebar item">
-            {getLongestStreakFromUser(state)}
-          </MenuItem>
-          <MenuItem className="sidebar item">Current Score</MenuItem>
-          <MenuItem className="sidebar item">{score}</MenuItem>
-        </Menu>
-      </SidebarFooter>
+
+      {state.user.name && (
+        <SidebarFooter>
+          <Menu className="sidebar sidebar-menu">
+            <MenuItem className="sidebar item">Highest Score</MenuItem>
+            <MenuItem className="sidebar item">
+              {getHighestScoreFromUser(state)}
+            </MenuItem>
+            <MenuItem className="sidebar item">Streak</MenuItem>
+            <MenuItem className="sidebar item">
+              {getLongestStreakFromUser(state)}
+            </MenuItem>
+            <MenuItem className="sidebar item">Current Score</MenuItem>
+            <MenuItem className="sidebar item">{score}</MenuItem>
+          </Menu>
+        </SidebarFooter>
+      )}
       <SidebarFooter>
         <MenuItem className="sidebar sidebar-footer">Copyright 2021</MenuItem>
       </SidebarFooter>
