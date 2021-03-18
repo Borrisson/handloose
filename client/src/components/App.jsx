@@ -7,7 +7,13 @@ import Register from "./Register";
 import About from "./About";
 
 const App = () => {
-  const { state, dispatch, handleAppData, handleLogout } = useApplicationData();
+  const {
+    state,
+    dispatch,
+    handleAppData,
+    loggedIn,
+    handleLogout,
+  } = useApplicationData();
   const [show, setShow] = useState({
     login: false,
     register: false,
@@ -32,7 +38,7 @@ const App = () => {
       <Register
         handleClose={handleClose}
         show={show.register}
-        handleAppData={handleAppData}
+        loggedIn={loggedIn}
       />
     </>
   );
