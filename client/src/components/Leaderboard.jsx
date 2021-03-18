@@ -1,36 +1,21 @@
 import Table from "react-bootstrap";
 import LeaderboardItem from "./LeaderboardItem";
 
-export default function About({ show, handleClose }) {
+export default function Leaderboard(props) {
+  const parsedTable = props.leaderboard.map((el) => {
+    <LeaderboardItem />;
+  });
   return (
     <Table striped bordered hover variant="dark" responsive>
       <thead>
         <tr>
           <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>User</th>
+          <th>Score</th>
+          <th>Streak</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
+      <tbody>{parsedTable}</tbody>
     </Table>
   );
 }
