@@ -35,6 +35,7 @@ export default class Game extends React.Component {
       width: "80%",
       height: "100%",
       type: Phaser.AUTO,
+      parent: document.getElementById('phaser-game'),
       pixelArt: true,
       physics: {
         default: 'arcade',

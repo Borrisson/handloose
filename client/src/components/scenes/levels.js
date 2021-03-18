@@ -14,6 +14,7 @@ export default class Levels extends Phaser.Scene {
 
     const slide = this.add.sprite(625, 700, "slider").setScale(5);
     let frame = 0
+    window.velocity = 100;
     slide.setFrame(frame);
 
 
@@ -42,12 +43,16 @@ export default class Levels extends Phaser.Scene {
       if (frame > 0) {
         frame --;
         slide.setFrame(frame);
+        window.velocity -= 100;
+        console.log(window.velocity);
       }
     })
     right.on('pointerdown', function () {
       if (frame < 3) {
         frame ++;
         slide.setFrame(frame);
+        window.velocity += 100;
+        console.log(window.velocity);
       }
     })
 
@@ -87,7 +92,7 @@ export default class Levels extends Phaser.Scene {
       back.setTint(0xff00ff);
     }, this)
     back.on('pointerdown', function () {
-      this.scene.start('Title');
+      this.scene.start('Menu');
     }, this)
 
     play.on('pointerout', function () {
@@ -97,6 +102,7 @@ export default class Levels extends Phaser.Scene {
       play.setTint(0xff00ff);
     }, this)
     play.on('pointerdown', function () {
+      
       this.scene.start('play');
     }, this)
   }

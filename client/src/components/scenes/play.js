@@ -9,13 +9,14 @@ export default class Play extends Phaser.Scene {
     this.load.spritesheet('text', 'assets/text.png', {frameWidth: 7, frameHeight: 8})
   }
   create() {
+    console.log(window.velocity);
     this.key_SPACE = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.SPACE)
     this.pausePhysics = false;
  
 
     const kb = this.add.sprite(600, 200, 'keyboardPlay').setScale(6)
     const a = this.physics.add.sprite(275, 1000, 'text', 0)
-    a.setScale(6).setVelocityY(-100);
+    a.setScale(6).setVelocityY(-(window.velocity));
     const b = this.physics.add.sprite(450, 1000, 'text', 1);
     
     const onEvent = function () {
