@@ -38,14 +38,13 @@ export default class Game extends React.Component {
         mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
       },
-
       type: Phaser.AUTO,
 
       pixelArt: true,
       physics: {
         default: "arcade",
         arcade: {
-          debug: false,
+          debug: true,
         },
       },
       scene: [Menu, Levels, Play],

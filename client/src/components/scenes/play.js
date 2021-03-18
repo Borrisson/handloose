@@ -1,5 +1,12 @@
 import Phaser from "phaser"
 
+function checkOverlap(spriteA, spriteB) {
+  var boundsA = spriteA.getBounds();
+  var boundsB = spriteB.getBounds();
+
+  return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
+}
+
 export default class Play extends Phaser.Scene {
   constructor() {
     super("play")
@@ -13,39 +20,41 @@ export default class Play extends Phaser.Scene {
   create() {
     console.log(window.velocity);
     this.key_SPACE = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.SPACE)
+    this.key_A = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.A)
     this.pausePhysics = false;
  
 
     const kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
-    const kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
+    window.kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
     const kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
-    const a = this.physics.add.sprite(275, 1000, 'text', 0);
-    a.setScale(6).setVelocityY(-(window.velocity));
-    const b = this.physics.add.sprite(575, 1000, 'text', 1);
-    const c = this.physics.add.sprite(431, 1000, 'text', 2);
-    const d = this.physics.add.sprite(420, 1000, 'text', 3);
-    const e = this.physics.add.sprite(409, 1000, 'text', 4);
-    const f = this.physics.add.sprite(492, 1000, 'text', 5);
-    const g = this.physics.add.sprite(564, 1000, 'text', 6);
-    const h = this.physics.add.sprite(636, 1000, 'text', 7);
-    const i = this.physics.add.sprite(780, 1000, 'text', 8);
-    const j = this.physics.add.sprite(707, 1000, 'text', 9);
-    const k = this.physics.add.sprite(780, 1000, 'text', 10);
-    const l = this.physics.add.sprite(852, 1000, 'text', 11);
-    const m = this.physics.add.sprite(721, 1000, 'text', 12);
-    const n = this.physics.add.sprite(648, 1000, 'text', 13);
-    const o = this.physics.add.sprite(840, 1000, 'text', 14);
-    const p = this.physics.add.sprite(912, 1000, 'text', 15);
-    const q = this.physics.add.sprite(263, 1000, 'text', 16);
-    const r = this.physics.add.sprite(481, 1000, 'text', 17);
-    const s = this.physics.add.sprite(348, 1000, 'text', 18);
-    const t = this.physics.add.sprite(553, 1000, 'text', 19);
-    const u = this.physics.add.sprite(697, 1000, 'text', 20);
-    const v = this.physics.add.sprite(504, 1000, 'text', 21);
-    const w = this.physics.add.sprite(336, 1000, 'text', 22);
-    const x = this.physics.add.sprite(360, 1000, 'text', 23);
-    const y = this.physics.add.sprite(624, 1000, 'text', 24);
-    const z = this.physics.add.sprite(287, 1000, 'text', 25);
+    window.a = this.physics.add.sprite(477, 1000, 'text', 0);
+    window.a.setScale(6).setVelocityY(-(window.velocity));
+    const b = this.physics.add.sprite(777, 1000, 'text', 1);
+    const c = this.physics.add.sprite(633, 1000, 'text', 2);
+    const d = this.physics.add.sprite(621, 1000, 'text', 3);
+    const e = this.physics.add.sprite(609, 1000, 'text', 4);
+    const f = this.physics.add.sprite(693, 1000, 'text', 5);
+    const g = this.physics.add.sprite(765, 1000, 'text', 6);
+    const h = this.physics.add.sprite(838, 1000, 'text', 7);
+    const i = this.physics.add.sprite(982, 1000, 'text', 8);
+    const j = this.physics.add.sprite(910, 1000, 'text', 9);
+    const k = this.physics.add.sprite(982, 1000, 'text', 10);
+    const l = this.physics.add.sprite(1053, 1000, 'text', 11);
+    const m = this.physics.add.sprite(921, 1000, 'text', 12);
+    const n = this.physics.add.sprite(849, 1000, 'text', 13);
+    const o = this.physics.add.sprite(1042, 1000, 'text', 14);
+    const p = this.physics.add.sprite(1114, 1000, 'text', 15);
+    const q = this.physics.add.sprite(460, 1000, 'text', 16);
+    const r = this.physics.add.sprite(682, 1000, 'text', 17);
+    const s = this.physics.add.sprite(550, 1000, 'text', 18);
+    const t = this.physics.add.sprite(755, 1000, 'text', 19);
+    const u = this.physics.add.sprite(898, 1000, 'text', 20);
+    const v = this.physics.add.sprite(705, 1000, 'text', 21);
+    const w = this.physics.add.sprite(538, 1000, 'text', 22);
+    const x = this.physics.add.sprite(561, 1000, 'text', 23);
+    const y = this.physics.add.sprite(826, 1000, 'text', 24);
+    const z = this.physics.add.sprite(490, 1000, 'text', 25);
+    
     
     const onEvent = function () {
       b.setScale(6).setVelocityY(-125);
@@ -71,15 +80,15 @@ export default class Play extends Phaser.Scene {
       v.setScale(6).setVelocityY(-20);
       w.setScale(6).setVelocityY(-40);
       x.setScale(6).setVelocityY(-140);
-      y.setScale(6).setVelocityY(-15);
+      y.setScale(6).setVelocityY(-115);
       z.setScale(6).setVelocityY(-145);
     }
     
     this.input.keyboard.on('keydown-A', function (){
-     kb2.setFrame(1); 
+     window.kb2.setFrame(1); 
     })
     this.input.keyboard.on('keyup-A', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-B', function (){
       kb3.setFrame(5); 
@@ -94,10 +103,10 @@ export default class Play extends Phaser.Scene {
       kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-D', function (){
-      kb2.setFrame(3); 
+      window.kb2.setFrame(3); 
     })
     this.input.keyboard.on('keyup-D', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-E', function (){
       kb1.setFrame(3); 
@@ -106,22 +115,22 @@ export default class Play extends Phaser.Scene {
       kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-F', function (){
-      kb2.setFrame(4); 
+      window.kb2.setFrame(4); 
     })
     this.input.keyboard.on('keyup-F', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-G', function (){
-      kb2.setFrame(5); 
+      window.kb2.setFrame(5); 
     })
     this.input.keyboard.on('keyup-G', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-H', function (){
-      kb2.setFrame(6); 
+      window.kb2.setFrame(6); 
     })
     this.input.keyboard.on('keyup-H', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-I', function (){
       kb1.setFrame(8); 
@@ -130,22 +139,22 @@ export default class Play extends Phaser.Scene {
       kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-J', function (){
-      kb2.setFrame(7); 
+      window.kb2.setFrame(7); 
     })
     this.input.keyboard.on('keyup-J', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-K', function (){
-      kb2.setFrame(8); 
+      window.kb2.setFrame(8); 
     })
     this.input.keyboard.on('keyup-K', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-L', function (){
-      kb2.setFrame(9); 
+      window.kb2.setFrame(9); 
     })
     this.input.keyboard.on('keyup-L', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-M', function (){
       kb3.setFrame(7); 
@@ -184,10 +193,10 @@ export default class Play extends Phaser.Scene {
       kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-S', function (){
-      kb2.setFrame(2); 
+      window.kb2.setFrame(2); 
     })
     this.input.keyboard.on('keyup-S', function() {
-      kb2.setFrame(0);
+      window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-T', function (){
       kb1.setFrame(5); 
@@ -237,8 +246,14 @@ export default class Play extends Phaser.Scene {
     
   }
   
+  
   update() {
-
+    if (checkOverlap(window.a, window.kb2)){
+      if (this.key_A.isDown){
+        window.a.destroy();
+      }
+    }
+    
     
 
     if ( this.key_SPACE.isDown && this.pausePhysics === false) {
