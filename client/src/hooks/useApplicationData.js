@@ -46,11 +46,19 @@ const useApplicationData = () => {
     });
   }
 
+  function loggedIn(user) {
+    dispatch({
+      type: SET_USER,
+      user,
+    });
+  }
+
   return {
     state,
     dispatch,
     handleLogout,
     handleAppData,
+    loggedIn,
   };
 };
 
