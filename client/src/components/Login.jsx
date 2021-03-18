@@ -61,9 +61,6 @@ export default function Login({ handleAppData, handleClose, show }) {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
 
             <Button variant="primary" type="submit">
               Submit

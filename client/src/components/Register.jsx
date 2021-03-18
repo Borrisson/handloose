@@ -90,9 +90,6 @@ export default function Register({ loggedIn, handleClose, show }) {
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
             <Button variant="primary" type="submit">
               Submit
             </Button>
