@@ -4,9 +4,14 @@
 
 #root {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   height: 100vh;
   width: 100vw;
+}
+
+#phaser-game {
+  height: 100%;
+  width: 80%;
 }
 
 .carousel-control-prev,
