@@ -37,14 +37,13 @@ export default class Game extends React.Component {
         parent: document.getElementById("phaser-game"),
         mode: Phaser.Scale.RESIZE,
       },
-
       type: Phaser.AUTO,
 
       pixelArt: true,
       physics: {
         default: "arcade",
         arcade: {
-          debug: false,
+          debug: true,
         },
       },
       scene: [Menu, Levels, Play],
