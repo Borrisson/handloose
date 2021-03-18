@@ -5,7 +5,9 @@ export default class Play extends Phaser.Scene {
     super("play")
   }
   preload() {
-    this.load.spritesheet('keyboardPlay', 'assets/keyboardsPlay.png', {frameWidth: 123, frameHeight: 33})
+    this.load.spritesheet('kb1', 'assets/kb1.png', {frameWidth: 119, frameHeight: 10});
+    this.load.spritesheet('kb2', 'assets/kb2.png', {frameWidth: 107, frameHeight: 11});
+    this.load.spritesheet('kb3', 'assets/kb3.png', {frameWidth: 83, frameHeight: 12});
     this.load.spritesheet('text', 'assets/text.png', {frameWidth: 7, frameHeight: 8})
   }
   create() {
@@ -14,7 +16,9 @@ export default class Play extends Phaser.Scene {
     this.pausePhysics = false;
  
 
-    const kb = this.add.sprite(600, 200, 'keyboardPlay').setScale(6)
+    const kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
+    const kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
+    const kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
     const a = this.physics.add.sprite(275, 1000, 'text', 0);
     a.setScale(6).setVelocityY(-(window.velocity));
     const b = this.physics.add.sprite(575, 1000, 'text', 1);
@@ -72,160 +76,160 @@ export default class Play extends Phaser.Scene {
     }
     
     this.input.keyboard.on('keydown-A', function (){
-     kb.setFrame(1); 
+     kb2.setFrame(1); 
     })
     this.input.keyboard.on('keyup-A', function() {
-      kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-B', function (){
-      kb.setFrame(2); 
+      kb3.setFrame(5); 
      })
     this.input.keyboard.on('keyup-B', function() {
-      kb.setFrame(0);
+      kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-C', function (){
-      kb.setFrame(3); 
+      kb3.setFrame(3); 
     })
     this.input.keyboard.on('keyup-C', function() {
-      kb.setFrame(0);
+      kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-D', function (){
-      kb.setFrame(4); 
+      kb2.setFrame(3); 
     })
     this.input.keyboard.on('keyup-D', function() {
-      kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-E', function (){
-      kb.setFrame(5); 
+      kb1.setFrame(3); 
     })
     this.input.keyboard.on('keyup-E', function() {
-       kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-F', function (){
-      kb.setFrame(6); 
+      kb2.setFrame(4); 
     })
     this.input.keyboard.on('keyup-F', function() {
-       kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-G', function (){
-      kb.setFrame(7); 
+      kb2.setFrame(5); 
     })
     this.input.keyboard.on('keyup-G', function() {
-       kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-H', function (){
-      kb.setFrame(8); 
+      kb2.setFrame(6); 
     })
     this.input.keyboard.on('keyup-H', function() {
-       kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-I', function (){
-      kb.setFrame(9); 
+      kb1.setFrame(8); 
     })
     this.input.keyboard.on('keyup-I', function() {
-       kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-J', function (){
-      kb.setFrame(10); 
+      kb2.setFrame(7); 
     })
     this.input.keyboard.on('keyup-J', function() {
-       kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-K', function (){
-      kb.setFrame(11); 
+      kb2.setFrame(8); 
     })
     this.input.keyboard.on('keyup-K', function() {
-       kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-L', function (){
-      kb.setFrame(12); 
+      kb2.setFrame(9); 
     })
     this.input.keyboard.on('keyup-L', function() {
-       kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-M', function (){
-      kb.setFrame(13); 
+      kb3.setFrame(7); 
     })
     this.input.keyboard.on('keyup-M', function() {
-       kb.setFrame(0);
+      kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-N', function (){
-      kb.setFrame(14); 
+      kb3.setFrame(6); 
     })
     this.input.keyboard.on('keyup-N', function() {
-       kb.setFrame(0);
+      kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-O', function (){
-      kb.setFrame(15); 
+      kb1.setFrame(9); 
     })
     this.input.keyboard.on('keyup-O', function() {
-       kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-P', function (){
-      kb.setFrame(16); 
+      kb1.setFrame(10); 
     })
     this.input.keyboard.on('keyup-P', function() {
-       kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-Q', function (){
-      kb.setFrame(17); 
+      kb1.setFrame(1); 
     })
     this.input.keyboard.on('keyup-Q', function() {
-       kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-R', function (){
-      kb.setFrame(18); 
+      kb1.setFrame(4); 
     })
     this.input.keyboard.on('keyup-R', function() {
-      kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-S', function (){
-      kb.setFrame(19); 
+      kb2.setFrame(2); 
     })
     this.input.keyboard.on('keyup-S', function() {
-      kb.setFrame(0);
+      kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-T', function (){
-      kb.setFrame(20); 
+      kb1.setFrame(5); 
     })
     this.input.keyboard.on('keyup-T', function() {
-      kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-U', function (){
-      kb.setFrame(21); 
+      kb1.setFrame(7); 
     })
     this.input.keyboard.on('keyup-U', function() {
-      kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-V', function (){
-      kb.setFrame(22); 
+      kb3.setFrame(4); 
     })
     this.input.keyboard.on('keyup-V', function() {
-      kb.setFrame(0);
+      kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-W', function (){
-      kb.setFrame(23); 
+      kb1.setFrame(2); 
     })
     this.input.keyboard.on('keyup-W', function() {
-      kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-X', function (){
-      kb.setFrame(24); 
+      kb3.setFrame(2); 
     })
     this.input.keyboard.on('keyup-X', function() {
-      kb.setFrame(0);
+      kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-Y', function (){
-      kb.setFrame(25); 
+      kb1.setFrame(6); 
     })
     this.input.keyboard.on('keyup-Y', function() {
-      kb.setFrame(0);
+      kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-Z', function (){
-      kb.setFrame(26); 
+      kb3.setFrame(1); 
     })
     this.input.keyboard.on('keyup-Z', function() {
-      kb.setFrame(0);
+      kb3.setFrame(0);
     })
     this.time.delayedCall(2000, onEvent, [], this);
 
