@@ -19,33 +19,33 @@ export default class Play extends Phaser.Scene {
     const kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
     const kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
     const kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
-    const a = this.physics.add.sprite(275, 1000, 'text', 0);
+    const a = this.physics.add.sprite(477, 1000, 'text', 0);
     a.setScale(6).setVelocityY(-(window.velocity));
-    const b = this.physics.add.sprite(575, 1000, 'text', 1);
-    const c = this.physics.add.sprite(431, 1000, 'text', 2);
-    const d = this.physics.add.sprite(420, 1000, 'text', 3);
-    const e = this.physics.add.sprite(409, 1000, 'text', 4);
-    const f = this.physics.add.sprite(492, 1000, 'text', 5);
-    const g = this.physics.add.sprite(564, 1000, 'text', 6);
-    const h = this.physics.add.sprite(636, 1000, 'text', 7);
-    const i = this.physics.add.sprite(780, 1000, 'text', 8);
-    const j = this.physics.add.sprite(707, 1000, 'text', 9);
-    const k = this.physics.add.sprite(780, 1000, 'text', 10);
-    const l = this.physics.add.sprite(852, 1000, 'text', 11);
-    const m = this.physics.add.sprite(721, 1000, 'text', 12);
-    const n = this.physics.add.sprite(648, 1000, 'text', 13);
-    const o = this.physics.add.sprite(840, 1000, 'text', 14);
-    const p = this.physics.add.sprite(912, 1000, 'text', 15);
-    const q = this.physics.add.sprite(263, 1000, 'text', 16);
-    const r = this.physics.add.sprite(481, 1000, 'text', 17);
-    const s = this.physics.add.sprite(348, 1000, 'text', 18);
-    const t = this.physics.add.sprite(553, 1000, 'text', 19);
-    const u = this.physics.add.sprite(697, 1000, 'text', 20);
-    const v = this.physics.add.sprite(504, 1000, 'text', 21);
-    const w = this.physics.add.sprite(336, 1000, 'text', 22);
-    const x = this.physics.add.sprite(360, 1000, 'text', 23);
-    const y = this.physics.add.sprite(624, 1000, 'text', 24);
-    const z = this.physics.add.sprite(287, 1000, 'text', 25);
+    const b = this.physics.add.sprite(777, 1000, 'text', 1);
+    const c = this.physics.add.sprite(633, 1000, 'text', 2);
+    const d = this.physics.add.sprite(621, 1000, 'text', 3);
+    const e = this.physics.add.sprite(609, 1000, 'text', 4);
+    const f = this.physics.add.sprite(693, 1000, 'text', 5);
+    const g = this.physics.add.sprite(765, 1000, 'text', 6);
+    const h = this.physics.add.sprite(838, 1000, 'text', 7);
+    const i = this.physics.add.sprite(982, 1000, 'text', 8);
+    const j = this.physics.add.sprite(910, 1000, 'text', 9);
+    const k = this.physics.add.sprite(982, 1000, 'text', 10);
+    const l = this.physics.add.sprite(1053, 1000, 'text', 11);
+    const m = this.physics.add.sprite(921, 1000, 'text', 12);
+    const n = this.physics.add.sprite(849, 1000, 'text', 13);
+    const o = this.physics.add.sprite(1042, 1000, 'text', 14);
+    const p = this.physics.add.sprite(1114, 1000, 'text', 15);
+    const q = this.physics.add.sprite(460, 1000, 'text', 16);
+    const r = this.physics.add.sprite(682, 1000, 'text', 17);
+    const s = this.physics.add.sprite(550, 1000, 'text', 18);
+    const t = this.physics.add.sprite(755, 1000, 'text', 19);
+    const u = this.physics.add.sprite(898, 1000, 'text', 20);
+    const v = this.physics.add.sprite(705, 1000, 'text', 21);
+    const w = this.physics.add.sprite(538, 1000, 'text', 22);
+    const x = this.physics.add.sprite(561, 1000, 'text', 23);
+    const y = this.physics.add.sprite(826, 1000, 'text', 24);
+    const z = this.physics.add.sprite(490, 1000, 'text', 25);
     
     const onEvent = function () {
       b.setScale(6).setVelocityY(-125);
@@ -71,7 +71,7 @@ export default class Play extends Phaser.Scene {
       v.setScale(6).setVelocityY(-20);
       w.setScale(6).setVelocityY(-40);
       x.setScale(6).setVelocityY(-140);
-      y.setScale(6).setVelocityY(-15);
+      y.setScale(6).setVelocityY(-115);
       z.setScale(6).setVelocityY(-145);
     }
     
