@@ -7,7 +7,10 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 
-import { getHighestScoreFromUser } from "../helpers/selectors";
+import {
+  getHighestScoreFromUser,
+  getLongestStreakFromUser,
+} from "../helpers/selectors";
 
 export default function SideBar({ state, handleShow, handleLogout }) {
   return (
@@ -59,7 +62,9 @@ export default function SideBar({ state, handleShow, handleLogout }) {
             {getHighestScoreFromUser(state)}
           </MenuItem>
           <MenuItem className="sidebar item">Streak</MenuItem>
-          <MenuItem className="sidebar item">{}</MenuItem>
+          <MenuItem className="sidebar item">
+            {getLongestStreakFromUser(state)}
+          </MenuItem>
           <MenuItem className="sidebar item">Score</MenuItem>
           <MenuItem className="sidebar item">{}</MenuItem>
         </Menu>
