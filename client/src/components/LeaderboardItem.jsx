@@ -1,12 +1,17 @@
-import react from "react";
+import React from "react";
 
-export default function LeaderboardItem({ index, name, score, streak }) {
+export default function LeaderboardItem({
+  index,
+  name,
+  score,
+  longest_streak,
+}) {
   return (
     <tr>
-      <td>{index}</td>
+      <td>{index + 1}</td>
       <td>{name}</td>
       <td>{score}</td>
-      <td>{streak}</td>
+      <td>{longest_streak}</td>
     </tr>
   );
 }

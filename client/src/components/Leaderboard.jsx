@@ -4,9 +4,10 @@ import Button from "react-bootstrap/Button";
 import LeaderboardItem from "./LeaderboardItem";
 
 export default function Leaderboard({ handleClose, show, leaderboard }) {
-  const parsedTable = leaderboard.map((el, index) => {
-    <LeaderboardItem key={el.id} index={index} {...el} />;
-  });
+  const parsedTable = leaderboard.map((el, index) => (
+    <LeaderboardItem key={el.id} index={index} {...el} />
+  ));
+
   return (
     <Modal show={show} onHide={() => handleClose("register")} keyboard={false}>
       <Modal.Header closeButton>
