@@ -24,64 +24,64 @@ export default class Play extends Phaser.Scene {
     this.pausePhysics = false;
  
 
-    const kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
+    window.kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
     window.kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
-    const kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
+    window.kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
     window.a = this.physics.add.sprite(477, 1000, 'text', 0);
     window.a.setScale(6).setVelocityY(-(window.velocity));
-    const b = this.physics.add.sprite(777, 1000, 'text', 1);
-    const c = this.physics.add.sprite(633, 1000, 'text', 2);
-    const d = this.physics.add.sprite(621, 1000, 'text', 3);
-    const e = this.physics.add.sprite(609, 1000, 'text', 4);
-    const f = this.physics.add.sprite(693, 1000, 'text', 5);
-    const g = this.physics.add.sprite(765, 1000, 'text', 6);
-    const h = this.physics.add.sprite(838, 1000, 'text', 7);
-    const i = this.physics.add.sprite(982, 1000, 'text', 8);
-    const j = this.physics.add.sprite(910, 1000, 'text', 9);
-    const k = this.physics.add.sprite(982, 1000, 'text', 10);
-    const l = this.physics.add.sprite(1053, 1000, 'text', 11);
-    const m = this.physics.add.sprite(921, 1000, 'text', 12);
-    const n = this.physics.add.sprite(849, 1000, 'text', 13);
-    const o = this.physics.add.sprite(1042, 1000, 'text', 14);
-    const p = this.physics.add.sprite(1114, 1000, 'text', 15);
-    const q = this.physics.add.sprite(460, 1000, 'text', 16);
-    const r = this.physics.add.sprite(682, 1000, 'text', 17);
-    const s = this.physics.add.sprite(550, 1000, 'text', 18);
-    const t = this.physics.add.sprite(755, 1000, 'text', 19);
-    const u = this.physics.add.sprite(898, 1000, 'text', 20);
-    const v = this.physics.add.sprite(705, 1000, 'text', 21);
-    const w = this.physics.add.sprite(538, 1000, 'text', 22);
-    const x = this.physics.add.sprite(561, 1000, 'text', 23);
-    const y = this.physics.add.sprite(826, 1000, 'text', 24);
-    const z = this.physics.add.sprite(490, 1000, 'text', 25);
+    window.b = this.physics.add.sprite(777, 1000, 'text', 1);
+    window.c = this.physics.add.sprite(633, 1000, 'text', 2);
+    window.d = this.physics.add.sprite(621, 1000, 'text', 3);
+    window.e = this.physics.add.sprite(609, 1000, 'text', 4);
+    window.f = this.physics.add.sprite(693, 1000, 'text', 5);
+    window.g = this.physics.add.sprite(765, 1000, 'text', 6);
+    window.h = this.physics.add.sprite(838, 1000, 'text', 7);
+    window.i = this.physics.add.sprite(982, 1000, 'text', 8);
+    window.j = this.physics.add.sprite(910, 1000, 'text', 9);
+    window.k = this.physics.add.sprite(982, 1000, 'text', 10);
+    window.l = this.physics.add.sprite(1053, 1000, 'text', 11);
+    window.m = this.physics.add.sprite(921, 1000, 'text', 12);
+    window.n = this.physics.add.sprite(849, 1000, 'text', 13);
+    window.o = this.physics.add.sprite(1042, 1000, 'text', 14);
+    window.p = this.physics.add.sprite(1114, 1000, 'text', 15);
+    window.q = this.physics.add.sprite(460, 1000, 'text', 16);
+    window.r = this.physics.add.sprite(682, 1000, 'text', 17);
+    window.s = this.physics.add.sprite(550, 1000, 'text', 18);
+    window.t = this.physics.add.sprite(755, 1000, 'text', 19);
+    window.u = this.physics.add.sprite(898, 1000, 'text', 20);
+    window.v = this.physics.add.sprite(705, 1000, 'text', 21);
+    window.w = this.physics.add.sprite(538, 1000, 'text', 22);
+    window.x = this.physics.add.sprite(561, 1000, 'text', 23);
+    window.y = this.physics.add.sprite(826, 1000, 'text', 24);
+    window.z = this.physics.add.sprite(490, 1000, 'text', 25);
     
     
     const onEvent = function () {
-      b.setScale(6).setVelocityY(-125);
-      c.setScale(6).setVelocityY(-110);
-      d.setScale(6).setVelocityY(-100);
-      e.setScale(6).setVelocityY(-90);
-      f.setScale(6).setVelocityY(-80);
-      g.setScale(6).setVelocityY(-75);
-      h.setScale(6).setVelocityY(-120);
-      i.setScale(6).setVelocityY(-115);
-      j.setScale(6).setVelocityY(-65);
-      k.setScale(6).setVelocityY(-105);
-      l.setScale(6).setVelocityY(-95);
-      m.setScale(6).setVelocityY(-85);
-      n.setScale(6).setVelocityY(-70);
-      o.setScale(6).setVelocityY(-25);
-      p.setScale(6).setVelocityY(-35);
-      q.setScale(6).setVelocityY(-45);
-      r.setScale(6).setVelocityY(-60);
-      s.setScale(6).setVelocityY(-130);
-      t.setScale(6).setVelocityY(-135);
-      u.setScale(6).setVelocityY(-30);
-      v.setScale(6).setVelocityY(-20);
-      w.setScale(6).setVelocityY(-40);
-      x.setScale(6).setVelocityY(-140);
-      y.setScale(6).setVelocityY(-115);
-      z.setScale(6).setVelocityY(-145);
+      window.b.setScale(6).setVelocityY(-125);
+      window.c.setScale(6).setVelocityY(-110);
+      window.d.setScale(6).setVelocityY(-100);
+      window.e.setScale(6).setVelocityY(-90);
+      window.f.setScale(6).setVelocityY(-80);
+      window.g.setScale(6).setVelocityY(-75);
+      window.h.setScale(6).setVelocityY(-120);
+      window.i.setScale(6).setVelocityY(-115);
+      window.j.setScale(6).setVelocityY(-65);
+      window.k.setScale(6).setVelocityY(-105);
+      window.l.setScale(6).setVelocityY(-95);
+      window.m.setScale(6).setVelocityY(-85);
+      window.n.setScale(6).setVelocityY(-70);
+      window.o.setScale(6).setVelocityY(-25);
+      window.p.setScale(6).setVelocityY(-35);
+      window.q.setScale(6).setVelocityY(-45);
+      window.r.setScale(6).setVelocityY(-60);
+      window.s.setScale(6).setVelocityY(-130);
+      window.t.setScale(6).setVelocityY(-135);
+      window.u.setScale(6).setVelocityY(-30);
+      window.v.setScale(6).setVelocityY(-20);
+      window.w.setScale(6).setVelocityY(-40);
+      window.x.setScale(6).setVelocityY(-140);
+      window.y.setScale(6).setVelocityY(-115);
+      window.z.setScale(6).setVelocityY(-145);
     }
     
     this.input.keyboard.on('keydown-A', function (){
@@ -91,16 +91,16 @@ export default class Play extends Phaser.Scene {
       window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-B', function (){
-      kb3.setFrame(5); 
+      window.kb3.setFrame(5); 
      })
     this.input.keyboard.on('keyup-B', function() {
-      kb3.setFrame(0);
+      window.kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-C', function (){
-      kb3.setFrame(3); 
+      window.kb3.setFrame(3); 
     })
     this.input.keyboard.on('keyup-C', function() {
-      kb3.setFrame(0);
+      window.kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-D', function (){
       window.kb2.setFrame(3); 
@@ -109,10 +109,10 @@ export default class Play extends Phaser.Scene {
       window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-E', function (){
-      kb1.setFrame(3); 
+      window.kb1.setFrame(3); 
     })
     this.input.keyboard.on('keyup-E', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-F', function (){
       window.kb2.setFrame(4); 
@@ -133,10 +133,10 @@ export default class Play extends Phaser.Scene {
       window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-I', function (){
-      kb1.setFrame(8); 
+      window.kb1.setFrame(8); 
     })
     this.input.keyboard.on('keyup-I', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-J', function (){
       window.kb2.setFrame(7); 
@@ -157,40 +157,40 @@ export default class Play extends Phaser.Scene {
       window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-M', function (){
-      kb3.setFrame(7); 
+      window.kb3.setFrame(7); 
     })
     this.input.keyboard.on('keyup-M', function() {
-      kb3.setFrame(0);
+      window.kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-N', function (){
-      kb3.setFrame(6); 
+      window.kb3.setFrame(6); 
     })
     this.input.keyboard.on('keyup-N', function() {
-      kb3.setFrame(0);
+      window.kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-O', function (){
-      kb1.setFrame(9); 
+      window.kb1.setFrame(9); 
     })
     this.input.keyboard.on('keyup-O', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-P', function (){
-      kb1.setFrame(10); 
+      window.kb1.setFrame(10); 
     })
     this.input.keyboard.on('keyup-P', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-Q', function (){
-      kb1.setFrame(1); 
+      window.kb1.setFrame(1); 
     })
     this.input.keyboard.on('keyup-Q', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-R', function (){
-      kb1.setFrame(4); 
+      window.kb1.setFrame(4); 
     })
     this.input.keyboard.on('keyup-R', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-S', function (){
       window.kb2.setFrame(2); 
@@ -199,46 +199,46 @@ export default class Play extends Phaser.Scene {
       window.kb2.setFrame(0);
     })
     this.input.keyboard.on('keydown-T', function (){
-      kb1.setFrame(5); 
+      window.kb1.setFrame(5); 
     })
     this.input.keyboard.on('keyup-T', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-U', function (){
-      kb1.setFrame(7); 
+      window.kb1.setFrame(7); 
     })
     this.input.keyboard.on('keyup-U', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-V', function (){
-      kb3.setFrame(4); 
+      window.kb3.setFrame(4); 
     })
     this.input.keyboard.on('keyup-V', function() {
-      kb3.setFrame(0);
+      window.kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-W', function (){
-      kb1.setFrame(2); 
+      window.kb1.setFrame(2); 
     })
     this.input.keyboard.on('keyup-W', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-X', function (){
-      kb3.setFrame(2); 
+      window.kb3.setFrame(2); 
     })
     this.input.keyboard.on('keyup-X', function() {
-      kb3.setFrame(0);
+      window.kb3.setFrame(0);
     })
     this.input.keyboard.on('keydown-Y', function (){
-      kb1.setFrame(6); 
+      window.kb1.setFrame(6); 
     })
     this.input.keyboard.on('keyup-Y', function() {
-      kb1.setFrame(0);
+      window.kb1.setFrame(0);
     })
     this.input.keyboard.on('keydown-Z', function (){
-      kb3.setFrame(1); 
+      window.kb3.setFrame(1); 
     })
     this.input.keyboard.on('keyup-Z', function() {
-      kb3.setFrame(0);
+      window.kb3.setFrame(0);
     })
     this.time.delayedCall(2000, onEvent, [], this);
 
