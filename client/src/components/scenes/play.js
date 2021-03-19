@@ -7,6 +7,14 @@ function checkOverlap(spriteA, spriteB) {
   return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
 }
 
+function randomizer() {
+  const listOfCharacters = [];
+  while (listOfCharacters.length < 140) {
+    listOfCharacters.push(Math.floor(Math.random() * (26 - 0)) + 0);
+  }
+  return listOfCharacters;
+}
+
 const position = [
   3.34,
   3.23,
@@ -62,16 +70,19 @@ export default class Play extends Phaser.Scene {
   getLetter() {
     const num = Math.floor(Math.random() * (3 - 0)) + 0;
     let posX = position[1];
-    console.log(this.physics);
+    // console.log(this.physics);
     this.letter = this.physics.add.sprite(
       this.scale.width / posX,
       this.scale.height,
       "text",
-      1
+      2
     );
     this.letter.setScale(6).setVelocityY(-window.velocity);
   }
+
   create() {
+    this.characters = randomizer();
+
     this.key_SPACE = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
     );
@@ -293,19 +304,27 @@ export default class Play extends Phaser.Scene {
       callbackScope: this,
     });
     this.scale.on("resize", this.resize, this);
+
+    console.log(this.kb1.getBounds().y);
+    console.log(this.kb2.getBounds().y);
+    console.log(this.kb3.getBounds().y);
   }
 
   update() {
+    // console.log(this.letter.frame.name);
+    // if(checkOverlap(array[0]))
     if (checkOverlap(this.letter, this.kb2)) {
-      console.log("collide!");
+      console.log(this.letter);
       if (this.key_A.isDown) {
         this.letter.destroy();
+        //this.score += 100
       }
     }
 
     if (this.key_SPACE.isDown && this.pausePhysics === false) {
       this.pausePhysics = true;
       this.physics.pause();
+      //load sprite to show that the user has paused
     } else if (this.pausePhysics === true && this.key_SPACE.isDown) {
       this.pausePhysics = false;
       this.physics.resume();
