@@ -15,6 +15,9 @@ function randomizer() {
   return listOfCharacters;
 }
 
+// three of these down here and these are the characters currently on screen
+// one for each row of keyboard so like qwertyuiop, asdfghjkl, zxcvbnm
+// sort in function this.getletter
 const charactersInGame = [];
 
 const position = [
@@ -70,6 +73,9 @@ export default class Play extends Phaser.Scene {
     });
   }
   getLetter() {
+    // if statements if the number from this.characters.shift is equal to any of the three
+    // if(shifty.x % 2 === 0 && shifty.x % 3 !== 0) then push to corresponding array
+
     const shifty = this.characters.shift();
     this.letter = this.physics.add.sprite(
       shifty.width,
@@ -304,6 +310,7 @@ export default class Play extends Phaser.Scene {
     // this.time.delayedCall(2000, onEvent, [], this);
     this.getLetter();
 
+    //make the delay customizable for player to choose
     this.time.addEvent({
       delay: 1000,
       loop: true,
@@ -312,6 +319,7 @@ export default class Play extends Phaser.Scene {
     });
     this.scale.on("resize", this.resize, this);
 
+    // we should seperate our three arrays corresponding to there respective keyboard layout
     this.physics.add.overlap(
       charactersInGame,
       this.kb1,
@@ -358,7 +366,7 @@ export default class Play extends Phaser.Scene {
     this.kb3.setPosition(this.scale.width / 2.175, this.scale.height / 3.1);
   }
 }
-
+// if statements for if user clicked on time, we'll work out the deats on how to record a miss. for now the thought is a hitbox above kb1 to record miss
 function collisionHandler(obj1, obj2) {
   console.log("here");
 }
