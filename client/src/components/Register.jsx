@@ -14,17 +14,23 @@ export default function Register({ loggedIn, handleClose, show }) {
   });
 
   const [error, setError] = useState("");
-  const [className, setClassName] = useState("");
+  const [className, setClassName] = useState({
+    password: "",
+    email: "",
+  });
 
   function validate(evt) {
     evt.preventDefault();
-    if (input.password_confirmation === input.password) {
-      handleRegister(evt);
+    if (input.password_confirmation === input.password && input.email) {
       setError("");
-      setClassName("");
+      setClassName({ ...className, password: "" });
+      handleRegister(evt);
+    } else if (!input.email) {
+      setError("Please enter an email address");
+      setClassName({ ...className, email: "alert-danger" });
     } else {
       setError("Passwords don't match");
-      setClassName("alert-danger");
+      setClassName({ ...className, password: "alert-danger" });
     }
   }
 
@@ -34,11 +40,15 @@ export default function Register({ loggedIn, handleClose, show }) {
         handleReset();
         loggedIn(response.data.user);
         handleClose("register");
+        setClassName({ ...className, email: "" });
       })
       .catch((e) => {
         console.log("registration error", e);
         if (e.message.match(/422/)) {
-          setError("Email has already been taken");
+          setError("Email has already been registered");
+          setClassName((prev) => {
+            return { ...prev, email: "alert-danger" };
+          });
         }
       });
   }
@@ -70,6 +80,7 @@ export default function Register({ loggedIn, handleClose, show }) {
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
+                className={className.email}
                 name="email"
                 type="email"
                 placeholder="Enter email"
@@ -82,7 +93,7 @@ export default function Register({ loggedIn, handleClose, show }) {
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                className={className}
+                className={className.password}
                 name="password"
                 type="password"
                 placeholder="Password"
@@ -94,7 +105,7 @@ export default function Register({ loggedIn, handleClose, show }) {
             <Form.Group>
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
-                className={className}
+                className={className.password}
                 name="password_confirmation"
                 type="password"
                 placeholder="Confirm Password"
