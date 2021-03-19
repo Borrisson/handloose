@@ -1,32 +1,48 @@
 @mixin colorTheme($color1, $color2) {
-	border-color: $color1;
-	color: $color1;
-	background-color: $color2;
+  border-color: $color1;
+  color: $color1;
+  background-color: $color2;
 }
 
 @mixin buttonColorTheme($color1, $color2) {
-   @include colorTheme($color1, $color2);
-	&:hover {
-		background-color: $color1;
-		border-color: $color1;
-		color:black;
-	}
+  @include colorTheme($color1, $color2);
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: $color1;
+    border-color: $color1;
+    color: $color2;
+    box-shadow: inherit;
+  }
+
+  &:not(:disabled):not(.disabled):active {
+    background-color: $color1;
+    border-color: $color1;
+    color: inherit;
+
+    &:not(:hover),
+    &:hover {
+      background-color: $color1;
+      border-color: $color1;
+      color: $color2;
+      box-shadow: none;
+    }
+  }
 }
 
 @mixin modalColorTheme($color1, $color2) {
-	@include colorTheme($color1, $color2);
- &:focus {
-	background-color: inherit;
-	color: inherit;
-	border-color: inherit;
-	box-shadow: none;
- }
- &::placeholder {
-	 color:inherit;
- }
- &:focus::placeholder {
+  @include colorTheme($color1, $color2);
+  &:focus {
+    background-color: inherit;
     color: inherit;
- }
-
+    border-color: inherit;
+    box-shadow: none;
+  }
+  &::placeholder {
+    color: inherit;
+  }
+  &:focus::placeholder {
+    color: inherit;
+  }
 }
-
