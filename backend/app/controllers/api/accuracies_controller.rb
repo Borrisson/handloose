@@ -1,4 +1,6 @@
 class Api::AccuraciesController < ApplicationController
+  skip_before_action :require_login, only: [:create]
+
   def index
     @accuracies
     if params[:game_id]
