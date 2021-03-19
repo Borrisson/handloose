@@ -24,9 +24,9 @@ export default class Play extends Phaser.Scene {
   }
   getLetter() {
     const num = (Math.floor(Math.random() * (3 - 0) ) + 0);
-    let posX = position[num]
-    let letter = this.physics.add.sprite(this.scale.width / posX, 1000, 'text', num)
-    letter.setScale(6).setVelocityY(-(window.velocity));
+    let posX = position[1]
+    this.letter = this.physics.add.sprite(this.scale.width / posX, 1000, 'text', 1)
+    this.letter.setScale(6).setVelocityY(-(window.velocity));
   }
   create() {
     this.key_SPACE = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.SPACE)
@@ -70,7 +70,6 @@ export default class Play extends Phaser.Scene {
       .setScale(6);
     
     this.input.keyboard.on('keydown-A', () => {
-
      this.kb2.setFrame(1);
     })
     this.input.keyboard.on('keyup-A', () => {
@@ -227,18 +226,21 @@ export default class Play extends Phaser.Scene {
       this.kb3.setFrame(0);
     })
     // this.time.delayedCall(2000, onEvent, [], this);
+    this.getLetter();
 
-    this.time.addEvent({ delay: 2000, loop: true, callback: this.getLetter, callbackScope: this});
+    // this.time.addEvent({ delay: 2000, loop: true, callback: this.getLetter, callbackScope: this});
     this.scale.on("resize", this.resize, this);
   }
   
   
   update() {
-    // if (checkOverlap(window.a, this.kb2)){
-    //   if (this.key_A.isDown){
-    //     window.a.destroy();
-    //   }
-    // } 
+    if (checkOverlap(this.letter, this.kb2)){
+      console.log('collide!');
+      if (this.key_A.isDown){
+        
+        this.letter.destroy();
+      }
+    } 
     
     
 
