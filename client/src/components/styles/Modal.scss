@@ -2,7 +2,7 @@
 @import "_variables.scss";
 
 div.modal-content {
-  @include colorTheme($modal-alt-color-theme, black);
+  @include colorTheme($modal-alt-color-theme, $modal-bg-color-theme);
 
   div.modal-header {
     border-color: inherit;
