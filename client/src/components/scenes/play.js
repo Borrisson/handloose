@@ -220,7 +220,7 @@ export default class Play extends Phaser.Scene {
     })
     // this.time.delayedCall(2000, onEvent, [], this);
 
-    let letterGenerator = this.time.addEvent({ delay: 2000, loop: true, callback: this.getLetter, callbackScope: this});
+    this.time.addEvent({ delay: 2000, loop: true, callback: this.getLetter, callbackScope: this});
     
   }
   
