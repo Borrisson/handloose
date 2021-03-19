@@ -2,7 +2,7 @@
 @import "_variables.scss";
 
 div.modal-content {
-  @include colorTheme(palevioletred, black);
+  @include colorTheme($modal-alt-color-theme, black);
 
   div.modal-header {
     border-color: inherit;
@@ -26,7 +26,7 @@ div.modal-content {
 }
 
 .btn-primary {
-  @include buttonColorTheme(rebeccapurple, black);
+  @include buttonColorTheme($modal-alt-color-theme-2, $modal-bg-color-theme);
 }
 
 .close {
@@ -38,11 +38,24 @@ div.modal-content {
 }
 
 .btn-secondary {
-  @include buttonColorTheme(palevioletred, black);
+  @include buttonColorTheme($modal-alt-color-theme, $modal-bg-color-theme);
 }
 
 .alert-danger {
   background-color: inherit;
-  color: #d42233;
-  border-color: #d42233;
+  color: $danger-alert;
+  border-color: $danger-alert;
+}
+
+tr {
+  .table-striped tbody tr:nth-of-type(1n) {
+    @include colorTheme($modal-alt-color-theme, $modal-bg-color-theme);
+  }
+}
+.table-striped tbody tr:nth-of-type(2n) {
+  @include colorTheme($modal-alt-color-theme-2, $modal-bg-color-theme);
+}
+
+.table-striped tbody tr:nth-of-type(3n) {
+  @include colorTheme($modal-color-theme, $modal-bg-color-theme);
 }
