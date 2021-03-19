@@ -5,6 +5,9 @@ export default class Menu extends Phaser.Scene {
     super("Menu");
   }
   preload() {
+
+    this.load.audio('menu_space', 'assets/audio/press_space_menu.wav')
+
     this.load.spritesheet("logo", "assets/logo.png", {
       frameWidth: 291,
       frameHeight: 35,
@@ -60,6 +63,12 @@ export default class Menu extends Phaser.Scene {
       this
     );
     this.scale.on("resize", this.resize, this);
+
+    let start = this.sound.add('menu_space');
+
+    this.input.keyboard.on('keydown-SPACE', function () {
+      start.play();
+    });
   }
 
   resize(gameSize, baseSize, displaySize, resolution) {
