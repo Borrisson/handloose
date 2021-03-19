@@ -14,14 +14,17 @@ export default function Register({ loggedIn, handleClose, show }) {
   });
 
   const [error, setError] = useState("");
+  const [className, setClassName] = useState("");
 
   function validate(evt) {
     evt.preventDefault();
     if (input.password_confirmation === input.password) {
       handleRegister(evt);
       setError("");
+      setClassName("");
     } else {
       setError("Passwords don't match");
+      setClassName("alert-danger");
     }
   }
 
@@ -79,6 +82,7 @@ export default function Register({ loggedIn, handleClose, show }) {
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                className={className}
                 name="password"
                 type="password"
                 placeholder="Password"
@@ -90,6 +94,7 @@ export default function Register({ loggedIn, handleClose, show }) {
             <Form.Group>
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
+                className={className}
                 name="password_confirmation"
                 type="password"
                 placeholder="Confirm Password"

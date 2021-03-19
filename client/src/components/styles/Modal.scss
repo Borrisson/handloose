@@ -46,9 +46,9 @@ div.modal-content {
 }
 
 .alert-danger {
-  background-color: inherit;
-  color: $danger-alert;
-  border-color: $danger-alert;
+  background-color: inherit !important;
+  color: $danger-alert !important;
+  border-color: $danger-alert !important;
 }
 .table {
   color: inherit;
