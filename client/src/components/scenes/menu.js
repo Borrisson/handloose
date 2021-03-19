@@ -27,8 +27,12 @@ export default class Menu extends Phaser.Scene {
     this.logo = this.add
       .sprite(this.scale.width / 2, this.scale.height / 3, "logo")
       .setScale(2);
-    this.curtainLeft = this.add.image(130, 450, "curtains").setScale(9);
-    this.curtainRight = this.add.image(1400, 450, "curtains").setScale(9);
+    this.curtainLeft = this.add
+      .image(this.scale.width / 10, this.scale.height / 3, "curtains")
+      .setScale(9);
+    this.curtainRight = this.add
+      .image(this.scale.width / 1.1, this.scale.height / 3, "curtains")
+      .setScale(9);
     this.curtainRight.flipX = true;
 
     this.anims.create({
@@ -65,8 +69,11 @@ export default class Menu extends Phaser.Scene {
     this.cameras.resize(width, height);
 
     this.play.setPosition(width / 2.2, height / 2);
-    this.curtainLeft.setSize(width, height);
-    this.curtainRight.setSize(width, height);
+    this.curtainLeft.setPosition(this.scale.width / 10, this.scale.height / 3);
+    this.curtainRight.setPosition(
+      this.scale.width / 1.1,
+      this.scale.height / 3
+    );
     this.floor.setSize(width, height);
     this.logo.setPosition(width / 2, height / 3);
   }
