@@ -1,11 +1,13 @@
 import Phaser from "phaser"
 
 function checkOverlap(spriteA, spriteB) {
-  var boundsA = spriteA.getBounds();
-  var boundsB = spriteB.getBounds();
+  let boundsA = spriteA.getBounds();
+  let boundsB = spriteB.getBounds();
 
   return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
 }
+
+
 
 
 
@@ -228,19 +230,21 @@ export default class Play extends Phaser.Scene {
     // this.time.delayedCall(2000, onEvent, [], this);
     this.getLetter();
 
-    // this.time.addEvent({ delay: 2000, loop: true, callback: this.getLetter, callbackScope: this});
+    this.time.addEvent({ delay: 3000, loop: true, callback: this.getLetter, callbackScope: this});
     this.scale.on("resize", this.resize, this);
   }
   
   
   update() {
-    if (checkOverlap(this.letter, this.kb2)){
-      console.log('collide!');
-      if (this.key_A.isDown){
-        
-        this.letter.destroy();
+    
+      if (checkOverlap(this.letter, this.kb2)){
+        console.log('collide!');
+        if (this.key_A.isDown){
+          
+          this.letter.destroy();
+        }
       }
-    } 
+    
     
     
 
