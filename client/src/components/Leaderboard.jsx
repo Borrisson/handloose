@@ -15,7 +15,7 @@ export default function Leaderboard({ handleClose, show, leaderboard }) {
       </Modal.Header>
 
       <Modal.Body>
-        <Table striped bordered size="sm" variant="dark" responsive>
+        <Table striped bordered size="sm">
           <thead>
             <tr>
               <th>#</th>
