@@ -10,7 +10,7 @@ function checkOverlap(spriteA, spriteB) {
 
 
 
-const position = [477, 777, 633, 621, 609, 693, 765, 838, 982, 910, 982, 1053, 921, 849, 1042, 1114, 460, 682, 550, 755, 898, 705, 538, 561, 826, 490]
+const position = [3.34, 3.23, 3.13, 621, 609, 693, 765, 838, 982, 910, 982, 1053, 921, 849, 1042, 1114, 460, 682, 550, 755, 898, 705, 538, 561, 826, 490]
 
 export default class Play extends Phaser.Scene {
   constructor() {
@@ -23,8 +23,9 @@ export default class Play extends Phaser.Scene {
     this.load.spritesheet('text', 'assets/text.png', {frameWidth: 7, frameHeight: 8})
   }
   getLetter() {
-    const num = (Math.floor(Math.random() * (26 - 0) ) + 0);
-    let letter = this.physics.add.sprite(position[num], 1000, 'text', num)
+    const num = (Math.floor(Math.random() * (3 - 0) ) + 0);
+    let posX = position[num]
+    let letter = this.physics.add.sprite(this.scale.width / posX, 1000, 'text', num)
     letter.setScale(6).setVelocityY(-(window.velocity));
   }
   create() {
@@ -60,7 +61,7 @@ export default class Play extends Phaser.Scene {
     
     this.kb1 = this.add
       .sprite(this.scale.width / 1.945, this.scale.height / 5.05, 'kb1')
-      .setScale(6);
+      .setScale(6)
     this.kb2 = this.add
       .sprite(this.scale.width / 2.01, this.scale.height / 3.9, 'kb2')
       .setScale(6);
@@ -68,161 +69,162 @@ export default class Play extends Phaser.Scene {
       .sprite(this.scale.width / 2.175, this.scale.height / 3.1, 'kb3')
       .setScale(6);
     
-    this.input.keyboard.on('keydown-A', function (){
-     window.kb2.setFrame(1); 
+    this.input.keyboard.on('keydown-A', () => {
+
+     this.kb2.setFrame(1);
     })
-    this.input.keyboard.on('keyup-A', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-A', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-B', function (){
-      window.kb3.setFrame(5); 
+    this.input.keyboard.on('keydown-B', () => {
+      this.kb3.setFrame(5); 
      })
-    this.input.keyboard.on('keyup-B', function() {
-      window.kb3.setFrame(0);
+    this.input.keyboard.on('keyup-B', () => {
+      this.kb3.setFrame(0);
     })
-    this.input.keyboard.on('keydown-C', function (){
-      window.kb3.setFrame(3); 
+    this.input.keyboard.on('keydown-C', () => {
+      this.kb3.setFrame(3); 
     })
-    this.input.keyboard.on('keyup-C', function() {
-      window.kb3.setFrame(0);
+    this.input.keyboard.on('keyup-C', () => {
+      this.kb3.setFrame(0);
     })
-    this.input.keyboard.on('keydown-D', function (){
-      window.kb2.setFrame(3); 
+    this.input.keyboard.on('keydown-D', () => {
+      this.kb2.setFrame(3); 
     })
-    this.input.keyboard.on('keyup-D', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-D', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-E', function (){
-      window.kb1.setFrame(3); 
+    this.input.keyboard.on('keydown-E', () => {
+      this.kb1.setFrame(3); 
     })
-    this.input.keyboard.on('keyup-E', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-E', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-F', function (){
-      window.kb2.setFrame(4); 
+    this.input.keyboard.on('keydown-F', () => {
+      this.kb2.setFrame(4); 
     })
-    this.input.keyboard.on('keyup-F', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-F', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-G', function (){
-      window.kb2.setFrame(5); 
+    this.input.keyboard.on('keydown-G', () => {
+      this.kb2.setFrame(5); 
     })
-    this.input.keyboard.on('keyup-G', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-G', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-H', function (){
-      window.kb2.setFrame(6); 
+    this.input.keyboard.on('keydown-H', () => {
+      this.kb2.setFrame(6); 
     })
-    this.input.keyboard.on('keyup-H', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-H', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-I', function (){
-      window.kb1.setFrame(8); 
+    this.input.keyboard.on('keydown-I', () => {
+      this.kb1.setFrame(8); 
     })
-    this.input.keyboard.on('keyup-I', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-I', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-J', function (){
-      window.kb2.setFrame(7); 
+    this.input.keyboard.on('keydown-J', () => {
+      this.kb2.setFrame(7); 
     })
-    this.input.keyboard.on('keyup-J', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-J', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-K', function (){
-      window.kb2.setFrame(8); 
+    this.input.keyboard.on('keydown-K', () => {
+      this.kb2.setFrame(8); 
     })
-    this.input.keyboard.on('keyup-K', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-K', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-L', function (){
-      window.kb2.setFrame(9); 
+    this.input.keyboard.on('keydown-L', () => {
+      this.kb2.setFrame(9); 
     })
-    this.input.keyboard.on('keyup-L', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-L', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-M', function (){
-      window.kb3.setFrame(7); 
+    this.input.keyboard.on('keydown-M', () => {
+      this.kb3.setFrame(7); 
     })
-    this.input.keyboard.on('keyup-M', function() {
-      window.kb3.setFrame(0);
+    this.input.keyboard.on('keyup-M', () => {
+      this.kb3.setFrame(0);
     })
-    this.input.keyboard.on('keydown-N', function (){
-      window.kb3.setFrame(6); 
+    this.input.keyboard.on('keydown-N', () => {
+      this.kb3.setFrame(6); 
     })
-    this.input.keyboard.on('keyup-N', function() {
-      window.kb3.setFrame(0);
+    this.input.keyboard.on('keyup-N', () => {
+      this.kb3.setFrame(0);
     })
-    this.input.keyboard.on('keydown-O', function (){
-      window.kb1.setFrame(9); 
+    this.input.keyboard.on('keydown-O', () => {
+      this.kb1.setFrame(9); 
     })
-    this.input.keyboard.on('keyup-O', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-O', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-P', function (){
-      window.kb1.setFrame(10); 
+    this.input.keyboard.on('keydown-P', () => {
+      this.kb1.setFrame(10); 
     })
-    this.input.keyboard.on('keyup-P', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-P', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-Q', function (){
-      window.kb1.setFrame(1); 
+    this.input.keyboard.on('keydown-Q', () => {
+      this.kb1.setFrame(1); 
     })
-    this.input.keyboard.on('keyup-Q', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-Q', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-R', function (){
-      window.kb1.setFrame(4); 
+    this.input.keyboard.on('keydown-R', () => {
+      this.kb1.setFrame(4); 
     })
-    this.input.keyboard.on('keyup-R', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-R', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-S', function (){
-      window.kb2.setFrame(2); 
+    this.input.keyboard.on('keydown-S', () => {
+      this.kb2.setFrame(2); 
     })
-    this.input.keyboard.on('keyup-S', function() {
-      window.kb2.setFrame(0);
+    this.input.keyboard.on('keyup-S', () => {
+      this.kb2.setFrame(0);
     })
-    this.input.keyboard.on('keydown-T', function (){
-      window.kb1.setFrame(5); 
+    this.input.keyboard.on('keydown-T', () => {
+      this.kb1.setFrame(5); 
     })
-    this.input.keyboard.on('keyup-T', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-T', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-U', function (){
-      window.kb1.setFrame(7); 
+    this.input.keyboard.on('keydown-U', () => {
+      this.kb1.setFrame(7); 
     })
-    this.input.keyboard.on('keyup-U', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-U', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-V', function (){
-      window.kb3.setFrame(4); 
+    this.input.keyboard.on('keydown-V', () => {
+      this.kb3.setFrame(4); 
     })
-    this.input.keyboard.on('keyup-V', function() {
-      window.kb3.setFrame(0);
+    this.input.keyboard.on('keyup-V', () => {
+      this.kb3.setFrame(0);
     })
-    this.input.keyboard.on('keydown-W', function (){
-      window.kb1.setFrame(2); 
+    this.input.keyboard.on('keydown-W', () => {
+      this.kb1.setFrame(2); 
     })
-    this.input.keyboard.on('keyup-W', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-W', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-X', function (){
-      window.kb3.setFrame(2); 
+    this.input.keyboard.on('keydown-X', () => {
+      this.kb3.setFrame(2); 
     })
-    this.input.keyboard.on('keyup-X', function() {
-      window.kb3.setFrame(0);
+    this.input.keyboard.on('keyup-X', () => {
+      this.kb3.setFrame(0);
     })
-    this.input.keyboard.on('keydown-Y', function (){
-      window.kb1.setFrame(6); 
+    this.input.keyboard.on('keydown-Y', () => {
+      this.kb1.setFrame(6); 
     })
-    this.input.keyboard.on('keyup-Y', function() {
-      window.kb1.setFrame(0);
+    this.input.keyboard.on('keyup-Y', () => {
+      this.kb1.setFrame(0);
     })
-    this.input.keyboard.on('keydown-Z', function (){
-      window.kb3.setFrame(1); 
+    this.input.keyboard.on('keydown-Z', () => {
+      this.kb3.setFrame(1); 
     })
-    this.input.keyboard.on('keyup-Z', function() {
-      window.kb3.setFrame(0);
+    this.input.keyboard.on('keyup-Z', () => {
+      this.kb3.setFrame(0);
     })
     // this.time.delayedCall(2000, onEvent, [], this);
 
@@ -232,7 +234,7 @@ export default class Play extends Phaser.Scene {
   
   
   update() {
-    // if (checkOverlap(window.a, window.kb2)){
+    // if (checkOverlap(window.a, this.kb2)){
     //   if (this.key_A.isDown){
     //     window.a.destroy();
     //   }
