@@ -1,23 +1,36 @@
 class Api::GamesController < ApplicationController
-  skip_before_action :require_login, only: [:create]
+  skip_before_action :require_login, only: [:index]
 
   def index
+    @leaderboard
     @games
     @accuracies
     if params[:user_id]
       @games = Game.where(user_id: params[:user_id]).order("score DESC").limit(10)
       @accuracies = Accuracy.where(game_id: @games.ids)
+
+      render json: {
+        status: :ok,
+        games: @games,
+        accuracies: @accuracies,
+      }
     elsif required_query_params
-      @games = Game.joins(:user).select("games.*, users.name").order("#{game_query[:order_by]} desc").limit(game_query[:limit].to_i)
+      @leaderboard = Game.joins(:user).select("games.*, users.name").order("#{game_query[:order_by]} desc").limit(game_query[:limit].to_i)
+
+      render json: {
+        status: :ok,
+        leaderboard: @leaderboard,
+      }
     else
       @games = Game.all
       @accuracies = Accuracy.all
+
+      render json: {
+        status: :ok,
+        games: @games,
+        accuracies: @accuracies,
+      }
     end
-    render json: {
-             status: :ok,
-             games: @games,
-             accuracies: @accuracies,
-           }
   end
 
   def create
