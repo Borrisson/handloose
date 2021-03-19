@@ -15,14 +15,22 @@ export default function Register({ loggedIn, handleClose, show }) {
 
   const [error, setError] = useState("");
 
-  function handleRegister(evt) {
+  function validate(evt) {
     evt.preventDefault();
+    if (input.password_confirmation === input.password) {
+      handleRegister(evt);
+      setError("");
+    } else {
+      setError("Passwords don't match");
+    }
+  }
+
+  function handleRegister(evt) {
     submitRegister(evt)
       .then((response) => {
         handleReset();
         loggedIn(response.data.user);
         handleClose("register");
-        setError("");
       })
       .catch((e) => {
         console.log("registration error", e);
@@ -42,7 +50,7 @@ export default function Register({ loggedIn, handleClose, show }) {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleRegister}>
+          <Form onSubmit={validate}>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form.Group>
               <Form.Label>Username</Form.Label>
