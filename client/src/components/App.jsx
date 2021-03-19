@@ -15,7 +15,6 @@ const App = () => {
     loggedIn,
     handleLogout,
   } = useApplicationData();
-  console.log(state);
 
   const { show, handleClose, handleShow } = useShowData();
 
