@@ -30,16 +30,37 @@ export default class Play extends Phaser.Scene {
   create() {
     this.key_SPACE = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.SPACE)
     this.key_A = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.A)
+    this.key_B = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.B)
+    this.key_C = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.C)
+    this.key_D = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.D)
+    this.key_E = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.E)
+    this.key_F = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.F)
+    this.key_G = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.G)
+    this.key_H = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.H)
+    this.key_I = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.I)
+    this.key_J = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.J)
+    this.key_K = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.K)
+    this.key_L = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.L)
+    this.key_M = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.M)
+    this.key_N = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.N)
+    this.key_O = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.O)
+    this.key_P = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.P)
+    this.key_Q = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.Q)
+    this.key_R = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.R)
+    this.key_S = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.S)
+    this.key_T = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.T)
+    this.key_U = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.U)
+    this.key_V = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.V)
+    this.key_W = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.W)
+    this.key_X = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.X)
+    this.key_Y = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.Y)
+    this.key_Z = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.Z)
     this.pausePhysics = false;
     
     
     window.kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
     window.kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
     window.kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
-    
-    
-    
-    
     
     this.input.keyboard.on('keydown-A', function (){
      window.kb2.setFrame(1); 
