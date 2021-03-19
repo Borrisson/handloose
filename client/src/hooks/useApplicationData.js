@@ -22,7 +22,7 @@ const useApplicationData = () => {
       }),
     ])
       .then(([{ data }, res]) => {
-        handleAppData({ data, ...res.data });
+        handleAppData({ ...res.data, ...data });
       })
       .catch((err) => console.log(err));
   }, []);
@@ -34,12 +34,13 @@ const useApplicationData = () => {
     return axios.delete(`/api/sessions/${state.user.id}`);
   }
 
-  function handleAppData({ user, games, accuracies }) {
+  function handleAppData({ user, games, accuracies, leaderboard }) {
     dispatch({
       type: SET_APPLICATION_DATA,
       user: { ...user },
       games: [...games],
       accuracies: [...accuracies],
+      leaderboard: [...leaderboard],
     });
   }
 
