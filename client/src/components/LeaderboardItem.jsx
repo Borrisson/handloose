@@ -1,6 +1,6 @@
 import react from "react";
 
-export function LeaderboardItem(props) {
+export default function LeaderboardItem(props) {
   return (
     <tr>
       <td>1</td>

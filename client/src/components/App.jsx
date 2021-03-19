@@ -6,6 +6,7 @@ import Login from "./Login";
 import Register from "./Register";
 import About from "./About";
 import useShowData from "../hooks/useShowData";
+import Leaderboard from "./Leaderboard";
 
 const App = () => {
   const {
@@ -39,6 +40,7 @@ const App = () => {
         show={show.register}
         loggedIn={loggedIn}
       />
+      {/* <Leaderboard handleClose={handleClose} show={show.leaderboard} /> */}
     </>
   );
 };

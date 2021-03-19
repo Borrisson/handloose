@@ -1,4 +1,4 @@
-import Table from "react-bootstrap";
+import Table from "react-bootstrap/Table";
 import LeaderboardItem from "./LeaderboardItem";
 
 export default function Leaderboard(props) {
