@@ -58,9 +58,15 @@ export default class Play extends Phaser.Scene {
     this.pausePhysics = false;
     
     
-    window.kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
-    window.kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
-    window.kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
+    this.kb1 = this.add
+      .sprite(this.scale.width / 1.945, this.scale.height / 5.05, 'kb1')
+      .setScale(6);
+    this.kb2 = this.add
+      .sprite(this.scale.width / 2.01, this.scale.height / 3.9, 'kb2')
+      .setScale(6);
+    this.kb3 = this.add
+      .sprite(this.scale.width / 2.175, this.scale.height / 3.1, 'kb3')
+      .setScale(6);
     
     this.input.keyboard.on('keydown-A', function (){
      window.kb2.setFrame(1); 
@@ -221,7 +227,7 @@ export default class Play extends Phaser.Scene {
     // this.time.delayedCall(2000, onEvent, [], this);
 
     this.time.addEvent({ delay: 2000, loop: true, callback: this.getLetter, callbackScope: this});
-    
+    this.scale.on("resize", this.resize, this);
   }
   
   
@@ -243,5 +249,19 @@ export default class Play extends Phaser.Scene {
     }
 
   
+  }
+  resize(gameSize, baseSize, displaySize, resolution) {
+    var width = gameSize.width;
+    var height = gameSize.height;
+
+    this.cameras.resize(width, height);
+
+    this.kb1.setPosition(this.scale.width / 1.945, this.scale.height / 5.05);
+    this.kb2.setPosition(this.scale.width / 2.01, this.scale.height / 3.9);
+    this.kb3.setPosition(
+      this.scale.width / 2.175,
+      this.scale.height / 3.1
+    );
+    
   }
 }
