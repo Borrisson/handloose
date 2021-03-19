@@ -17,6 +17,7 @@ export default class Play extends Phaser.Scene {
     super("play")
   }
   preload() {
+    this.load.audio('main_theme', 'assets/audio/main_theme.mp3')
     this.load.spritesheet('kb1', 'assets/kb1.png', {frameWidth: 119, frameHeight: 10});
     this.load.spritesheet('kb2', 'assets/kb2.png', {frameWidth: 107, frameHeight: 11});
     this.load.spritesheet('kb3', 'assets/kb3.png', {frameWidth: 83, frameHeight: 12});
@@ -32,7 +33,20 @@ export default class Play extends Phaser.Scene {
     this.key_A = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.A)
     this.pausePhysics = false;
     
+    this.music = this.sound.add('main_theme');
     
+    let musicConfig = {
+      mute: false,
+      volume: 1,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: true,
+      delay: 0
+    }
+
+    this.music.play(musicConfig);
+
     window.kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
     window.kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
     window.kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
@@ -202,6 +216,8 @@ export default class Play extends Phaser.Scene {
     let letterGenerator = this.time.addEvent({ delay: 2000, loop: true, callback: this.getLetter, callbackScope: this});
     
   }
+
+  
   
   
   update() {
@@ -210,7 +226,7 @@ export default class Play extends Phaser.Scene {
     //     window.a.destroy();
     //   }
     // } 
-    
+   
     
 
     if ( this.key_SPACE.isDown && this.pausePhysics === false) {
