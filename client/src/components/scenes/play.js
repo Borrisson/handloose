@@ -75,10 +75,6 @@ export default class Play extends Phaser.Scene {
 
     this.music.play(musicConfig);
 
-    window.kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
-    window.kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
-    window.kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
-    
     
     this.kb1 = this.add
       .sprite(this.scale.width / 1.945, this.scale.height / 5.05, 'kb1')
