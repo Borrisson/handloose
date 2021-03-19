@@ -15,6 +15,8 @@ function randomizer() {
   return listOfCharacters;
 }
 
+const charactersInGame = [];
+
 const position = [
   3.34,
   3.23,
@@ -68,20 +70,25 @@ export default class Play extends Phaser.Scene {
     });
   }
   getLetter() {
-    const num = Math.floor(Math.random() * (3 - 0)) + 0;
-    let posX = position[1];
-    // console.log(this.physics);
+    const shifty = this.characters.shift();
     this.letter = this.physics.add.sprite(
-      this.scale.width / posX,
-      this.scale.height,
+      shifty.width,
+      shifty.height,
       "text",
-      2
+      shifty.x
     );
     this.letter.setScale(6).setVelocityY(-window.velocity);
+    charactersInGame.push(this.letter);
   }
 
   create() {
-    this.characters = randomizer();
+    this.characters = randomizer().map((x) => {
+      return {
+        width: this.scale.width - position[x],
+        height: this.scale.height,
+        x,
+      };
+    });
 
     this.key_SPACE = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
@@ -128,13 +135,13 @@ export default class Play extends Phaser.Scene {
 
     this.music.play(musicConfig);
 
-    this.kb1 = this.add
+    this.kb1 = this.physics.add
       .sprite(this.scale.width / 1.945, this.scale.height / 5.05, "kb1")
       .setScale(6);
-    this.kb2 = this.add
+    this.kb2 = this.physics.add
       .sprite(this.scale.width / 2.01, this.scale.height / 3.9, "kb2")
       .setScale(6);
-    this.kb3 = this.add
+    this.kb3 = this.physics.add
       .sprite(this.scale.width / 2.175, this.scale.height / 3.1, "kb3")
       .setScale(6);
 
@@ -298,29 +305,39 @@ export default class Play extends Phaser.Scene {
     this.getLetter();
 
     this.time.addEvent({
-      delay: 3000,
+      delay: 1000,
       loop: true,
       callback: this.getLetter,
       callbackScope: this,
     });
     this.scale.on("resize", this.resize, this);
 
-    console.log(this.kb1.getBounds().y);
-    console.log(this.kb2.getBounds().y);
-    console.log(this.kb3.getBounds().y);
+    this.physics.add.overlap(
+      charactersInGame,
+      this.kb1,
+      collisionHandler,
+      null,
+      this
+    );
+
+    this.physics.add.overlap(
+      charactersInGame,
+      this.kb2,
+      collisionHandler,
+      null,
+      this
+    );
+
+    this.physics.add.overlap(
+      charactersInGame,
+      this.kb3,
+      collisionHandler,
+      null,
+      this
+    );
   }
 
   update() {
-    // console.log(this.letter.frame.name);
-    // if(checkOverlap(array[0]))
-    if (checkOverlap(this.letter, this.kb2)) {
-      console.log(this.letter);
-      if (this.key_A.isDown) {
-        this.letter.destroy();
-        //this.score += 100
-      }
-    }
-
     if (this.key_SPACE.isDown && this.pausePhysics === false) {
       this.pausePhysics = true;
       this.physics.pause();
@@ -340,4 +357,8 @@ export default class Play extends Phaser.Scene {
     this.kb2.setPosition(this.scale.width / 2.01, this.scale.height / 3.9);
     this.kb3.setPosition(this.scale.width / 2.175, this.scale.height / 3.1);
   }
+}
+
+function collisionHandler(obj1, obj2) {
+  console.log("here");
 }
