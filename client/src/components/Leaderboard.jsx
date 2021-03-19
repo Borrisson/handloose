@@ -3,7 +3,7 @@ import LeaderboardItem from "./LeaderboardItem";
 
 export default function Leaderboard(props) {
   const parsedTable = props.leaderboard.map((el) => {
-    <LeaderboardItem />;
+    <LeaderboardItem key={el.id} {...el} />;
   });
   return (
     <Table striped bordered hover variant="dark" responsive>
