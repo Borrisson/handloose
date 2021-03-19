@@ -7,6 +7,11 @@ function checkOverlap(spriteA, spriteB) {
   return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
 }
 
+
+
+
+const position = [477, 777, 633, 621, 609, 693, 765, 838, 982, 910, 982, 1053, 921, 849, 1042, 1114, 460, 682, 550, 755, 898, 705, 538, 561, 826, 490]
+
 export default class Play extends Phaser.Scene {
   constructor() {
     super("play")
@@ -17,72 +22,24 @@ export default class Play extends Phaser.Scene {
     this.load.spritesheet('kb3', 'assets/kb3.png', {frameWidth: 83, frameHeight: 12});
     this.load.spritesheet('text', 'assets/text.png', {frameWidth: 7, frameHeight: 8})
   }
+  getLetter() {
+    const num = (Math.floor(Math.random() * (26 - 0) ) + 0);
+    let letter = this.physics.add.sprite(position[num], 1000, 'text', num)
+    letter.setScale(6).setVelocityY(-(window.velocity));
+  }
   create() {
-    console.log(window.velocity);
     this.key_SPACE = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.SPACE)
     this.key_A = this.input.keyboard.addKey (Phaser.Input.Keyboard.KeyCodes.A)
     this.pausePhysics = false;
- 
-
+    
+    
     window.kb1 = this.add.sprite(790, 200, 'kb1').setScale(6);
     window.kb2 = this.add.sprite(765, 260, 'kb2').setScale(6);
     window.kb3 = this.add.sprite(705, 320, 'kb3').setScale(6);
-    window.a = this.physics.add.sprite(477, 1000, 'text', 0);
-    window.a.setScale(6).setVelocityY(-(window.velocity));
-    window.b = this.physics.add.sprite(777, 1000, 'text', 1);
-    window.c = this.physics.add.sprite(633, 1000, 'text', 2);
-    window.d = this.physics.add.sprite(621, 1000, 'text', 3);
-    window.e = this.physics.add.sprite(609, 1000, 'text', 4);
-    window.f = this.physics.add.sprite(693, 1000, 'text', 5);
-    window.g = this.physics.add.sprite(765, 1000, 'text', 6);
-    window.h = this.physics.add.sprite(838, 1000, 'text', 7);
-    window.i = this.physics.add.sprite(982, 1000, 'text', 8);
-    window.j = this.physics.add.sprite(910, 1000, 'text', 9);
-    window.k = this.physics.add.sprite(982, 1000, 'text', 10);
-    window.l = this.physics.add.sprite(1053, 1000, 'text', 11);
-    window.m = this.physics.add.sprite(921, 1000, 'text', 12);
-    window.n = this.physics.add.sprite(849, 1000, 'text', 13);
-    window.o = this.physics.add.sprite(1042, 1000, 'text', 14);
-    window.p = this.physics.add.sprite(1114, 1000, 'text', 15);
-    window.q = this.physics.add.sprite(460, 1000, 'text', 16);
-    window.r = this.physics.add.sprite(682, 1000, 'text', 17);
-    window.s = this.physics.add.sprite(550, 1000, 'text', 18);
-    window.t = this.physics.add.sprite(755, 1000, 'text', 19);
-    window.u = this.physics.add.sprite(898, 1000, 'text', 20);
-    window.v = this.physics.add.sprite(705, 1000, 'text', 21);
-    window.w = this.physics.add.sprite(538, 1000, 'text', 22);
-    window.x = this.physics.add.sprite(561, 1000, 'text', 23);
-    window.y = this.physics.add.sprite(826, 1000, 'text', 24);
-    window.z = this.physics.add.sprite(490, 1000, 'text', 25);
     
     
-    const onEvent = function () {
-      window.b.setScale(6).setVelocityY(-125);
-      window.c.setScale(6).setVelocityY(-110);
-      window.d.setScale(6).setVelocityY(-100);
-      window.e.setScale(6).setVelocityY(-90);
-      window.f.setScale(6).setVelocityY(-80);
-      window.g.setScale(6).setVelocityY(-75);
-      window.h.setScale(6).setVelocityY(-120);
-      window.i.setScale(6).setVelocityY(-115);
-      window.j.setScale(6).setVelocityY(-65);
-      window.k.setScale(6).setVelocityY(-105);
-      window.l.setScale(6).setVelocityY(-95);
-      window.m.setScale(6).setVelocityY(-85);
-      window.n.setScale(6).setVelocityY(-70);
-      window.o.setScale(6).setVelocityY(-25);
-      window.p.setScale(6).setVelocityY(-35);
-      window.q.setScale(6).setVelocityY(-45);
-      window.r.setScale(6).setVelocityY(-60);
-      window.s.setScale(6).setVelocityY(-130);
-      window.t.setScale(6).setVelocityY(-135);
-      window.u.setScale(6).setVelocityY(-30);
-      window.v.setScale(6).setVelocityY(-20);
-      window.w.setScale(6).setVelocityY(-40);
-      window.x.setScale(6).setVelocityY(-140);
-      window.y.setScale(6).setVelocityY(-115);
-      window.z.setScale(6).setVelocityY(-145);
-    }
+    
+    
     
     this.input.keyboard.on('keydown-A', function (){
      window.kb2.setFrame(1); 
@@ -240,19 +197,19 @@ export default class Play extends Phaser.Scene {
     this.input.keyboard.on('keyup-Z', function() {
       window.kb3.setFrame(0);
     })
-    this.time.delayedCall(2000, onEvent, [], this);
+    // this.time.delayedCall(2000, onEvent, [], this);
 
-    
+    let letterGenerator = this.time.addEvent({ delay: 2000, loop: true, callback: this.getLetter, callbackScope: this});
     
   }
   
   
   update() {
-    if (checkOverlap(window.a, window.kb2)){
-      if (this.key_A.isDown){
-        window.a.destroy();
-      }
-    }
+    // if (checkOverlap(window.a, window.kb2)){
+    //   if (this.key_A.isDown){
+    //     window.a.destroy();
+    //   }
+    // } 
     
     
 
