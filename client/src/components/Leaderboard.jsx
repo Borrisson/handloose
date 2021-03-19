@@ -4,11 +4,11 @@ import Button from "react-bootstrap/Button";
 import LeaderboardItem from "./LeaderboardItem";
 
 export default function Leaderboard({ handleClose, show, leaderboard }) {
-  const parsedTable = leaderboard.map((el) => {
-    <LeaderboardItem key={el.id} {...el} />;
+  const parsedTable = leaderboard.map((el, index) => {
+    <LeaderboardItem key={el.id} index={index} {...el} />;
   });
   return (
-    <Modal.Dialog>
+    <Modal show={show} onHide={() => handleClose("register")} keyboard={false}>
       <Modal.Header closeButton>
         <Modal.Title>Leaderboard</Modal.Title>
       </Modal.Header>
@@ -27,9 +27,10 @@ export default function Leaderboard({ handleClose, show, leaderboard }) {
         </Table>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary">Close</Button>
-        <Button variant="primary">Save changes</Button>
+        <Button onClick={handleClose} variant="secondary">
+          Close
+        </Button>
       </Modal.Footer>
-    </Modal.Dialog>
+    </Modal>
   );
 }

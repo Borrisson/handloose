@@ -78,6 +78,7 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
           <MenuItem
             icon={<FontAwesomeIcon icon={faChartBar} />}
             className="sidebar item"
+            onClick={() => handleShow("leaderboard")}
           >
             Leaderboard
           </MenuItem>

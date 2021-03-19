@@ -40,7 +40,11 @@ const App = () => {
         show={show.register}
         loggedIn={loggedIn}
       />
-      {/* <Leaderboard handleClose={handleClose} show={show.leaderboard} leaderboard={state.leaderboard} /> */}
+      <Leaderboard
+        handleClose={handleClose}
+        show={show.leaderboard}
+        leaderboard={state.leaderboard}
+      />
     </>
   );
 };

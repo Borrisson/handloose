@@ -1,12 +1,12 @@
 import react from "react";
 
-export default function LeaderboardItem(props) {
+export default function LeaderboardItem({ index, name, score, streak }) {
   return (
     <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>{index}</td>
+      <td>{name}</td>
+      <td>{score}</td>
+      <td>{streak}</td>
     </tr>
   );
 }
