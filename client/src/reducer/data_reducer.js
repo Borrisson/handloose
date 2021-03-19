@@ -3,7 +3,7 @@ export const SET_USER = "SET_USER";
 export const DESTROY_USER = "DESTROY_USER";
 export const SET_LEADERBOARD = "SET_LEADERBOARD";
 
-const dataReducer = (state, { type, user, games, accuracies }) => {
+const dataReducer = (state, { type, user, games, accuracies, leaderboard }) => {
   switch (type) {
     case SET_APPLICATION_DATA:
       return {

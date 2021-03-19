@@ -11,13 +11,18 @@ const useApplicationData = () => {
     user: {},
     games: [],
     accuracies: [],
+    leaderboard: [],
   });
 
   useEffect(() => {
-    axios
-      .get("/api/users", { withCredentials: true })
-      .then(({ data }) => {
-        handleAppData(data);
+    Promise.all([
+      axios.get("/api/users", { withCredentials: true }),
+      axios.get("/api/games?order_by=score&limit=10", {
+        withCredentials: true,
+      }),
+    ])
+      .then(([{ data }, res]) => {
+        handleAppData({ data, ...res.data });
       })
       .catch((err) => console.log(err));
   }, []);
