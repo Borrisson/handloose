@@ -19,9 +19,6 @@ export default class Game extends React.Component {
         mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
       },
-      audio: {
-        loop: true
-      },
       type: Phaser.AUTO,
 
       pixelArt: true,
