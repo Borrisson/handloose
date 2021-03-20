@@ -55,25 +55,6 @@ export default class Play extends Phaser.Scene {
   constructor() {
     super("play");
   }
-  preload() {
-    this.load.audio("main_theme", "assets/audio/main_theme.mp3");
-    this.load.spritesheet("kb1", "assets/kb1.png", {
-      frameWidth: 119,
-      frameHeight: 10,
-    });
-    this.load.spritesheet("kb2", "assets/kb2.png", {
-      frameWidth: 107,
-      frameHeight: 11,
-    });
-    this.load.spritesheet("kb3", "assets/kb3.png", {
-      frameWidth: 83,
-      frameHeight: 12,
-    });
-    this.load.spritesheet("text", "assets/text.png", {
-      frameWidth: 7,
-      frameHeight: 8,
-    });
-  }
   collisionHandlerTop(charSprite, kbSprite) {
     const {
       frame: { name },
@@ -197,6 +178,25 @@ export default class Play extends Phaser.Scene {
         midCharactersInGame.push(this.letter);
       }
     }
+  }
+  preload() {
+    this.load.audio("main_theme", "assets/audio/main_theme.mp3");
+    this.load.spritesheet("kb1", "assets/kb1.png", {
+      frameWidth: 119,
+      frameHeight: 10,
+    });
+    this.load.spritesheet("kb2", "assets/kb2.png", {
+      frameWidth: 107,
+      frameHeight: 11,
+    });
+    this.load.spritesheet("kb3", "assets/kb3.png", {
+      frameWidth: 83,
+      frameHeight: 12,
+    });
+    this.load.spritesheet("text", "assets/text.png", {
+      frameWidth: 7,
+      frameHeight: 8,
+    });
   }
 
   create() {
@@ -454,18 +454,23 @@ export default class Play extends Phaser.Scene {
       null,
       this
     );
+    this.input.keyboard.on("keydown-SPACE", () => {
+      if (!this.pausePhysics) {
+        this.pausePhysics = true;
+
+        this.physics.pause();
+        this.gameTime.paused = true;
+        //load sprite to show that the user has paused
+      } else if (this.pausePhysics) {
+        this.pausePhysics = false;
+
+        this.physics.resume();
+        this.gameTime.paused = false;
+      }
+    });
   }
 
-  update() {
-    if (this.key_SPACE.isDown && this.pausePhysics === false) {
-      this.pausePhysics = true;
-      this.physics.pause();
-      //load sprite to show that the user has paused
-    } else if (this.pausePhysics === true && this.key_SPACE.isDown) {
-      this.pausePhysics = false;
-      this.physics.resume();
-    }
-  }
+  update() {}
   resize(gameSize, baseSize, displaySize, resolution) {
     var width = gameSize.width;
     var height = gameSize.height;
