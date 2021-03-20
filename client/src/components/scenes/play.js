@@ -75,16 +75,23 @@ export default class Play extends Phaser.Scene {
     });
   }
   collisionHandlerTop(obj1, obj2) {
-    console.log("top!");
-    // console.log(obj1.x)
+    if(this.key_Q.isDown || this.key_W.isDown || this.key_E.isDown || this.key_R.isDown || this.key_T.isDown || this.key_Y.isDown || this.key_U.isDown || this.key_I.isDown || this.key_O.isDown || this.key_P.isDown) {
+      topCharactersInGame[0].destroy();
+      topCharactersInGame.shift();
+    }
   }
   collisionHandlerMid(obj1, obj2) {
-    console.log("middle!");
-    // console.log(obj1.x)
+    if(this.key_A.isDown || this.key_S.isDown || this.key_D.isDown || this.key_F.isDown || this.key_G.isDown || this.key_H.isDown || this.key_J.isDown || this.key_K.isDown || this.key_K.isDown ) {
+      midCharactersInGame[0].destroy();
+      midCharactersInGame.shift();
+    }
   
   }
   collisionHandlerBottom(obj1, obj2) {
-    console.log("bottom!");
+    if(this.key_Z.isDown || this.key_X.isDown || this.key_C.isDown || this.key_V.isDown || this.key_B.isDown || this.key_N.isDown || this.key_M.isDown) {
+      botCharactersInGame[0].destroy();
+      botCharactersInGame.shift();
+    }
     
   }
   getLetter() {
@@ -103,10 +110,8 @@ export default class Play extends Phaser.Scene {
     if (shifty.x === 0 || shifty.x === 3 || shifty.x === 6 || shifty.x === 9 || shifty.x === 12 || shifty.x === 15 || shifty.x === 18 || shifty.x === 21 || shifty.x === 23 || shifty.x === 25) {
       topCharactersInGame.push(this.letter);
       
-    } else if (shifty.x === 2 || shifty.x === 5 || shifty.x === 8 || shifty.x === 11 || shifty.x === 14 || shifty.x === 17 || shifty.x === 20) {
-      
-      botCharactersInGame.push(this.letter);
-     
+    } else if (shifty.x === 2 || shifty.x === 5 || shifty.x === 8 || shifty.x === 11 || shifty.x === 14 || shifty.x === 17 || shifty.x === 20) { 
+      botCharactersInGame.push(this.letter);   
     
       
     } else {
