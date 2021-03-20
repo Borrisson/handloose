@@ -6,13 +6,6 @@ import Play from "./scenes/play";
 
 export default class Game extends React.Component {
   componentDidMount() {
-    //initial state
-    //const [ state, setState ] = useState({ width: "80%",
-    // height: "100%",
-    // type: Phaser.AUTO,
-    // pixelArt: true,
-    // scene: [Title, Menu, Levels]})
-
     const config = {
       scale: {
         parent: document.getElementById("phaser-game"),
