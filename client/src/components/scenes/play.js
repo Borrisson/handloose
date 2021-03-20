@@ -18,35 +18,37 @@ function randomizer() {
 // three of these down here and these are the characters currently on screen
 // one for each row of keyboard so like qwertyuiop, asdfghjkl, zxcvbnm
 // sort in function this.getletter
-const charactersInGame = [];
+const topCharactersInGame = [];
+const midCharactersInGame = [];
+const botCharactersInGame = [];
 
 const position = [
   3.34,
   3.23,
   3.13,
-  621,
-  609,
-  693,
-  765,
-  838,
-  982,
-  910,
-  982,
-  1053,
-  921,
-  849,
-  1042,
-  1114,
-  460,
-  682,
-  550,
-  755,
-  898,
-  705,
-  538,
-  561,
-  826,
-  490,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
 ];
 
 export default class Play extends Phaser.Scene {
@@ -72,6 +74,19 @@ export default class Play extends Phaser.Scene {
       frameHeight: 8,
     });
   }
+  collisionHandlerTop(obj1, obj2) {
+    console.log("top!");
+    // console.log(obj1.x)
+  }
+  collisionHandlerMid(obj1, obj2) {
+    console.log("middle!");
+    // console.log(obj1.x)
+  
+  }
+  collisionHandlerBottom(obj1, obj2) {
+    console.log("bottom!");
+    
+  }
   getLetter() {
     // if statements if the number from this.characters.shift is equal to any of the three
     // if(shifty.x % 2 === 0 && shifty.x % 3 !== 0) then push to corresponding array
@@ -84,13 +99,27 @@ export default class Play extends Phaser.Scene {
       shifty.x
     );
     this.letter.setScale(6).setVelocityY(-window.velocity);
-    charactersInGame.push(this.letter);
+    // console.log(shifty.x)
+    if (shifty.x === 0 || shifty.x === 3 || shifty.x === 6 || shifty.x === 9 || shifty.x === 12 || shifty.x === 15 || shifty.x === 18 || shifty.x === 21 || shifty.x === 23 || shifty.x === 25) {
+      topCharactersInGame.push(this.letter);
+      
+    } else if (shifty.x === 2 || shifty.x === 5 || shifty.x === 8 || shifty.x === 11 || shifty.x === 14 || shifty.x === 17 || shifty.x === 20) {
+      
+      botCharactersInGame.push(this.letter);
+     
+    
+      
+    } else {
+      midCharactersInGame.push(this.letter);
+      
+    }
+    
   }
 
   create() {
     this.characters = randomizer().map((x) => {
       return {
-        width: this.scale.width - position[x],
+        width: this.scale.width / position[x],
         height: this.scale.height,
         x,
       };
@@ -312,7 +341,7 @@ export default class Play extends Phaser.Scene {
 
     //make the delay customizable for player to choose
     this.time.addEvent({
-      delay: 1000,
+      delay: 5000,
       loop: true,
       callback: this.getLetter,
       callbackScope: this,
@@ -321,25 +350,25 @@ export default class Play extends Phaser.Scene {
 
     // we should seperate our three arrays corresponding to there respective keyboard layout
     this.physics.add.overlap(
-      charactersInGame,
+      topCharactersInGame,
       this.kb1,
-      collisionHandler,
+      this.collisionHandlerTop,
       null,
       this
     );
 
     this.physics.add.overlap(
-      charactersInGame,
+      midCharactersInGame,
       this.kb2,
-      collisionHandler,
+      this.collisionHandlerMid,
       null,
       this
     );
 
     this.physics.add.overlap(
-      charactersInGame,
+      botCharactersInGame,
       this.kb3,
-      collisionHandler,
+      this.collisionHandlerBottom,
       null,
       this
     );
@@ -367,6 +396,5 @@ export default class Play extends Phaser.Scene {
   }
 }
 // if statements for if user clicked on time, we'll work out the deats on how to record a miss. for now the thought is a hitbox above kb1 to record miss
-function collisionHandler(obj1, obj2) {
-  console.log("here");
-}
+
+
