@@ -23,7 +23,6 @@ const midCharactersInGame = [];
 const botCharactersInGame = [];
 
 const position = [
-<<<<<<< HEAD
   3.34, // Q
   3.23, // A
   3.13, // Z
@@ -50,34 +49,6 @@ const position = [
   1.475, // O
   1.46, // L
   1.38, // P
-=======
-  3.34,
-  3.23,
-  3.13,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
-  3,
->>>>>>> 28fcd73f2431181718256931f021b4675b1f771f
 ];
 
 export default class Play extends Phaser.Scene {
