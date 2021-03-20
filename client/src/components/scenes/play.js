@@ -481,7 +481,18 @@ export default class Play extends Phaser.Scene {
     });
   }
 
-  update() {}
+  update() {
+    if (
+      !Phaser.Geom.Rectangle.Overlaps(
+        this.scene.scene.physics.world.bounds,
+        midCharactersInGame[0].getBounds()
+      )
+    ) {
+      console.log("gone");
+      midCharactersInGame[0].destroy();
+      midCharactersInGame.shift();
+    }
+  }
   resize(gameSize, baseSize, displaySize, resolution) {
     const width = gameSize.width;
     const height = gameSize.height;
