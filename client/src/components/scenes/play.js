@@ -525,6 +525,7 @@ export default class Play extends Phaser.Scene {
     this.kb1.setPosition(width / 1.945, height / 5.05);
     this.kb2.setPosition(width / 2.01, height / 3.9);
     this.kb3.setPosition(width / 2.175, height / 3.1);
+    this.pause.setPosition(width / 2, height /2);
   }
 }
 
