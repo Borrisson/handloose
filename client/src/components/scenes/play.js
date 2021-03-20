@@ -511,6 +511,8 @@ export default class Play extends Phaser.Scene {
       !topCharactersInGame.length &&
       !botCharactersInGame.length
     ) {
+      // before scene change we'll send data to the back
+      //change state, axios call, then change scene it that order
       console.log("endgame");
       console.log(this.hits);
     }
