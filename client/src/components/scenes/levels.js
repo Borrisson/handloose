@@ -13,10 +13,12 @@ export default class Levels extends Phaser.Scene {
       frameWidth: 44,
       frameHeight: 7,
     });
+    this.load.image("arrowLeft", "assets/arrowLeft.png");
+    this.load.image("arrowRight", "assets/arrowRight.png")
   }
   create() {
-    const left = this.add.text(450, 750, "<==").setInteractive();
-    const right = this.add.text(750, 750, "==>").setInteractive();
+    const left = this.add.image(450, 750, "arrowLeft").setInteractive();
+    const right = this.add.image(750, 750, "arrowRight").setInteractive();
 
     const slide = this.add.sprite(625, 700, "slider").setScale(5);
     let frame = 0;
