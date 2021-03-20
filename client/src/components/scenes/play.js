@@ -19,7 +19,7 @@ const position = [
   2.18, // V
   2.035, // T
   2.01, // G
-  1.96, // B
+  1.98, // B
   1.86, // Y
   1.84, // H
   1.81, // N
@@ -80,8 +80,6 @@ export default class Play extends Phaser.Scene {
     super("play");
     this.hits = [];
     this.misses = [];
-    this.streak = 0;
-    this.bestStreak = 0;
   }
 
   setHits(charNumber) {
@@ -512,7 +510,6 @@ export default class Play extends Phaser.Scene {
       !topCharactersInGame.length &&
       !botCharactersInGame.length
     ) {
-      // before scene change we'll send data to the back
       console.log("endgame");
       console.log(this.hits);
     }
@@ -529,3 +526,14 @@ export default class Play extends Phaser.Scene {
     this.kb3.setPosition(width / 2.175, height / 3.1);
   }
 }
+
+//To do:
+
+//End-game scene: Score, highest streak(gotta add), hits and misses, Replay and Go Back button, make it modal
+//Resize  (keyboards, decipher chars) responsive design
+//Pause display
+//Levels 
+//Misses
+//Keyboard collision handle once
+//Sprites
+//Music toggle (Music note sprite),

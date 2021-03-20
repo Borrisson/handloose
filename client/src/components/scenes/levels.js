@@ -114,6 +114,123 @@ export default class Levels extends Phaser.Scene {
         lvl1.setTint(0xffffff);
         kb.setFrame(2);
         selected = true;
+        window.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
+      },
+      this
+    );
+    lvl3.on(
+      "pointerdown", 
+      function () {
+        lvl3.setTint(0x6aa84f);
+        lvl2.setTint(0xffffff);
+        lvl1.setTint(0xffffff);
+        kb.setFrame(3);
+        window.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24]
+      },
+      this
+    );
+    lvl4.on(
+      "pointerdown", 
+      function () {
+        lvl4.setTint(0x6aa84f);
+        lvl3.setTint(0xffffff);
+        lvl2.setTint(0xffffff);
+        lvl1.setTint(0xffffff);
+        kb.setFrame(4);
+        window.selectedCharacters = [0, 1, 3, 4, 6, 7, 10, 13, 16, 19, 22, 24]
+      },
+      this
+    );
+    lvl5.on(
+      "pointerdown", 
+      function () {
+        lvl5.setTint(0x6aa84f);
+        lvl4.setTint(0xffffff);
+        lvl3.setTint(0xffffff);
+        lvl2.setTint(0xffffff);
+        lvl1.setTint(0xffffff);
+        kb.setFrame(5);
+        window.selectedCharacters = [0, 1, 3, 4, 6, 7, 10, 13, 16, 19, 21, 22, 23, 24, 25]
+      },
+      this
+    );
+    lvl6.on(
+      "pointerdown", 
+      function () {
+        lvl6.setTint(0x6aa84f)
+        lvl5.setTint(0xffffff);
+        lvl4.setTint(0xffffff);
+        lvl3.setTint(0xffffff);
+        lvl2.setTint(0xffffff);
+        lvl1.setTint(0xffffff);
+        kb.setFrame(6);
+        window.selectedCharacters = [0, 1, 2, 3, 4, 5, 6, 7, 10, 13, 16, 19, 21, 22, 23, 24, 25]
+      },
+      this
+    );
+    lvl7.on(
+      "pointerdown", 
+      function () {
+        lvl7.setTint(0x6aa84f);
+        lvl6.setTint(0xffffff);
+        lvl5.setTint(0xffffff);
+        lvl4.setTint(0xffffff);
+        lvl3.setTint(0xffffff);
+        lvl2.setTint(0xffffff);
+        lvl1.setTint(0xffffff);
+        kb.setFrame(7);
+        window.selectedCharacters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 13, 16, 19, 21, 22, 23, 24, 25]
+      },
+      this
+    );
+    lvl8.on(
+      "pointerdown", 
+      function () {
+        lvl8.setTint(0x6aa84f);
+        lvl7.setTint(0xffffff);
+        lvl6.setTint(0xffffff);
+        lvl5.setTint(0xffffff);
+        lvl4.setTint(0xffffff);
+        lvl3.setTint(0xffffff);
+        lvl2.setTint(0xffffff);
+        lvl1.setTint(0xffffff);
+        kb.setFrame(8);
+        window.selectedCharacters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 19, 21, 22, 23, 24, 25]
+      },
+      this
+    );
+    lvl9.on(
+      "pointerdown", 
+      function () {
+        lvl9.setTint(0x6aa84f);
+        lvl8.setTint(0xffffff);
+        lvl7.setTint(0xffffff);
+        lvl6.setTint(0xffffff);
+        lvl5.setTint(0xffffff);
+        lvl4.setTint(0xffffff);
+        lvl3.setTint(0xffffff);
+        lvl2.setTint(0xffffff);
+        lvl1.setTint(0xffffff);
+        kb.setFrame(9);
+        window.selectedCharacters = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25]
+      },
+      this
+    );
+    lvl10.on(
+      "pointerdown", 
+      function () {
+        lvl10.setTint(0x6aa84f);
+        lvl9.setTint(0xffffff);
+        lvl8.setTint(0xffffff);
+        lvl7.setTint(0xffffff);
+        lvl6.setTint(0xffffff);
+        lvl5.setTint(0xffffff);
+        lvl4.setTint(0xffffff);
+        lvl3.setTint(0xffffff);
+        lvl2.setTint(0xffffff);
+        lvl1.setTint(0xffffff);
+        kb.setFrame(10);
+        window.selectedCharacters = []
       },
       this
     );
