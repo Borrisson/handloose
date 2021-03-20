@@ -176,22 +176,26 @@ export default class Play extends Phaser.Scene {
     }
   }
   getLetter() {
-    const shifty = this.characters.shift();
-    this.letter = this.physics.add.sprite(
-      shifty.width,
-      shifty.height,
-      "text",
-      shifty.x
-    );
-    this.letter.setScale(6).setVelocityY(-window.velocity);
-    const firstRow = [0, 3, 6, 9, 12, 15, 18, 21, 23, 25];
-    const lastRow = [2, 5, 8, 11, 14, 17, 20];
-    if (firstRow.includes(shifty.x)) {
-      topCharactersInGame.push(this.letter);
-    } else if (lastRow.includes(shifty.x)) {
-      botCharactersInGame.push(this.letter);
+    if (!this.characters.length) {
+      this.gameTime.remove(false);
     } else {
-      midCharactersInGame.push(this.letter);
+      const shifty = this.characters.shift();
+      this.letter = this.physics.add.sprite(
+        shifty.width,
+        shifty.height,
+        "text",
+        shifty.x
+      );
+      this.letter.setScale(6).setVelocityY(-window.velocity);
+      const firstRow = [0, 3, 6, 9, 12, 15, 18, 21, 23, 25];
+      const lastRow = [2, 5, 8, 11, 14, 17, 20];
+      if (firstRow.includes(shifty.x)) {
+        topCharactersInGame.push(this.letter);
+      } else if (lastRow.includes(shifty.x)) {
+        botCharactersInGame.push(this.letter);
+      } else {
+        midCharactersInGame.push(this.letter);
+      }
     }
   }
 
@@ -419,7 +423,7 @@ export default class Play extends Phaser.Scene {
     this.getLetter();
 
     //make the delay customizable for player to choose
-    this.time.addEvent({
+    this.gameTime = this.time.addEvent({
       delay: 1000,
       loop: true,
       callback: this.getLetter,
