@@ -101,17 +101,18 @@ export default class Play extends Phaser.Scene {
     const char = decipher(name);
 
     if (
-      (this.key_Q.isDown && char === "Q") ||
-      (this.key_W.isDown && char === "W") ||
-      (this.key_E.isDown && char === "E") ||
-      (this.key_R.isDown && char === "R") ||
-      (this.key_T.isDown && char === "T") ||
-      (this.key_Y.isDown && char === "Y") ||
-      (this.key_U.isDown && char === "U") ||
-      (this.key_I.isDown && char === "I") ||
-      (this.key_O.isDown && char === "O") ||
-      (this.key_P.isDown && char === "P")
+      (Phaser.Input.Keyboard.JustDown(this.key_Q) && char === "Q") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_W) && char === "W") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_E) && char === "E") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_R) && char === "R") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_T) && char === "T") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_Y) && char === "Y") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_U) && char === "U") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_I) && char === "I") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_O) && char === "O") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_P) && char === "P")
     ) {
+      console.log(this.hits.length);
       destroy("top");
       this.score += 100;
       this.scoreText.setText('Score: ' + this.score);
@@ -128,16 +129,17 @@ export default class Play extends Phaser.Scene {
     const char = decipher(name);
 
     if (
-      (this.key_A.isDown && char === "A") ||
-      (this.key_S.isDown && char === "S") ||
-      (this.key_D.isDown && char === "D") ||
-      (this.key_F.isDown && char === "F") ||
-      (this.key_G.isDown && char === "G") ||
-      (this.key_H.isDown && char === "H") ||
-      (this.key_J.isDown && char === "J") ||
-      (this.key_K.isDown && char === "K") ||
-      (this.key_L.isDown && char === "L")
+      (Phaser.Input.Keyboard.JustDown(this.key_A) && char === "A") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_S) && char === "S") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_D) && char === "D") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_F) && char === "F") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_G) && char === "G") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_H) && char === "H") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_J) && char === "J") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_K) && char === "K") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_L) && char === "L")
     ) {
+      console.log(this.hits.length);
       destroy("mid");
       this.score += 100;
       this.scoreText.setText('Score: ' + this.score);
@@ -153,14 +155,15 @@ export default class Play extends Phaser.Scene {
 
     const char = decipher(name);
     if (
-      (this.key_Z.isDown && char === "Z") ||
-      (this.key_X.isDown && char === "X") ||
-      (this.key_C.isDown && char === "C") ||
-      (this.key_V.isDown && char === "V") ||
-      (this.key_B.isDown && char === "B") ||
-      (this.key_N.isDown && char === "N") ||
-      (this.key_M.isDown && char === "M")
+      (Phaser.Input.Keyboard.JustDown(this.key_Z) && char === "Z") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_X) && char === "X") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_C) && char === "C") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_V) && char === "V") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_B) && char === "B") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_N) && char === "N") ||
+      (Phaser.Input.Keyboard.JustDown(this.key_M) && char === "M")
     ) {
+      console.log(this.hits.length);
       destroy("bot");
       this.score += 100;
       this.scoreText.setText('Score: ' + this.score);
@@ -256,7 +259,7 @@ export default class Play extends Phaser.Scene {
 
     const musicConfig = {
       mute: false,
-      volume: 1,
+      volume: 0.5,
       rate: 1,
       detune: 0,
       seek: 0,
