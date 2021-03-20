@@ -346,7 +346,7 @@ export default class Play extends Phaser.Scene {
 
     //make the delay customizable for player to choose
     this.time.addEvent({
-      delay: 5000,
+      delay: 1000,
       loop: true,
       callback: this.getLetter,
       callbackScope: this,
