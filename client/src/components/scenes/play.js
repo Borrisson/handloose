@@ -415,7 +415,7 @@ export default class Play extends Phaser.Scene {
     this.input.keyboard.on("keyup-Z", () => {
       this.kb3.setFrame(0);
     });
-    // this.time.delayedCall(2000, onEvent, [], this);
+
     this.getLetter();
 
     //make the delay customizable for player to choose
@@ -427,7 +427,6 @@ export default class Play extends Phaser.Scene {
     });
     this.scale.on("resize", this.resize, this);
 
-    // we should seperate our three arrays corresponding to there respective keyboard layout
     this.physics.add.overlap(
       topCharactersInGame,
       this.kb1,
