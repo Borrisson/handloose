@@ -87,7 +87,6 @@ export default class Levels extends Phaser.Scene {
         kb.setFrame(1);
         selected = true;
         window.selectedCharacters = [1, 4, 7, 10];
-        console.log(window.selectedCharacters);
       },
       this
     );
