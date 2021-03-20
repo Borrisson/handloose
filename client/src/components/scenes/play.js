@@ -1,4 +1,37 @@
 import Phaser from "phaser";
+import { decipher } from "../../helpers/selectors";
+const topCharactersInGame = [];
+const midCharactersInGame = [];
+const botCharactersInGame = [];
+
+const position = [
+  3.34, // Q
+  3.23, // A
+  3.13, // Z
+  2.86, // W
+  2.8, // S
+  2.74, // X
+  2.52, // E
+  2.48, // D
+  2.42, // C
+  2.25, // R
+  2.22, // F
+  2.18, // V
+  2.035, // T
+  2.01, // G
+  1.98, // B
+  1.86, // Y
+  1.84, // H
+  1.81, // N
+  1.71, // U
+  1.69, // J
+  1.665, // M
+  1.565, // I
+  1.565, // K
+  1.475, // O
+  1.46, // L
+  1.38, // P
+];
 
 function checkOverlap(spriteA, spriteB) {
   let boundsA = spriteA.getBounds();
@@ -42,43 +75,20 @@ function destroy(row) {
   }
 }
 
-const topCharactersInGame = [];
-const midCharactersInGame = [];
-const botCharactersInGame = [];
-
-const position = [
-  3.34, // Q
-  3.23, // A
-  3.13, // Z
-  2.86, // W
-  2.8, // S
-  2.74, // X
-  2.52, // E
-  2.48, // D
-  2.42, // C
-  2.25, // R
-  2.22, // F
-  2.18, // V
-  2.035, // T
-  2.01, // G
-  1.98, // B
-  1.86, // Y
-  1.84, // H
-  1.81, // N
-  1.71, // U
-  1.69, // J
-  1.665, // M
-  1.565, // I
-  1.565, // K
-  1.475, // O
-  1.46, // L
-  1.38, // P
-];
-
 export default class Play extends Phaser.Scene {
   constructor() {
     super("play");
+    this.hits = [];
+    this.misses = [];
   }
+
+  setHits(char) {
+    this.hits.push(decipher(char));
+  }
+  setMisses(char) {
+    this.misses.push(decipher(char));
+  }
+
   collisionHandlerTop(charSprite, kbSprite) {
     const {
       frame: { name },
@@ -97,7 +107,7 @@ export default class Play extends Phaser.Scene {
       (this.key_P.isDown && name === 25)
     ) {
       destroy("top");
-      //score function
+      this.setHits(name);
     }
   }
   collisionHandlerMid(charSprite, kbSprite) {
@@ -117,7 +127,7 @@ export default class Play extends Phaser.Scene {
       (this.key_L.isDown && name === 24)
     ) {
       destroy("mid");
-      // We will need a score point function here
+      this.setHits(name);
     }
   }
   collisionHandlerBottom(charSprite, kbSprite) {
@@ -134,7 +144,7 @@ export default class Play extends Phaser.Scene {
       (this.key_M.isDown && name === 20)
     ) {
       destroy("bot");
-      // We will need a score point function here
+      this.setHits(name);
     }
   }
   getLetter() {
@@ -472,6 +482,7 @@ export default class Play extends Phaser.Scene {
       !botCharactersInGame.length
     ) {
       console.log("endgame");
+      console.log(this.hits);
     }
   }
   resize(gameSize, baseSize, displaySize, resolution) {
