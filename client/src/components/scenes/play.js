@@ -80,6 +80,8 @@ export default class Play extends Phaser.Scene {
     super("play");
     this.hits = [];
     this.misses = [];
+    this.streak = 0;
+    this.bestStreak = 0;
   }
 
   setHits(charNumber) {
