@@ -452,16 +452,17 @@ export default class Play extends Phaser.Scene {
       null,
       this
     );
-    this.input.keyboard.on("keydown-SPACE", () => {
+    this.input.keyboard.on("keyup-SPACE", () => {
       if (!this.pausePhysics) {
         this.pausePhysics = true;
 
         this.physics.pause();
         this.gameTime.paused = true;
+        this.pause = this.add.text(this.scale.width / 2, this.scale.height / 2, 'PAUSE');
         //load sprite to show that the user has paused
       } else if (this.pausePhysics) {
+        this.pause.destroy();
         this.pausePhysics = false;
-
         this.physics.resume();
         this.gameTime.paused = false;
       }
@@ -531,8 +532,8 @@ export default class Play extends Phaser.Scene {
 
 //End-game scene: Score, highest streak(gotta add), hits and misses, Replay and Go Back button, make it modal
 //Resize  (keyboards, decipher chars) responsive design
-//Pause display
-//Levels 
+//Pause display - done
+//Levels - Done (Just add the hover later)
 //Misses
 //Keyboard collision handle once
 //Sprites
