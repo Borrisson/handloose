@@ -547,4 +547,4 @@ export default class Play extends Phaser.Scene {
 //Misses
 //Keyboard collision handle once
 //Sprites
-//Music toggle (Music note sprite) -Done, used TAB button to mute and unmute song,
+//Music toggle (Music note sprite) -Done, used ESC button to mute and unmute song.
