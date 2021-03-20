@@ -74,57 +74,65 @@ export default class Play extends Phaser.Scene {
       frameHeight: 8,
     });
   }
-  collisionHandlerTop(obj1, obj2) {
+  collisionHandlerTop(charSprite, kbSprite) {
+    const {
+      frame: { name },
+    } = charSprite;
+
     if (
-      this.key_Q.isDown ||
-      this.key_W.isDown ||
-      this.key_E.isDown ||
-      this.key_R.isDown ||
-      this.key_T.isDown ||
-      this.key_Y.isDown ||
-      this.key_U.isDown ||
-      this.key_I.isDown ||
-      this.key_O.isDown ||
-      this.key_P.isDown
+      (this.key_Q.isDown && name === 0) ||
+      (this.key_W.isDown && name === 3) ||
+      (this.key_E.isDown && name === 6) ||
+      (this.key_R.isDown && name === 9) ||
+      (this.key_T.isDown && name === 12) ||
+      (this.key_Y.isDown && name === 15) ||
+      (this.key_U.isDown && name === 18) ||
+      (this.key_I.isDown && name === 21) ||
+      (this.key_O.isDown && name === 23) ||
+      (this.key_P.isDown && name === 25)
     ) {
       topCharactersInGame[0].destroy();
       topCharactersInGame.shift();
     }
   }
-  collisionHandlerMid(obj1, obj2) {
+  collisionHandlerMid(charSprite, kbSprite) {
+    const {
+      frame: { name },
+    } = charSprite;
+
     if (
-      this.key_A.isDown ||
-      this.key_S.isDown ||
-      this.key_D.isDown ||
-      this.key_F.isDown ||
-      this.key_G.isDown ||
-      this.key_H.isDown ||
-      this.key_J.isDown ||
-      this.key_K.isDown ||
-      this.key_L.isDown
+      (this.key_A.isDown && name === 1) ||
+      (this.key_S.isDown && name === 4) ||
+      (this.key_D.isDown && name === 7) ||
+      (this.key_F.isDown && name === 10) ||
+      (this.key_G.isDown && name === 13) ||
+      (this.key_H.isDown && name === 16) ||
+      (this.key_J.isDown && name === 19) ||
+      (this.key_K.isDown && name === 22) ||
+      (this.key_L.isDown && name === 24)
     ) {
       midCharactersInGame[0].destroy();
       midCharactersInGame.shift();
     }
   }
-  collisionHandlerBottom(obj1, obj2) {
+  collisionHandlerBottom(charSprite, kbSprite) {
+    const {
+      frame: { name },
+    } = charSprite;
     if (
-      this.key_Z.isDown ||
-      this.key_X.isDown ||
-      this.key_C.isDown ||
-      this.key_V.isDown ||
-      this.key_B.isDown ||
-      this.key_N.isDown ||
-      this.key_M.isDown
+      (this.key_Z.isDown && name === 2) ||
+      (this.key_X.isDown && name === 5) ||
+      (this.key_C.isDown && name === 8) ||
+      (this.key_V.isDown && name === 11) ||
+      (this.key_B.isDown && name === 14) ||
+      (this.key_N.isDown && name === 17) ||
+      (this.key_M.isDown && name === 20)
     ) {
       botCharactersInGame[0].destroy();
       botCharactersInGame.shift();
     }
   }
   getLetter() {
-    // if statements if the number from this.characters.shift is equal to any of the three
-    // if(shifty.x % 2 === 0 && shifty.x % 3 !== 0) then push to corresponding array
-
     const shifty = this.characters.shift();
     this.letter = this.physics.add.sprite(
       shifty.width,
