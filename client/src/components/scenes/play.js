@@ -21,32 +21,32 @@ function randomizer() {
 const charactersInGame = [];
 
 const position = [
-  3.34,
-  3.23,
-  3.13,
-  621,
-  609,
-  693,
-  765,
-  838,
-  982,
-  910,
-  982,
-  1053,
-  921,
-  849,
-  1042,
-  1114,
-  460,
-  682,
-  550,
-  755,
-  898,
-  705,
-  538,
-  561,
-  826,
-  490,
+  3.34, // Q
+  3.23, // A
+  3.13, // Z
+  2.86, // W
+  2.80, // S 
+  2.74, // X
+  2.52, // E
+  2.48, // D
+  2.42, // C
+  2.25, // R
+  2.22, // F
+  2.18, // V
+  2.035, // T
+  2.01, // G
+  1.98, // B
+  1.86, // Y
+  1.84, // H
+  1.81, // N
+  1.71, // U
+  1.69, // J
+  1.665, // M
+  1.565, // I
+  1.565, // K
+  1.475, // O
+  1.46, // L
+  1.38, // P
 ];
 
 export default class Play extends Phaser.Scene {
@@ -90,7 +90,7 @@ export default class Play extends Phaser.Scene {
   create() {
     this.characters = randomizer().map((x) => {
       return {
-        width: this.scale.width - position[x],
+        width: this.scale.width / position[x],
         height: this.scale.height,
         x,
       };
