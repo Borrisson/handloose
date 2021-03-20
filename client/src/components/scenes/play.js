@@ -88,23 +88,28 @@ export default class Play extends Phaser.Scene {
   setMisses(char) {
     this.misses.push(decipher(char));
   }
+  setFalseHit(char) {
+    this.falseHit.push(decipher(char));
+  }
 
   collisionHandlerTop(charSprite, kbSprite) {
     const {
       frame: { name },
     } = charSprite;
 
+    const char = decipher(name);
+
     if (
-      (this.key_Q.isDown && name === 0) ||
-      (this.key_W.isDown && name === 3) ||
-      (this.key_E.isDown && name === 6) ||
-      (this.key_R.isDown && name === 9) ||
-      (this.key_T.isDown && name === 12) ||
-      (this.key_Y.isDown && name === 15) ||
-      (this.key_U.isDown && name === 18) ||
-      (this.key_I.isDown && name === 21) ||
-      (this.key_O.isDown && name === 23) ||
-      (this.key_P.isDown && name === 25)
+      (this.key_Q.isDown && char === "Q") ||
+      (this.key_W.isDown && char === "W") ||
+      (this.key_E.isDown && char === "E") ||
+      (this.key_R.isDown && char === "R") ||
+      (this.key_T.isDown && char === "T") ||
+      (this.key_Y.isDown && char === "Y") ||
+      (this.key_U.isDown && char === "U") ||
+      (this.key_I.isDown && char === "I") ||
+      (this.key_O.isDown && char === "O") ||
+      (this.key_P.isDown && char === "P")
     ) {
       destroy("top");
       this.setHits(name);
@@ -115,16 +120,18 @@ export default class Play extends Phaser.Scene {
       frame: { name },
     } = charSprite;
 
+    const char = decipher(name);
+
     if (
-      (this.key_A.isDown && name === 1) ||
-      (this.key_S.isDown && name === 4) ||
-      (this.key_D.isDown && name === 7) ||
-      (this.key_F.isDown && name === 10) ||
-      (this.key_G.isDown && name === 13) ||
-      (this.key_H.isDown && name === 16) ||
-      (this.key_J.isDown && name === 19) ||
-      (this.key_K.isDown && name === 22) ||
-      (this.key_L.isDown && name === 24)
+      (this.key_A.isDown && char === "A") ||
+      (this.key_S.isDown && char === "S") ||
+      (this.key_D.isDown && char === "D") ||
+      (this.key_F.isDown && char === "F") ||
+      (this.key_G.isDown && char === "G") ||
+      (this.key_H.isDown && char === "H") ||
+      (this.key_J.isDown && char === "J") ||
+      (this.key_K.isDown && char === "K") ||
+      (this.key_L.isDown && char === "L")
     ) {
       destroy("mid");
       this.setHits(name);
@@ -134,14 +141,16 @@ export default class Play extends Phaser.Scene {
     const {
       frame: { name },
     } = charSprite;
+
+    const char = decipher(name);
     if (
-      (this.key_Z.isDown && name === 2) ||
-      (this.key_X.isDown && name === 5) ||
-      (this.key_C.isDown && name === 8) ||
-      (this.key_V.isDown && name === 11) ||
-      (this.key_B.isDown && name === 14) ||
-      (this.key_N.isDown && name === 17) ||
-      (this.key_M.isDown && name === 20)
+      (this.key_Z.isDown && char === "Z") ||
+      (this.key_X.isDown && char === "X") ||
+      (this.key_C.isDown && char === "C") ||
+      (this.key_V.isDown && char === "V") ||
+      (this.key_B.isDown && char === "B") ||
+      (this.key_N.isDown && char === "N") ||
+      (this.key_M.isDown && char === "M")
     ) {
       destroy("bot");
       this.setHits(name);
