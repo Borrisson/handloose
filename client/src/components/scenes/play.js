@@ -467,7 +467,7 @@ export default class Play extends Phaser.Scene {
         this.gameTime.paused = false;
       }
     });
-    this.input.keyboard.on("keydown-TAB", () => {
+    this.input.keyboard.on("keydown-ESC", () => {
       if(!this.music.mute) {
         this.music.mute = true;
       } else if (this.music.mute) {
