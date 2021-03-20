@@ -512,6 +512,7 @@ export default class Play extends Phaser.Scene {
       !topCharactersInGame.length &&
       !botCharactersInGame.length
     ) {
+      // before scene change we'll send data to the back
       console.log("endgame");
       console.log(this.hits);
     }
