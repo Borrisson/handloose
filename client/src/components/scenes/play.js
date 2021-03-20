@@ -82,14 +82,12 @@ export default class Play extends Phaser.Scene {
     this.misses = [];
   }
 
-  setHits(char) {
-    this.hits.push(decipher(char));
+  setHits(charNumber) {
+    this.hits.push(decipher(charNumber));
   }
-  setMisses(char) {
-    this.misses.push(decipher(char));
-  }
-  setFalseHit(char) {
-    this.falseHit.push(decipher(char));
+  setMisses(charNumber) {
+    console.log(decipher(charNumber));
+    this.misses.push(decipher(charNumber));
   }
 
   collisionHandlerTop(charSprite, kbSprite) {
@@ -473,14 +471,36 @@ export default class Play extends Phaser.Scene {
   update() {
     //need to short circuit this with array length first so that when it is empty it doesn't give us an error at midCharactersInGame[0].getBounds();
     if (
+      topCharactersInGame.length &&
+      !Phaser.Geom.Rectangle.Overlaps(
+        this.scene.scene.physics.world.bounds,
+        topCharactersInGame[0].getBounds()
+      )
+    ) {
+      this.setMisses(topCharactersInGame[0].frame.name);
+      destroy("top");
+    }
+
+    if (
       midCharactersInGame.length &&
       !Phaser.Geom.Rectangle.Overlaps(
         this.scene.scene.physics.world.bounds,
         midCharactersInGame[0].getBounds()
       )
     ) {
-      console.log("gone");
+      this.setMisses(midCharactersInGame[0].frame.name);
       destroy("mid");
+    }
+
+    if (
+      botCharactersInGame.length &&
+      !Phaser.Geom.Rectangle.Overlaps(
+        this.scene.scene.physics.world.bounds,
+        botCharactersInGame[0].getBounds()
+      )
+    ) {
+      this.setMisses(botCharactersInGame[0].frame.name);
+      destroy("bot");
     }
 
     // end game goes here
