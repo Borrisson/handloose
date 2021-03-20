@@ -241,7 +241,7 @@ export default class Play extends Phaser.Scene {
 
     this.music = this.sound.add("main_theme");
 
-    let musicConfig = {
+    const musicConfig = {
       mute: false,
       volume: 1,
       rate: 1,
@@ -429,6 +429,7 @@ export default class Play extends Phaser.Scene {
       callback: this.getLetter,
       callbackScope: this,
     });
+
     this.scale.on("resize", this.resize, this);
 
     this.physics.add.overlap(
@@ -472,8 +473,8 @@ export default class Play extends Phaser.Scene {
 
   update() {}
   resize(gameSize, baseSize, displaySize, resolution) {
-    var width = gameSize.width;
-    var height = gameSize.height;
+    let width = gameSize.width;
+    let height = gameSize.height;
 
     this.cameras.resize(width, height);
     //https://www.html5gamedevs.com/topic/7745-move-a-group-of-sprites-together-as-one-body/
