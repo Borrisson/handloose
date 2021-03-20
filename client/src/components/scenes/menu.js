@@ -5,8 +5,7 @@ export default class Menu extends Phaser.Scene {
     super("Menu");
   }
   preload() {
-
-    this.load.audio('menu_space', 'assets/audio/press_space_menu.wav')
+    this.load.audio("menu_space", "assets/audio/press_space_menu.wav");
 
     this.load.spritesheet("logo", "assets/logo.png", {
       frameWidth: 291,
@@ -64,21 +63,21 @@ export default class Menu extends Phaser.Scene {
     );
     this.scale.on("resize", this.resize, this);
 
-    let start = this.sound.add('menu_space');
+    let start = this.sound.add("menu_space");
 
-    this.input.keyboard.on('keydown-SPACE', function () {
+    this.input.keyboard.on("keydown-SPACE", function () {
       start.play();
     });
   }
 
   resize(gameSize, baseSize, displaySize, resolution) {
-    var width = gameSize.width;
-    var height = gameSize.height;
+    const width = gameSize.width;
+    const height = gameSize.height;
 
     this.cameras.resize(width, height);
 
     this.play.setPosition(width / 2.2, height / 2);
-    this.curtainLeft.setPosition(this.scale.width / 10, this.scale.height / 3);
+    this.curtainLeft.setPosition(width / 10, height / 3);
     this.curtainRight.setPosition(
       this.scale.width / 1.1,
       this.scale.height / 3

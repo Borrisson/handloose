@@ -483,15 +483,15 @@ export default class Play extends Phaser.Scene {
 
   update() {}
   resize(gameSize, baseSize, displaySize, resolution) {
-    let width = gameSize.width;
-    let height = gameSize.height;
+    const width = gameSize.width;
+    const height = gameSize.height;
 
     this.cameras.resize(width, height);
     //https://www.html5gamedevs.com/topic/7745-move-a-group-of-sprites-together-as-one-body/
     //we need to fix the resizing I think the answer is in the link above
-    this.kb1.setPosition(this.scale.width / 1.945, this.scale.height / 5.05);
-    this.kb2.setPosition(this.scale.width / 2.01, this.scale.height / 3.9);
-    this.kb3.setPosition(this.scale.width / 2.175, this.scale.height / 3.1);
+    this.kb1.setPosition(width / 1.945, height / 5.05);
+    this.kb2.setPosition(width / 2.01, height / 3.9);
+    this.kb3.setPosition(width / 2.175, height / 3.1);
   }
 }
 // if statements for if user clicked on time, we'll work out the deats on how to record a miss. for now the thought is a hitbox above kb1 to record miss
