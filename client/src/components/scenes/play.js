@@ -470,6 +470,13 @@ export default class Play extends Phaser.Scene {
         this.gameTime.paused = false;
       }
     });
+    this.input.keyboard.on("keydown-ESC", () => {
+      if(!this.music.mute) {
+        this.music.mute = true;
+      } else if (this.music.mute) {
+        this.music.mute = false;
+      }
+    })
   }
 
   update() {
@@ -543,4 +550,4 @@ export default class Play extends Phaser.Scene {
 //Misses
 //Keyboard collision handle once
 //Sprites
-//Music toggle (Music note sprite),
+//Music toggle (Music note sprite) -Done, used ESC button to mute and unmute song.
