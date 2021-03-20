@@ -25,9 +25,23 @@ function randomizer() {
   return listOfCharacters;
 }
 
-// three of these down here and these are the characters currently on screen
-// one for each row of keyboard so like qwertyuiop, asdfghjkl, zxcvbnm
-// sort in function this.getletter
+function destroy(row) {
+  switch (row) {
+    case "top":
+      topCharactersInGame[0].destroy();
+      topCharactersInGame.shift();
+      break;
+    case "mid":
+      midCharactersInGame[0].destroy();
+      midCharactersInGame.shift();
+      break;
+    case "bot":
+      botCharactersInGame[0].destroy();
+      botCharactersInGame.shift();
+      break;
+  }
+}
+
 const topCharactersInGame = [];
 const midCharactersInGame = [];
 const botCharactersInGame = [];
@@ -82,23 +96,8 @@ export default class Play extends Phaser.Scene {
       (this.key_O.isDown && name === 23) ||
       (this.key_P.isDown && name === 25)
     ) {
-      topCharactersInGame[0].destroy();
-      topCharactersInGame.shift();
+      destroy("top");
       //score function
-    }
-    if (
-      (this.key_Q.isDown && name !== 0) ||
-      (this.key_W.isDown && name !== 3) ||
-      (this.key_E.isDown && name !== 6) ||
-      (this.key_R.isDown && name !== 9) ||
-      (this.key_T.isDown && name !== 12) ||
-      (this.key_Y.isDown && name !== 15) ||
-      (this.key_U.isDown && name !== 18) ||
-      (this.key_I.isDown && name !== 21) ||
-      (this.key_O.isDown && name !== 23) ||
-      (this.key_P.isDown && name !== 25)
-    ) {
-      //miss function
     }
   }
   collisionHandlerMid(charSprite, kbSprite) {
@@ -117,23 +116,8 @@ export default class Play extends Phaser.Scene {
       (this.key_K.isDown && name === 22) ||
       (this.key_L.isDown && name === 24)
     ) {
-      midCharactersInGame[0].destroy();
-      midCharactersInGame.shift();
+      destroy("mid");
       // We will need a score point function here
-    }
-
-    if (
-      (this.key_A.isDown && name !== 1) ||
-      (this.key_S.isDown && name !== 4) ||
-      (this.key_D.isDown && name !== 7) ||
-      (this.key_F.isDown && name !== 10) ||
-      (this.key_G.isDown && name !== 13) ||
-      (this.key_H.isDown && name !== 16) ||
-      (this.key_J.isDown && name !== 19) ||
-      (this.key_K.isDown && name !== 22) ||
-      (this.key_L.isDown && name !== 24)
-    ) {
-      // We will need a miss point function here
     }
   }
   collisionHandlerBottom(charSprite, kbSprite) {
@@ -149,21 +133,8 @@ export default class Play extends Phaser.Scene {
       (this.key_N.isDown && name === 17) ||
       (this.key_M.isDown && name === 20)
     ) {
-      botCharactersInGame[0].destroy();
-      botCharactersInGame.shift();
+      destroy("bot");
       // We will need a score point function here
-    }
-
-    if (
-      (this.key_Z.isDown && name !== 2) ||
-      (this.key_X.isDown && name !== 5) ||
-      (this.key_C.isDown && name !== 8) ||
-      (this.key_V.isDown && name !== 11) ||
-      (this.key_B.isDown && name !== 14) ||
-      (this.key_N.isDown && name !== 17) ||
-      (this.key_M.isDown && name !== 20)
-    ) {
-      // We will need a miss point function here
     }
   }
   getLetter() {
@@ -432,7 +403,6 @@ export default class Play extends Phaser.Scene {
 
     this.getLetter();
 
-    //make the delay customizable for player to choose
     this.gameTime = this.time.addEvent({
       delay: window.interval,
       loop: true,
@@ -482,15 +452,26 @@ export default class Play extends Phaser.Scene {
   }
 
   update() {
+    //need to short circuit this with array length first so that when it is empty it doesn't give us an error at midCharactersInGame[0].getBounds();
     if (
+      midCharactersInGame.length &&
       !Phaser.Geom.Rectangle.Overlaps(
         this.scene.scene.physics.world.bounds,
         midCharactersInGame[0].getBounds()
       )
     ) {
       console.log("gone");
-      midCharactersInGame[0].destroy();
-      midCharactersInGame.shift();
+      destroy("mid");
+    }
+
+    // end game goes here
+
+    if (
+      !midCharactersInGame.length &&
+      !topCharactersInGame.length &&
+      !botCharactersInGame.length
+    ) {
+      console.log("endgame");
     }
   }
   resize(gameSize, baseSize, displaySize, resolution) {
@@ -505,4 +486,3 @@ export default class Play extends Phaser.Scene {
     this.kb3.setPosition(width / 2.175, height / 3.1);
   }
 }
-// if statements for if user clicked on time, we'll work out the deats on how to record a miss. for now the thought is a hitbox above kb1 to record miss
