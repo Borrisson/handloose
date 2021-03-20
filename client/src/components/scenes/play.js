@@ -93,6 +93,21 @@ export default class Play extends Phaser.Scene {
     ) {
       topCharactersInGame[0].destroy();
       topCharactersInGame.shift();
+      //score function
+    }
+    if (
+      (this.key_Q.isDown && name !== 0) ||
+      (this.key_W.isDown && name !== 3) ||
+      (this.key_E.isDown && name !== 6) ||
+      (this.key_R.isDown && name !== 9) ||
+      (this.key_T.isDown && name !== 12) ||
+      (this.key_Y.isDown && name !== 15) ||
+      (this.key_U.isDown && name !== 18) ||
+      (this.key_I.isDown && name !== 21) ||
+      (this.key_O.isDown && name !== 23) ||
+      (this.key_P.isDown && name !== 25)
+    ) {
+      //miss function
     }
   }
   collisionHandlerMid(charSprite, kbSprite) {
@@ -113,6 +128,21 @@ export default class Play extends Phaser.Scene {
     ) {
       midCharactersInGame[0].destroy();
       midCharactersInGame.shift();
+      // We will need a score point function here
+    }
+
+    if (
+      (this.key_A.isDown && name !== 1) ||
+      (this.key_S.isDown && name !== 4) ||
+      (this.key_D.isDown && name !== 7) ||
+      (this.key_F.isDown && name !== 10) ||
+      (this.key_G.isDown && name !== 13) ||
+      (this.key_H.isDown && name !== 16) ||
+      (this.key_J.isDown && name !== 19) ||
+      (this.key_K.isDown && name !== 22) ||
+      (this.key_L.isDown && name !== 24)
+    ) {
+      // We will need a miss point function here
     }
   }
   collisionHandlerBottom(charSprite, kbSprite) {
@@ -130,6 +160,19 @@ export default class Play extends Phaser.Scene {
     ) {
       botCharactersInGame[0].destroy();
       botCharactersInGame.shift();
+      // We will need a score point function here
+    }
+
+    if (
+      (this.key_Z.isDown && name !== 2) ||
+      (this.key_X.isDown && name !== 5) ||
+      (this.key_C.isDown && name !== 8) ||
+      (this.key_V.isDown && name !== 11) ||
+      (this.key_B.isDown && name !== 14) ||
+      (this.key_N.isDown && name !== 17) ||
+      (this.key_M.isDown && name !== 20)
+    ) {
+      // We will need a miss point function here
     }
   }
   getLetter() {
