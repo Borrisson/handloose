@@ -23,6 +23,7 @@ export default class Levels extends Phaser.Scene {
     window.velocity = 100;
     slide.setFrame(frame);
     window.interval = 3750;
+    window.selectedCharacters = []; // if empty it is all
 
     let selected = false;
 
@@ -85,6 +86,8 @@ export default class Levels extends Phaser.Scene {
         lvl1.setTint(0x6aa84f);
         kb.setFrame(1);
         selected = true;
+        window.selectedCharacters = [1, 4, 7, 10];
+        console.log(window.selectedCharacters);
       },
       this
     );

@@ -9,8 +9,18 @@ function checkOverlap(spriteA, spriteB) {
 
 function randomizer() {
   const listOfCharacters = [];
-  while (listOfCharacters.length < 140) {
-    listOfCharacters.push(Math.floor(Math.random() * (26 - 0)) + 0);
+  if (!window.selectedCharacters) {
+    while (listOfCharacters.length < 140) {
+      listOfCharacters.push(Math.floor(Math.random() * (26 - 0)) + 0);
+    }
+  } else {
+    while (listOfCharacters.length < 140) {
+      listOfCharacters.push(
+        window.selectedCharacters[
+          Math.floor(Math.random() * window.selectedCharacters.length)
+        ]
+      );
+    }
   }
   return listOfCharacters;
 }
