@@ -80,6 +80,9 @@ export default class Play extends Phaser.Scene {
     super("play");
     this.hits = [];
     this.misses = [];
+
+    this.score = 0;
+    this.streak = 0;
   }
 
   setHits(charNumber) {
@@ -110,6 +113,10 @@ export default class Play extends Phaser.Scene {
       (this.key_P.isDown && char === "P")
     ) {
       destroy("top");
+      this.score += 100;
+      this.scoreText.setText('Score: ' + this.score);
+      this.streak += 1;
+      this.streakText.setText('Streak: ' + this.streak);
       this.setHits(name);
     }
   }
@@ -132,6 +139,10 @@ export default class Play extends Phaser.Scene {
       (this.key_L.isDown && char === "L")
     ) {
       destroy("mid");
+      this.score += 100;
+      this.scoreText.setText('Score: ' + this.score);
+      this.streak += 1;
+      this.streakText.setText('Streak: ' + this.streak);
       this.setHits(name);
     }
   }
@@ -151,6 +162,10 @@ export default class Play extends Phaser.Scene {
       (this.key_M.isDown && char === "M")
     ) {
       destroy("bot");
+      this.score += 100;
+      this.scoreText.setText('Score: ' + this.score);
+      this.streak += 1;
+      this.streakText.setText('Streak: ' + this.streak);
       this.setHits(name);
     }
   }
@@ -250,6 +265,9 @@ export default class Play extends Phaser.Scene {
     };
 
     this.music.play(musicConfig);
+
+    this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', color: '#FF69B4' });
+    this.streakText = this.add.text(16, 48, 'Streak: 0', { fontSize: '32px', color: '#FF69B4' });
 
     this.kb1 = this.physics.add
       .sprite(this.scale.width / 1.945, this.scale.height / 5.05, "kb1")
@@ -486,6 +504,7 @@ export default class Play extends Phaser.Scene {
       )
     ) {
       this.setMisses(topCharactersInGame[0].frame.name);
+      this.streak = 0;
       destroy("top");
     }
 
@@ -497,6 +516,7 @@ export default class Play extends Phaser.Scene {
       )
     ) {
       this.setMisses(midCharactersInGame[0].frame.name);
+      this.streak = 0;
       destroy("mid");
     }
 
@@ -508,6 +528,7 @@ export default class Play extends Phaser.Scene {
       )
     ) {
       this.setMisses(botCharactersInGame[0].frame.name);
+      this.streak = 0;
       destroy("bot");
     }
 
