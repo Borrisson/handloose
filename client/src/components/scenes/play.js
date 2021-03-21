@@ -44,7 +44,7 @@ function randomizer() {
   const listOfCharacters = [];
   if (!window.selectedCharacters.length) {
     while (listOfCharacters.length < 140) {
-      listOfCharacters.push(Math.floor(Math.random() * (26 - 0)) + 0);
+      listOfCharacters.push(Math.floor(Math.random() * 26));
     }
   } else {
     while (listOfCharacters.length < 140) {
