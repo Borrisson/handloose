@@ -1,9 +1,11 @@
 import Phaser from "phaser";
 import axios from "axios";
 import { decipher } from "../../helpers/selectors";
-const topCharactersInGame = [];
-const midCharactersInGame = [];
-const botCharactersInGame = [];
+
+let topCharactersInGame = [];
+let midCharactersInGame = [];
+let botCharactersInGame = [];
+console.log(midCharactersInGame);
 
 const position = [
   3.34, // Q
@@ -602,7 +604,7 @@ export default class Play extends Phaser.Scene {
         const parsedMisses = this.misses.map((character) => {
           return { character, hit: false };
         });
-        
+
         const accuracies = [].concat(parsedHits).concat(parsedMisses);
         accuracies.concat(this.hits).concat(this.misses);
         console.log(accuracies);
@@ -618,8 +620,9 @@ export default class Play extends Phaser.Scene {
             accuracies,
           }),
         ]);
-        this.scene.launch('Endgame', {score: this.score, });
-        this.panel = this.scene.get('Endgame');
+        this.scene.stop();
+        this.scene.start('endgame', {score: this.score });
+        
 
       
       
