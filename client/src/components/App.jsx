@@ -7,6 +7,7 @@ import Register from "./Register";
 import About from "./About";
 import useShowData from "../hooks/useShowData";
 import Leaderboard from "./Leaderboard";
+import Game from "./Game";
 
 const App = () => {
   const {
@@ -23,6 +24,7 @@ const App = () => {
 
   return (
     <>
+      <Game />
       <SideBar
         handleShow={handleShow}
         handleLogout={handleLogout}
