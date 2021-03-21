@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from "./scenes/menu";
 import Levels from "./scenes/levels";
 import Play from "./scenes/play";
@@ -21,7 +21,7 @@ export default class Game extends React.Component {
           debug: true,
         },
       },
-      scene: [Menu, Levels, Play],
+      scene: [Menu, Levels, new Play(this.props)],
     };
     new Phaser.Game(config);
   }

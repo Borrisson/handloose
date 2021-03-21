@@ -77,11 +77,11 @@ function destroy(row) {
 }
 
 export default class Play extends Phaser.Scene {
-  constructor() {
+  constructor(props) {
     super("play");
     this.hits = [];
     this.misses = [];
-
+    this.props = props;
     this.score = 0;
     this.streak = 0;
     this.endgame = false;
@@ -602,25 +602,28 @@ export default class Play extends Phaser.Scene {
       if (!this.endgame) {
         this.endgame = true;
 
-        const parsedHits = this.hits.map((character) => {
-          return { character, hit: true };
-        });
-        const parsedMisses = this.misses.map((character) => {
-          return { character, hit: false };
-        });
-        const accuracies = [].concat(parsedHits).concat(parsedMisses);
+        if (this.props.user.id) {
+          const parsedHits = this.hits.map((character) => {
+            return { character, hit: true };
+          });
 
-        Promise.all([
-          axios.post("/api/games", {
-            score: this.score,
-            longest_streak: this.longest_streak,
-            key_stroke_frequency: window.interval,
-            user_id: this.user_id,
-          }),
-          axios.post("/api/accrucies", {
-            accuracies,
-          }),
-        ]);
+          const parsedMisses = this.misses.map((character) => {
+            return { character, hit: false };
+          });
+
+          const accuracies = [].concat(parsedHits).concat(parsedMisses);
+
+          this.props.handleGamePost(
+            {
+              score: this.score,
+              longest_streak: this.longest_streak,
+              key_stroke_frequency: this.interval,
+              user_id: this.props.user.id,
+            },
+            accuracies
+          );
+        }
+
         //this is where we'll add the change scene
       }
       // before scene change we'll send data to the back
