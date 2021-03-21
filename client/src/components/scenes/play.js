@@ -34,12 +34,6 @@ const position = [
   1.38, // P
 ];
 
-function checkOverlap(spriteA, spriteB) {
-  let boundsA = spriteA.getBounds();
-  let boundsB = spriteB.getBounds();
-
-  return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
-}
 
 function randomizer() {
   const listOfCharacters = [];
@@ -611,6 +605,9 @@ export default class Play extends Phaser.Scene {
         });
         accuracies.concat(this.hits).concat(this.misses);
         console.log(accuracies);
+        this.scene.launch('Endgame', {score: this.score, });
+        this.panel = this.scene.get('Endgame');
+
        // Promise.all([
        //   axios.post('/api/games', {
        //     score: this.score,
