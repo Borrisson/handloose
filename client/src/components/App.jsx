@@ -16,20 +16,18 @@ const App = () => {
     handleAppData,
     loggedIn,
     handleLogout,
+    handleGamePost,
   } = useApplicationData();
 
   const { show, handleClose, handleShow } = useShowData();
 
-  const [score, setScore] = useState(0);
-
   return (
     <>
-      <Game />
+      <Game user={state.user} handleGamePost={handleGamePost} />
       <SideBar
         handleShow={handleShow}
         handleLogout={handleLogout}
         state={state}
-        score={score}
       />
       <Login
         handleClose={handleClose}

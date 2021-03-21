@@ -3,6 +3,7 @@ import Phaser from "phaser";
 export default class Levels extends Phaser.Scene {
   constructor() {
     super("Levels");
+
     this.levelState = {
       lvl1: true,
       lvl2: false,
@@ -15,6 +16,10 @@ export default class Levels extends Phaser.Scene {
       lvl9: false,
       lvl10: false,
     };
+
+    this.velocity = 100;
+    this.interval = 3750;
+    this.selectedCharacters = [1, 4, 7, 10];
   }
 
   resetState(toggleKey) {
@@ -42,10 +47,7 @@ export default class Levels extends Phaser.Scene {
 
     const slide = this.add.sprite(625, 700, "slider").setScale(5);
     let frame = 0;
-    window.velocity = 100;
     slide.setFrame(frame);
-    window.interval = 3750;
-    window.selectedCharacters = [1, 4, 7, 10];
 
     const lvl1 = this.add.text(500, 400, "Level 1").setInteractive();
     const lvl2 = this.add.text(500, 450, "Level 2").setInteractive();
@@ -78,27 +80,29 @@ export default class Levels extends Phaser.Scene {
     const kb = this.add.sprite(500, 200, "keyboard").setScale(5);
     kb.setFrame(1);
     lvl1.setTint(0x6aa84f);
-    left.on("pointerdown", function () {
+
+    left.on("pointerdown", () => {
       if (frame > 0) {
         frame--;
         slide.setFrame(frame);
-        window.velocity -= 100;
-        window.interval += 1000;
+
+        this.velocity -= 100;
+        this.interval += 1000;
       }
     });
-    right.on("pointerdown", function () {
+    right.on("pointerdown", () => {
       if (frame < 3) {
         frame++;
         slide.setFrame(frame);
-        window.velocity += 100;
-        window.interval -= 1000;
+        this.velocity += 100;
+        this.interval -= 1000;
       }
     });
 
     for (let [key, lvl] of Object.entries(this.levels)) {
       lvl.on(
         "pointerover",
-        function () {
+        () => {
           if (!this.levelState[key]) {
             lvl.setTint(0xff00ff);
           }
@@ -107,7 +111,7 @@ export default class Levels extends Phaser.Scene {
       );
       lvl.on(
         "pointerout",
-        function () {
+        () => {
           if (!this.levelState[key]) {
             lvl.setTint(0xffffff);
           }
@@ -117,7 +121,7 @@ export default class Levels extends Phaser.Scene {
 
       lvl.on(
         "pointerdown",
-        function () {
+        () => {
           lvl10.setTint(0xffffff);
           lvl9.setTint(0xffffff);
           lvl8.setTint(0xffffff);
@@ -134,16 +138,16 @@ export default class Levels extends Phaser.Scene {
 
           switch (key) {
             case "lvl1":
-              window.selectedCharacters = [1, 4, 7, 10];
+              this.selectedCharacters = [1, 4, 7, 10];
               break;
             case "lvl2":
-              window.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
+              this.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
               break;
             case "lvl3":
-              window.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
+              this.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
               break;
             case "lvl4":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 3,
@@ -159,7 +163,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl5":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 3,
@@ -178,7 +182,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl6":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 2,
@@ -199,7 +203,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl7":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 2,
@@ -222,7 +226,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl8":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 2,
@@ -247,7 +251,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl9":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 2,
@@ -274,7 +278,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl10":
-              window.selectedCharacters = [];
+              this.selectedCharacters = [];
               break;
           }
         },
@@ -284,21 +288,21 @@ export default class Levels extends Phaser.Scene {
 
     back.on(
       "pointerout",
-      function () {
+      () => {
         back.setTint(0xffffff);
       },
       this
     );
     back.on(
       "pointerover",
-      function () {
+      () => {
         back.setTint(0xff00ff);
       },
       this
     );
     back.on(
       "pointerdown",
-      function () {
+      () => {
         this.scene.start("Menu");
       },
       this
@@ -306,22 +310,26 @@ export default class Levels extends Phaser.Scene {
 
     play.on(
       "pointerout",
-      function () {
+      () => {
         play.setTint(0xffffff);
       },
       this
     );
     play.on(
       "pointerover",
-      function () {
+      () => {
         play.setTint(0xff00ff);
       },
       this
     );
     play.on(
       "pointerdown",
-      function () {
-        this.scene.start("play");
+      () => {
+        this.scene.start("play", {
+          interval: this.interval,
+          selectedCharacters: this.selectedCharacters,
+          velocity: this.velocity,
+        });
       },
       this
     );

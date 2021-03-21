@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import axios from "axios";
 import { decipher } from "../../helpers/selectors";
 
 let topCharactersInGame = [];
@@ -37,24 +36,6 @@ const position = [
 ];
 
 
-function randomizer() {
-  const listOfCharacters = [];
-  if (!window.selectedCharacters.length) {
-    while (listOfCharacters.length < 3) {
-      listOfCharacters.push(Math.floor(Math.random() * 26));
-    }
-  } else {
-    while (listOfCharacters.length < 3) {
-      listOfCharacters.push(
-        window.selectedCharacters[
-          Math.floor(Math.random() * window.selectedCharacters.length)
-        ]
-      );
-    }
-  }
-  return listOfCharacters;
-}
-
 function destroy(row) {
   switch (row) {
     case "top":
@@ -73,11 +54,11 @@ function destroy(row) {
 }
 
 export default class Play extends Phaser.Scene {
-  constructor() {
+  constructor(props) {
     super("play");
     this.hits = [];
     this.misses = [];
-
+    this.props = props;
     this.score = 0;
     this.streak = 0;
     this.endgame = false;
@@ -165,6 +146,7 @@ export default class Play extends Phaser.Scene {
         this.setHits(name);
       }
   }
+
   collisionHandlerBottom(charSprite, kbSprite) {
     const {
       frame: { name },
@@ -219,7 +201,7 @@ export default class Play extends Phaser.Scene {
         "text",
         shifty.x
       );
-      this.letter.setScale(6).setVelocityY(-window.velocity);
+      this.letter.setScale(6).setVelocityY(-this.velocity);
       const firstRow = [0, 3, 6, 9, 12, 15, 18, 21, 23, 25];
       const lastRow = [2, 5, 8, 11, 14, 17, 20];
       if (firstRow.includes(shifty.x)) {
@@ -231,6 +213,25 @@ export default class Play extends Phaser.Scene {
       }
     }
   }
+
+  randomizer() {
+    const listOfCharacters = [];
+    if (!this.selectedCharacters.length) {
+      while (listOfCharacters.length < 3) {
+        listOfCharacters.push(Math.floor(Math.random() * 26));
+      }
+    } else {
+      while (listOfCharacters.length < 3) {
+        listOfCharacters.push(
+          this.selectedCharacters[
+            Math.floor(Math.random() * this.selectedCharacters.length)
+          ]
+        );
+      }
+    }
+    return listOfCharacters;
+  }
+
   preload() {
     this.load.audio("main_theme", "assets/audio/main_theme.mp3");
     this.load.spritesheet("kb1", "assets/kb1.png", {
@@ -251,8 +252,14 @@ export default class Play extends Phaser.Scene {
     });
   }
 
+  init(data) {
+    this.interval = data.interval;
+    this.velocity = data.velocity;
+    this.selectedCharacters = data.selectedCharacters;
+  }
+
   create() {
-    this.characters = randomizer().map((x) => {
+    this.characters = this.randomizer().map((x) => {
       return {
         width: this.scale.width / position[x],
         height: this.scale.height,
@@ -484,7 +491,7 @@ export default class Play extends Phaser.Scene {
     this.getLetter();
 
     this.gameTime = this.time.addEvent({
-      delay: window.interval,
+      delay: this.interval,
       loop: true,
       callback: this.getLetter,
       callbackScope: this,
@@ -598,37 +605,28 @@ export default class Play extends Phaser.Scene {
       if (!this.endgame) {
         this.endgame = true;
 
-        const parsedHits = this.hits.map((character) => {
-          return { character, hit: true };
-        });
-        const parsedMisses = this.misses.map((character) => {
-          return { character, hit: false };
-        });
+        if (this.props.user.id) {
+          const parsedHits = this.hits.map((character) => {
+            return { character, hit: true };
+          });
 
-        const accuracies = [].concat(parsedHits).concat(parsedMisses);
-        accuracies.concat(this.hits).concat(this.misses);
-        console.log(accuracies);
+          const parsedMisses = this.misses.map((character) => {
+            return { character, hit: false };
+          });
 
-        Promise.all([
-          axios.post("/api/games", {
-            score: this.score,
-            longest_streak: this.longest_streak,
-            key_stroke_frequency: window.interval,
-            user_id: this.user_id,
-          }),
-          axios.post("/api/accrucies", {
-            accuracies,
-          }),
-        ]);
-        this.scene.stop();
-        this.scene.start('endgame', {score: this.score });
-        
+          const accuracies = [].concat(parsedHits).concat(parsedMisses);
 
-      
-      
-        
+          this.props.handleGamePost(
+            {
+              score: this.score,
+              longest_streak: this.longest_streak,
+              key_stroke_frequency: this.interval,
+              user_id: this.props.user.id,
+            },
+            accuracies
+          );
+        }
 
-        
         //this is where we'll add the change scene
       }
       // before scene change we'll send data to the back
