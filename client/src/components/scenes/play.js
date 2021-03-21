@@ -570,7 +570,7 @@ export default class Play extends Phaser.Scene {
         this.streakText.setText('Streak: ' + this.streak);
         destroy("bot");
       } else {
-        this.collisionHandlerBot(botCharactersInGame[0], this.kb1)
+        this.collisionHandlerBottom(botCharactersInGame[0], this.kb1)
       }
     }
 
