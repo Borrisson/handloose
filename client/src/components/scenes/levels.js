@@ -7,6 +7,7 @@ export default class Levels extends Phaser.Scene {
       lvl1: true,
       lvl2: false,
       lvl3: false,
+      lvl4: false,
       lvl5: false,
       lvl6: false,
       lvl7: false,
@@ -46,8 +47,6 @@ export default class Levels extends Phaser.Scene {
     window.interval = 3750;
     window.selectedCharacters = []; // if empty it is all
 
-    let selected = false;
-
     const lvl1 = this.add.text(500, 400, "Level 1").setInteractive();
     const lvl2 = this.add.text(500, 450, "Level 2").setInteractive();
     const lvl3 = this.add.text(500, 500, "Level 3").setInteractive();
@@ -59,13 +58,26 @@ export default class Levels extends Phaser.Scene {
     const lvl9 = this.add.text(700, 550, "Level 9").setInteractive();
     const lvl10 = this.add.text(700, 600, "Level 10").setInteractive();
 
+    this.levels = {
+      lvl1,
+      lvl2,
+      lvl3,
+      lvl4,
+      lvl5,
+      lvl6,
+      lvl7,
+      lvl8,
+      lvl9,
+      lvl10,
+    };
+
     const back = this.add.text(1400, 950, "Back").setInteractive();
 
     const play = this.add.text(600, 850, "Play").setInteractive();
 
     const kb = this.add.sprite(500, 200, "keyboard").setScale(5);
-    kb.setFrame(0);
-
+    kb.setFrame(1);
+    lvl1.setTint(0x6aa84f);
     left.on("pointerdown", function () {
       if (frame > 0) {
         frame--;
@@ -83,320 +95,193 @@ export default class Levels extends Phaser.Scene {
       }
     });
 
-    lvl1.on(
-      "pointerover",
-      function () {
-        if (!selected) {
-          lvl1.setTint(0xff00ff);
-        }
-      },
-      this
-    );
-    lvl1.on(
-      "pointerout",
-      function () {
-        if (!selected) {
-          lvl1.setTint(0xffffff);
-        }
-      },
-      this
-    );
-    lvl1.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0x6aa84f);
-        kb.setFrame(1);
-        window.selectedCharacters = [1, 4, 7, 10];
-      },
-      this
-    );
+    for (let [key, lvl] of Object.entries(this.levels)) {
+      console.log(key);
+      lvl.on(
+        "pointerover",
+        function () {
+          if (!this.levelState[key]) {
+            lvl.setTint(0xff00ff);
+          }
+        },
+        this
+      );
+      lvl.on(
+        "pointerout",
+        function () {
+          if (!this.levelState[key]) {
+            lvl.setTint(0xffffff);
+          }
+        },
+        this
+      );
 
-    lvl2.on(
-      "pointerover",
-      function () {
-        lvl2.setTint(0xff00ff);
-      },
-      this
-    );
-    lvl2.on(
-      "pointerout",
-      function () {
-        lvl2.setTint(0xffffff);
-      },
-      this
-    );
-    lvl2.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0x6aa84f);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(2);
-        selected = true;
-        window.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
-      },
-      this
-    );
-    lvl3.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0x6aa84f);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(3);
-        window.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
-      },
-      this
-    );
-    lvl4.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0x6aa84f);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(4);
-        window.selectedCharacters = [0, 1, 3, 4, 6, 7, 10, 13, 16, 19, 22, 24];
-      },
-      this
-    );
-    lvl5.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0x6aa84f);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(5);
-        window.selectedCharacters = [
-          0,
-          1,
-          3,
-          4,
-          6,
-          7,
-          10,
-          13,
-          16,
-          19,
-          21,
-          22,
-          23,
-          24,
-          25,
-        ];
-      },
-      this
-    );
-    lvl6.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0x6aa84f);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(6);
-        window.selectedCharacters = [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          10,
-          13,
-          16,
-          19,
-          21,
-          22,
-          23,
-          24,
-          25,
-        ];
-      },
-      this
-    );
-    lvl7.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0x6aa84f);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(7);
-        window.selectedCharacters = [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          10,
-          11,
-          13,
-          16,
-          19,
-          21,
-          22,
-          23,
-          24,
-          25,
-        ];
-      },
-      this
-    );
-    lvl8.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0x6aa84f);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(8);
-        window.selectedCharacters = [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          16,
-          19,
-          21,
-          22,
-          23,
-          24,
-          25,
-        ];
-      },
-      this
-    );
-    lvl9.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0xffffff);
-        lvl9.setTint(0x6aa84f);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(9);
-        window.selectedCharacters = [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          15,
-          16,
-          18,
-          19,
-          21,
-          22,
-          23,
-          24,
-          25,
-        ];
-      },
-      this
-    );
-    lvl10.on(
-      "pointerdown",
-      function () {
-        lvl10.setTint(0x6aa84f);
-        lvl9.setTint(0xffffff);
-        lvl8.setTint(0xffffff);
-        lvl7.setTint(0xffffff);
-        lvl6.setTint(0xffffff);
-        lvl5.setTint(0xffffff);
-        lvl4.setTint(0xffffff);
-        lvl3.setTint(0xffffff);
-        lvl2.setTint(0xffffff);
-        lvl1.setTint(0xffffff);
-        kb.setFrame(10);
-        window.selectedCharacters = [];
-      },
-      this
-    );
+      lvl.on(
+        "pointerdown",
+        function () {
+          lvl10.setTint(0xffffff);
+          lvl9.setTint(0xffffff);
+          lvl8.setTint(0xffffff);
+          lvl7.setTint(0xffffff);
+          lvl6.setTint(0xffffff);
+          lvl5.setTint(0xffffff);
+          lvl4.setTint(0xffffff);
+          lvl3.setTint(0xffffff);
+          lvl2.setTint(0xffffff);
+          lvl1.setTint(0xffffff);
+          lvl.setTint(0x6aa84f);
+          kb.setFrame(Number(key.match(/\d+/)[0]));
+          this.resetState(key);
+
+          switch (key) {
+            case "lvl1":
+              window.selectedCharacters = [1, 4, 7, 10];
+              break;
+            case "lvl2":
+              window.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
+              break;
+            case "lvl3":
+              window.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
+              break;
+            case "lvl4":
+              window.selectedCharacters = [
+                0,
+                1,
+                3,
+                4,
+                6,
+                7,
+                10,
+                13,
+                16,
+                19,
+                22,
+                24,
+              ];
+              break;
+            case "lvl5":
+              window.selectedCharacters = [
+                0,
+                1,
+                3,
+                4,
+                6,
+                7,
+                10,
+                13,
+                16,
+                19,
+                21,
+                22,
+                23,
+                24,
+                25,
+              ];
+              break;
+            case "lvl6":
+              window.selectedCharacters = [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                10,
+                13,
+                16,
+                19,
+                21,
+                22,
+                23,
+                24,
+                25,
+              ];
+              break;
+            case "lvl7":
+              window.selectedCharacters = [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                10,
+                11,
+                13,
+                16,
+                19,
+                21,
+                22,
+                23,
+                24,
+                25,
+              ];
+              break;
+            case "lvl8":
+              window.selectedCharacters = [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                16,
+                19,
+                21,
+                22,
+                23,
+                24,
+                25,
+              ];
+              break;
+            case "lvl9":
+              window.selectedCharacters = [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                15,
+                16,
+                18,
+                19,
+                21,
+                22,
+                23,
+                24,
+                25,
+              ];
+              break;
+            case "lvl10":
+              window.selectedCharacters = [];
+              break;
+          }
+        },
+        this
+      );
+    }
 
     back.on(
       "pointerout",
