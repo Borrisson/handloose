@@ -42,23 +42,23 @@ export default class Levels extends Phaser.Scene {
     this.load.image("arrowRight", "assets/arrowRight.png");
   }
   create() {
-    const left = this.add.image(450, 750, "arrowLeft").setInteractive();
-    const right = this.add.image(750, 750, "arrowRight").setInteractive();
+    const left = this.add.image(590, 750, "arrowLeft").setInteractive();
+    const right = this.add.image(880 , 750, "arrowRight").setInteractive();
 
-    const slide = this.add.sprite(625, 700, "slider").setScale(5);
+    const slide = this.add.sprite(742, 700, "slider").setScale(5);
     let frame = 0;
     slide.setFrame(frame);
 
-    const lvl1 = this.add.text(500, 400, "Level 1").setInteractive();
-    const lvl2 = this.add.text(500, 450, "Level 2").setInteractive();
-    const lvl3 = this.add.text(500, 500, "Level 3").setInteractive();
-    const lvl4 = this.add.text(500, 550, "Level 4").setInteractive();
-    const lvl5 = this.add.text(500, 600, "Level 5").setInteractive();
-    const lvl6 = this.add.text(700, 400, "Level 6").setInteractive();
-    const lvl7 = this.add.text(700, 450, "Level 7").setInteractive();
-    const lvl8 = this.add.text(700, 500, "Level 8").setInteractive();
-    const lvl9 = this.add.text(700, 550, "Level 9").setInteractive();
-    const lvl10 = this.add.text(700, 600, "Level 10").setInteractive();
+    const lvl1 = this.add.text(600, 400, "Level 1").setInteractive();
+    const lvl2 = this.add.text(600, 450, "Level 2").setInteractive();
+    const lvl3 = this.add.text(600, 500, "Level 3").setInteractive();
+    const lvl4 = this.add.text(600, 550, "Level 4").setInteractive();
+    const lvl5 = this.add.text(600, 600, "Level 5").setInteractive();
+    const lvl6 = this.add.text(800, 400, "Level 6").setInteractive();
+    const lvl7 = this.add.text(800, 450, "Level 7").setInteractive();
+    const lvl8 = this.add.text(800, 500, "Level 8").setInteractive();
+    const lvl9 = this.add.text(800, 550, "Level 9").setInteractive();
+    const lvl10 = this.add.text(800, 600, "Level 10").setInteractive();
 
     this.levels = {
       lvl1,
@@ -75,9 +75,9 @@ export default class Levels extends Phaser.Scene {
 
     const back = this.add.text(1400, 950, "Back").setInteractive();
 
-    const play = this.add.text(600, 850, "Play").setInteractive();
+    const play = this.add.text(720, 850, "Play").setInteractive();
 
-    const kb = this.add.sprite(500, 200, "keyboard").setScale(5);
+    const kb = this.add.sprite(725 , 200, "keyboard").setScale(5);
     kb.setFrame(1);
     lvl1.setTint(0x6aa84f);
 
