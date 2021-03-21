@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import axios from "axios";
 import { decipher } from "../../helpers/selectors";
 const topCharactersInGame = [];
 const midCharactersInGame = [];
