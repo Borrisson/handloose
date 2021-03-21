@@ -1,9 +1,9 @@
 import Phaser from "phaser";
+import axios from "axios";
 import { decipher } from "../../helpers/selectors";
 const topCharactersInGame = [];
 const midCharactersInGame = [];
 const botCharactersInGame = [];
-let endgame = false;
 
 const position = [
   3.34, // Q
@@ -38,11 +38,11 @@ const position = [
 function randomizer() {
   const listOfCharacters = [];
   if (!window.selectedCharacters.length) {
-    while (listOfCharacters.length < 140) {
+    while (listOfCharacters.length < 3) {
       listOfCharacters.push(Math.floor(Math.random() * 26));
     }
   } else {
-    while (listOfCharacters.length < 140) {
+    while (listOfCharacters.length < 3) {
       listOfCharacters.push(
         window.selectedCharacters[
           Math.floor(Math.random() * window.selectedCharacters.length)
@@ -78,13 +78,13 @@ export default class Play extends Phaser.Scene {
 
     this.score = 0;
     this.streak = 0;
+    this.endgame = false;
   }
 
   setHits(charNumber) {
     this.hits.push(decipher(charNumber));
   }
   setMisses(charNumber) {
-    console.log(decipher(charNumber));
     this.misses.push(decipher(charNumber));
   }
 
@@ -155,7 +155,6 @@ export default class Play extends Phaser.Scene {
         this.streakText.setText("Streak: " + this.streak);
         this.setMisses(name);
       } else {
-        console.log(this.hits.length);
         destroy("mid");
         this.score += 100;
         this.scoreText.setText("Score: " + this.score);
@@ -594,39 +593,43 @@ export default class Play extends Phaser.Scene {
       !topCharactersInGame.length &&
       !botCharactersInGame.length
     ) {
-      if (!endgame) {
-        endgame = true;
-        const accuracies = [];
-        this.hits.map((character) => {
-          return { character, hit: true }
+      if (!this.endgame) {
+        this.endgame = true;
+
+        const parsedHits = this.hits.map((character) => {
+          return { character, hit: true };
         });
-        this.misses.map((character) => {
-          return { character, hit: false }
+        const parsedMisses = this.misses.map((character) => {
+          return { character, hit: false };
         });
+        
+        const accuracies = [].concat(parsedHits).concat(parsedMisses);
         accuracies.concat(this.hits).concat(this.misses);
         console.log(accuracies);
+
+        Promise.all([
+          axios.post("/api/games", {
+            score: this.score,
+            longest_streak: this.longest_streak,
+            key_stroke_frequency: window.interval,
+            user_id: this.user_id,
+          }),
+          axios.post("/api/accrucies", {
+            accuracies,
+          }),
+        ]);
         this.scene.launch('Endgame', {score: this.score, });
         this.panel = this.scene.get('Endgame');
 
-       // Promise.all([
-       //   axios.post('/api/games', {
-       //     score: this.score,
-       //     longest_streak: this.longest_streak, 
-       //     key_stroke_frequency: window.interval,
-       //     user_id: this.user_id
-        //  }),
-       //  axios.post('/api/accrucies', {
-        //    accuracies
-        //  })
-      //])
-      //this is where we'll add the change scene
       
+      
+        
+
+        
+        //this is where we'll add the change scene
       }
       // before scene change we'll send data to the back
       //change state, axios call, then change scene it that order
-
-      console.log("endgame");
-      console.log(this.hits);
     }
   }
   resize(gameSize, baseSize, displaySize, resolution) {
@@ -639,7 +642,9 @@ export default class Play extends Phaser.Scene {
     this.kb1.setPosition(width / 1.945, height / 5.05);
     this.kb2.setPosition(width / 2.01, height / 3.9);
     this.kb3.setPosition(width / 2.175, height / 3.1);
-    this.pause.setPosition(width / 2, height / 2);
+    if (this.pause) {
+      this.pause.setPosition(width / 2, height / 2);
+    }
   }
 }
 

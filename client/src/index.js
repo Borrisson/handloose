@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import Game from "./components/Game";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,7 +15,6 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/">
-          <Game />
           <App />
         </Route>
         <Route path="*">
