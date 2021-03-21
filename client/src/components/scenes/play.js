@@ -111,22 +111,26 @@ export default class Play extends Phaser.Scene {
       (Phaser.Input.Keyboard.JustDown(this.key_I) && char === "I") ||
       (Phaser.Input.Keyboard.JustDown(this.key_O) && char === "O") ||
       (Phaser.Input.Keyboard.JustDown(this.key_P) && char === "P")
-    ) if (!Phaser.Geom.Rectangle.Overlaps(charSprite.getBounds(), kbSprite.getBounds()))
-      {
+    )
+      if (
+        !Phaser.Geom.Rectangle.Overlaps(
+          charSprite.getBounds(),
+          kbSprite.getBounds()
+        )
+      ) {
         destroy("top");
         this.streak = 0;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         this.setMisses(name);
-      
       } else {
         console.log(this.hits.length);
         destroy("top");
         this.score += 100;
-        this.scoreText.setText('Score: ' + this.score);
+        this.scoreText.setText("Score: " + this.score);
         this.streak += 1;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         this.setHits(name);
-      } 
+      }
   }
   collisionHandlerMid(charSprite, kbSprite) {
     const {
@@ -145,21 +149,25 @@ export default class Play extends Phaser.Scene {
       (Phaser.Input.Keyboard.JustDown(this.key_J) && char === "J") ||
       (Phaser.Input.Keyboard.JustDown(this.key_K) && char === "K") ||
       (Phaser.Input.Keyboard.JustDown(this.key_L) && char === "L")
-    ) if (!Phaser.Geom.Rectangle.Overlaps(charSprite.getBounds(), kbSprite.getBounds()))
-      {
+    )
+      if (
+        !Phaser.Geom.Rectangle.Overlaps(
+          charSprite.getBounds(),
+          kbSprite.getBounds()
+        )
+      ) {
         this.streak = 0;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         this.setMisses(name);
-      
       } else {
         console.log(this.hits.length);
         destroy("mid");
         this.score += 100;
-        this.scoreText.setText('Score: ' + this.score);
+        this.scoreText.setText("Score: " + this.score);
         this.streak += 1;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         this.setHits(name);
-    }
+      }
   }
   collisionHandlerBottom(charSprite, kbSprite) {
     const {
@@ -176,22 +184,24 @@ export default class Play extends Phaser.Scene {
       (Phaser.Input.Keyboard.JustDown(this.key_N) && char === "N") ||
       (Phaser.Input.Keyboard.JustDown(this.key_M) && char === "M")
     ) {
-      if (!Phaser.Geom.Rectangle.Overlaps(charSprite.getBounds(), kbSprite.getBounds()))
-      {
+      if (
+        !Phaser.Geom.Rectangle.Overlaps(
+          charSprite.getBounds(),
+          kbSprite.getBounds()
+        )
+      ) {
         destroy("bot");
         this.streak = 0;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         this.setMisses(name);
-      
       } else {
         console.log(this.hits.length);
         destroy("bot");
         this.score += 100;
-        this.scoreText.setText('Score: ' + this.score);
+        this.scoreText.setText("Score: " + this.score);
         this.streak += 1;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         this.setHits(name);
-
       }
       // console.log(this.hits.length);
       // destroy("bot");
@@ -299,8 +309,14 @@ export default class Play extends Phaser.Scene {
 
     this.music.play(musicConfig);
 
-    this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', color: '#FF69B4' });
-    this.streakText = this.add.text(16, 48, 'Streak: 0', { fontSize: '32px', color: '#FF69B4' });
+    this.scoreText = this.add.text(16, 16, "Score: 0", {
+      fontSize: "32px",
+      color: "#FF69B4",
+    });
+    this.streakText = this.add.text(16, 48, "Streak: 0", {
+      fontSize: "32px",
+      color: "#FF69B4",
+    });
 
     this.kb1 = this.physics.add
       .sprite(this.scale.width / 1.945, this.scale.height / 5.05, "kb1")
@@ -509,7 +525,11 @@ export default class Play extends Phaser.Scene {
 
         this.physics.pause();
         this.gameTime.paused = true;
-        this.pause = this.add.text(this.scale.width / 2, this.scale.height / 2, 'PAUSE');
+        this.pause = this.add.text(
+          this.scale.width / 2,
+          this.scale.height / 2,
+          "PAUSE"
+        );
         //load sprite to show that the user has paused
       } else if (this.pausePhysics) {
         this.pause.destroy();
@@ -519,58 +539,56 @@ export default class Play extends Phaser.Scene {
       }
     });
     this.input.keyboard.on("keydown-ESC", () => {
-      if(!this.music.mute) {
+      if (!this.music.mute) {
         this.music.mute = true;
       } else if (this.music.mute) {
         this.music.mute = false;
       }
-    })
+    });
   }
 
   update() {
     //need to short circuit this with array length first so that when it is empty it doesn't give us an error at midCharactersInGame[0].getBounds();
-    
+
     if (topCharactersInGame.length) {
-      if (!Phaser.Geom.Rectangle.Overlaps(
-        this.scene.scene.physics.world.bounds,
-        topCharactersInGame[0].getBounds())
-      ){ 
+      if (
+        !Phaser.Geom.Rectangle.Overlaps(
+          this.scene.scene.physics.world.bounds,
+          topCharactersInGame[0].getBounds()
+        )
+      ) {
         this.setMisses(topCharactersInGame[0].frame.name);
         this.streak = 0;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         destroy("top");
-      } else {
-        this.collisionHandlerTop(topCharactersInGame[0], this.kb1)
       }
     }
-      
-   
 
     if (midCharactersInGame.length) {
-      if (!Phaser.Geom.Rectangle.Overlaps(
-        this.scene.scene.physics.world.bounds,
-        midCharactersInGame[0].getBounds())
-      ){ 
+      if (
+        !Phaser.Geom.Rectangle.Overlaps(
+          this.scene.scene.physics.world.bounds,
+          midCharactersInGame[0].getBounds()
+        )
+      ) {
         this.setMisses(midCharactersInGame[0].frame.name);
         this.streak = 0;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         destroy("mid");
-      } else {
-        this.collisionHandlerMid(midCharactersInGame[0], this.kb1)
       }
     }
 
     if (botCharactersInGame.length) {
-      if (!Phaser.Geom.Rectangle.Overlaps(
-        this.scene.scene.physics.world.bounds,
-        botCharactersInGame[0].getBounds())
-      ){ 
+      if (
+        !Phaser.Geom.Rectangle.Overlaps(
+          this.scene.scene.physics.world.bounds,
+          botCharactersInGame[0].getBounds()
+        )
+      ) {
         this.setMisses(botCharactersInGame[0].frame.name);
         this.streak = 0;
-        this.streakText.setText('Streak: ' + this.streak);
+        this.streakText.setText("Streak: " + this.streak);
         destroy("bot");
-      } else {
-        this.collisionHandlerBottom(botCharactersInGame[0], this.kb1)
       }
     }
 
