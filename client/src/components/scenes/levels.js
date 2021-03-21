@@ -81,17 +81,16 @@ export default class Levels extends Phaser.Scene {
     kb.setFrame(1);
     lvl1.setTint(0x6aa84f);
 
-    left.on("pointerdown", function () {
+    left.on("pointerdown", () => {
       if (frame > 0) {
         frame--;
         slide.setFrame(frame);
+
         this.velocity -= 100;
         this.interval += 1000;
-        console.log(this.velocity);
-        console.log(this.interval);
       }
     });
-    right.on("pointerdown", function () {
+    right.on("pointerdown", () => {
       if (frame < 3) {
         frame++;
         slide.setFrame(frame);
@@ -103,7 +102,7 @@ export default class Levels extends Phaser.Scene {
     for (let [key, lvl] of Object.entries(this.levels)) {
       lvl.on(
         "pointerover",
-        function () {
+        () => {
           if (!this.levelState[key]) {
             lvl.setTint(0xff00ff);
           }
@@ -112,7 +111,7 @@ export default class Levels extends Phaser.Scene {
       );
       lvl.on(
         "pointerout",
-        function () {
+        () => {
           if (!this.levelState[key]) {
             lvl.setTint(0xffffff);
           }
@@ -122,7 +121,7 @@ export default class Levels extends Phaser.Scene {
 
       lvl.on(
         "pointerdown",
-        function () {
+        () => {
           lvl10.setTint(0xffffff);
           lvl9.setTint(0xffffff);
           lvl8.setTint(0xffffff);
@@ -289,21 +288,21 @@ export default class Levels extends Phaser.Scene {
 
     back.on(
       "pointerout",
-      function () {
+      () => {
         back.setTint(0xffffff);
       },
       this
     );
     back.on(
       "pointerover",
-      function () {
+      () => {
         back.setTint(0xff00ff);
       },
       this
     );
     back.on(
       "pointerdown",
-      function () {
+      () => {
         this.scene.start("Menu");
       },
       this
@@ -311,21 +310,21 @@ export default class Levels extends Phaser.Scene {
 
     play.on(
       "pointerout",
-      function () {
+      () => {
         play.setTint(0xffffff);
       },
       this
     );
     play.on(
       "pointerover",
-      function () {
+      () => {
         play.setTint(0xff00ff);
       },
       this
     );
     play.on(
       "pointerdown",
-      function () {
+      () => {
         this.scene.start("play", {
           interval: this.interval,
           selectedCharacters: this.selectedCharacters,
