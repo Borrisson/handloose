@@ -18,7 +18,6 @@ import {
   faUserTimes,
   faStar,
   faRunning,
-  faHeartbeat,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -135,19 +134,10 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
               icon={<FontAwesomeIcon icon={faRunning} />}
               className="sidebar item"
             >
-              Streak
+              Longest Streak
             </MenuItem>
             <MenuItem icon={<i></i>} className="sidebar item">
               {getLongestStreakFromUser(state)}
-            </MenuItem>
-            <MenuItem
-              icon={<FontAwesomeIcon icon={faHeartbeat} />}
-              className="sidebar item"
-            >
-              Current Score
-            </MenuItem>
-            <MenuItem icon={<i></i>} className="sidebar item">
-              {score}
             </MenuItem>
           </Menu>
         </SidebarFooter>
