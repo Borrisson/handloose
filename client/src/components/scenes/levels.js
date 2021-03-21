@@ -49,7 +49,7 @@ export default class Levels extends Phaser.Scene {
     const right = this.add.image(925, 750, "arrowRight").setInteractive();
 
     const slide = this.add
-      .sprite(this.scale.width / 2, this.scale.height / 1.5, "slider")
+      .sprite(this.scale.width / 1.92, this.scale.height / 1.4, "slider")
       .setScale(6);
     let frame = 0;
     slide.setFrame(frame);
