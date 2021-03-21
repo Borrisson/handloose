@@ -45,7 +45,7 @@ export default class Levels extends Phaser.Scene {
     window.velocity = 100;
     slide.setFrame(frame);
     window.interval = 3750;
-    window.selectedCharacters = []; // if empty it is all
+    window.selectedCharacters = [1, 4, 7, 10];
 
     const lvl1 = this.add.text(500, 400, "Level 1").setInteractive();
     const lvl2 = this.add.text(500, 450, "Level 2").setInteractive();
@@ -96,7 +96,6 @@ export default class Levels extends Phaser.Scene {
     });
 
     for (let [key, lvl] of Object.entries(this.levels)) {
-      console.log(key);
       lvl.on(
         "pointerover",
         function () {
