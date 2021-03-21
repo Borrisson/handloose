@@ -42,10 +42,10 @@ export default class Levels extends Phaser.Scene {
 
     const slide = this.add.sprite(625, 700, "slider").setScale(5);
     let frame = 0;
-    window.velocity = 100;
+    this.velocity = 100;
     slide.setFrame(frame);
-    window.interval = 3750;
-    window.selectedCharacters = [1, 4, 7, 10];
+    this.interval = 3750;
+    this.selectedCharacters = [1, 4, 7, 10];
 
     const lvl1 = this.add.text(500, 400, "Level 1").setInteractive();
     const lvl2 = this.add.text(500, 450, "Level 2").setInteractive();
@@ -82,16 +82,16 @@ export default class Levels extends Phaser.Scene {
       if (frame > 0) {
         frame--;
         slide.setFrame(frame);
-        window.velocity -= 100;
-        window.interval += 1000;
+        this.velocity -= 100;
+        this.interval += 1000;
       }
     });
     right.on("pointerdown", function () {
       if (frame < 3) {
         frame++;
         slide.setFrame(frame);
-        window.velocity += 100;
-        window.interval -= 1000;
+        this.velocity += 100;
+        this.interval -= 1000;
       }
     });
 
@@ -134,16 +134,16 @@ export default class Levels extends Phaser.Scene {
 
           switch (key) {
             case "lvl1":
-              window.selectedCharacters = [1, 4, 7, 10];
+              this.selectedCharacters = [1, 4, 7, 10];
               break;
             case "lvl2":
-              window.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
+              this.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
               break;
             case "lvl3":
-              window.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
+              this.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
               break;
             case "lvl4":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 3,
@@ -159,7 +159,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl5":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 3,
@@ -178,7 +178,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl6":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 2,
@@ -199,7 +199,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl7":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 2,
@@ -222,7 +222,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl8":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 2,
@@ -247,7 +247,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl9":
-              window.selectedCharacters = [
+              this.selectedCharacters = [
                 0,
                 1,
                 2,
@@ -274,7 +274,7 @@ export default class Levels extends Phaser.Scene {
               ];
               break;
             case "lvl10":
-              window.selectedCharacters = [];
+              this.selectedCharacters = [];
               break;
           }
         },
