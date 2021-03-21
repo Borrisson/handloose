@@ -3,8 +3,10 @@ import React, { useEffect } from "react";
 import Menu from "./scenes/menu";
 import Levels from "./scenes/levels";
 import Play from "./scenes/play";
+import Endgame from "./scenes/endgame";
 
 export default class Game extends React.Component {
+  
   componentDidMount() {
     const config = {
       scale: {
@@ -21,9 +23,10 @@ export default class Game extends React.Component {
           debug: true,
         },
       },
-      scene: [Menu, Levels, new Play(this.props)],
+      scene: [Menu, Levels, new Play(this.props), Endgame],
     };
     new Phaser.Game(config);
+    
   }
   shouldComponentUpdate() {
     return false;
