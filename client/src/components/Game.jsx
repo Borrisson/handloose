@@ -23,7 +23,7 @@ export default class Game extends React.Component {
           debug: true,
         },
       },
-      scene: [Menu, Levels, new Play(this.props)],
+      scene: [Menu, Levels, new Play(this.props), Endgame],
     };
     new Phaser.Game(config);
     

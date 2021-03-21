@@ -10,6 +10,9 @@ export default class Endgame extends Phaser.Scene {
   init (data)
   {
     this.score = data.score;
+    this.top = data.top;
+    this.mid = data.mid;
+    this.bot = data.bot;
     
   }
   create () {
@@ -20,7 +23,10 @@ export default class Endgame extends Phaser.Scene {
     this.menu = this.add.text(this.scale.width / 2.1, this.scale.height / 1.8, 'Menu').setInteractive();
 
     this.menu.on('pointerdown', function () {
-      this.sound.removeByKey("main_theme");
+      this.sound.removeByKey("main_theme")
+      this.bot = [];
+      this.top = [];
+      this.mid = [];
       this.scene.stop();
       this.scene.start('Levels')
     }, this);

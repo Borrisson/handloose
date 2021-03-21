@@ -1,10 +1,7 @@
 import Phaser from "phaser";
 import { decipher } from "../../helpers/selectors";
 
-let topCharactersInGame = [];
-let midCharactersInGame = [];
-let botCharactersInGame = [];
-console.log(midCharactersInGame);
+
 
 const position = [
   3.34, // Q
@@ -36,32 +33,33 @@ const position = [
 ];
 
 
-function destroy(row) {
-  switch (row) {
-    case "top":
-      topCharactersInGame[0].destroy();
-      topCharactersInGame.shift();
-      break;
-    case "mid":
-      midCharactersInGame[0].destroy();
-      midCharactersInGame.shift();
-      break;
-    case "bot":
-      botCharactersInGame[0].destroy();
-      botCharactersInGame.shift();
-      break;
-  }
-}
+
 
 export default class Play extends Phaser.Scene {
   constructor(props) {
     super("play");
-    this.hits = [];
-    this.misses = [];
     this.props = props;
-    this.score = 0;
-    this.streak = 0;
-    this.endgame = false;
+    this.topCharactersInGame = [];
+    this.midCharactersInGame = [];
+    this.botCharactersInGame = [];
+    
+  }
+  
+  destroy(row) {
+    switch (row) {
+      case "top":
+        this.topCharactersInGame[0].destroy();
+        this.topCharactersInGame.shift();
+        break;
+      case "mid":
+        this.midCharactersInGame[0].destroy();
+        this.midCharactersInGame.shift();
+        break;
+      case "bot":
+        this.botCharactersInGame[0].destroy();
+        this.botCharactersInGame.shift();
+        break;
+    }
   }
 
   setHits(charNumber) {
@@ -96,13 +94,13 @@ export default class Play extends Phaser.Scene {
           kbSprite.getBounds()
         )
       ) {
-        destroy("top");
+        this.destroy("top");
         this.streak = 0;
         this.streakText.setText("Streak: " + this.streak);
         this.setMisses(name);
       } else {
         console.log(this.hits.length);
-        destroy("top");
+        this.destroy("top");
         this.score += 100;
         this.scoreText.setText("Score: " + this.score);
         this.streak += 1;
@@ -138,7 +136,7 @@ export default class Play extends Phaser.Scene {
         this.streakText.setText("Streak: " + this.streak);
         this.setMisses(name);
       } else {
-        destroy("mid");
+        this.destroy("mid");
         this.score += 100;
         this.scoreText.setText("Score: " + this.score);
         this.streak += 1;
@@ -168,13 +166,13 @@ export default class Play extends Phaser.Scene {
           kbSprite.getBounds()
         )
       ) {
-        destroy("bot");
+        this.destroy("bot");
         this.streak = 0;
         this.streakText.setText("Streak: " + this.streak);
         this.setMisses(name);
       } else {
         console.log(this.hits.length);
-        destroy("bot");
+        this.destroy("bot");
         this.score += 100;
         this.scoreText.setText("Score: " + this.score);
         this.streak += 1;
@@ -205,31 +203,31 @@ export default class Play extends Phaser.Scene {
       const firstRow = [0, 3, 6, 9, 12, 15, 18, 21, 23, 25];
       const lastRow = [2, 5, 8, 11, 14, 17, 20];
       if (firstRow.includes(shifty.x)) {
-        topCharactersInGame.push(this.letter);
+        this.topCharactersInGame.push(this.letter);
       } else if (lastRow.includes(shifty.x)) {
-        botCharactersInGame.push(this.letter);
+        this.botCharactersInGame.push(this.letter);
       } else {
-        midCharactersInGame.push(this.letter);
+        this.midCharactersInGame.push(this.letter);
       }
     }
   }
 
   randomizer() {
-    const listOfCharacters = [];
+    this.listOfCharacters = [];
     if (!this.selectedCharacters.length) {
-      while (listOfCharacters.length < 3) {
-        listOfCharacters.push(Math.floor(Math.random() * 26));
+      while (this.listOfCharacters.length < 3) {
+        this.listOfCharacters.push(Math.floor(Math.random() * 26));
       }
     } else {
-      while (listOfCharacters.length < 3) {
-        listOfCharacters.push(
+      while (this.listOfCharacters.length < 3) {
+        this.listOfCharacters.push(
           this.selectedCharacters[
             Math.floor(Math.random() * this.selectedCharacters.length)
           ]
         );
       }
     }
-    return listOfCharacters;
+    return this.listOfCharacters;
   }
 
   preload() {
@@ -258,7 +256,16 @@ export default class Play extends Phaser.Scene {
     this.selectedCharacters = data.selectedCharacters;
   }
 
+  
+
   create() {
+    this.hits = [];
+    this.misses = [];
+    
+    this.score = 0;
+    this.streak = 0;
+    this.endgame = false;
+    
     this.characters = this.randomizer().map((x) => {
       return {
         width: this.scale.width / position[x],
@@ -500,7 +507,7 @@ export default class Play extends Phaser.Scene {
     this.scale.on("resize", this.resize, this);
 
     this.physics.add.overlap(
-      topCharactersInGame,
+      this.topCharactersInGame,
       this.kb1,
       this.collisionHandlerTop,
       null,
@@ -508,7 +515,7 @@ export default class Play extends Phaser.Scene {
     );
 
     this.physics.add.overlap(
-      midCharactersInGame,
+      this.midCharactersInGame,
       this.kb2,
       this.collisionHandlerMid,
       null,
@@ -516,7 +523,7 @@ export default class Play extends Phaser.Scene {
     );
 
     this.physics.add.overlap(
-      botCharactersInGame,
+      this.botCharactersInGame,
       this.kb3,
       this.collisionHandlerBottom,
       null,
@@ -553,54 +560,54 @@ export default class Play extends Phaser.Scene {
   update() {
     //need to short circuit this with array length first so that when it is empty it doesn't give us an error at midCharactersInGame[0].getBounds();
 
-    if (topCharactersInGame.length) {
+    if (this.topCharactersInGame.length) {
       if (
         !Phaser.Geom.Rectangle.Overlaps(
           this.scene.scene.physics.world.bounds,
-          topCharactersInGame[0].getBounds()
+          this.topCharactersInGame[0].getBounds()
         )
       ) {
-        this.setMisses(topCharactersInGame[0].frame.name);
+        this.setMisses(this.topCharactersInGame[0].frame.name);
         this.streak = 0;
         this.streakText.setText("Streak: " + this.streak);
-        destroy("top");
+        this.destroy("top");
       }
     }
 
-    if (midCharactersInGame.length) {
+    if (this.midCharactersInGame.length) {
       if (
         !Phaser.Geom.Rectangle.Overlaps(
           this.scene.scene.physics.world.bounds,
-          midCharactersInGame[0].getBounds()
+          this.midCharactersInGame[0].getBounds()
         )
       ) {
-        this.setMisses(midCharactersInGame[0].frame.name);
+        this.setMisses(this.midCharactersInGame[0].frame.name);
         this.streak = 0;
         this.streakText.setText("Streak: " + this.streak);
-        destroy("mid");
+        this.destroy("mid");
       }
     }
 
-    if (botCharactersInGame.length) {
+    if (this.botCharactersInGame.length) {
       if (
         !Phaser.Geom.Rectangle.Overlaps(
           this.scene.scene.physics.world.bounds,
-          botCharactersInGame[0].getBounds()
+          this.botCharactersInGame[0].getBounds()
         )
       ) {
-        this.setMisses(botCharactersInGame[0].frame.name);
+        this.setMisses(this.botCharactersInGame[0].frame.name);
         this.streak = 0;
         this.streakText.setText("Streak: " + this.streak);
-        destroy("bot");
+        this.destroy("bot");
       }
     }
 
     // end game goes here
 
     if (
-      !midCharactersInGame.length &&
-      !topCharactersInGame.length &&
-      !botCharactersInGame.length
+      !this.midCharactersInGame.length &&
+      !this.topCharactersInGame.length &&
+      !this.botCharactersInGame.length
     ) {
       if (!this.endgame) {
         this.endgame = true;
@@ -625,8 +632,10 @@ export default class Play extends Phaser.Scene {
             },
             accuracies
           );
+          
         }
-
+        this.scene.stop();
+        this.scene.start('endgame', {score: this.score, top: this.topCharactersInGame, mid: this.midCharactersInGame, bot: this.botCharactersInGame });
         //this is where we'll add the change scene
       }
       // before scene change we'll send data to the back

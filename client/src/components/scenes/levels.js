@@ -17,9 +17,7 @@ export default class Levels extends Phaser.Scene {
       lvl10: false,
     };
 
-    this.velocity = 100;
-    this.interval = 3750;
-    this.selectedCharacters = [1, 4, 7, 10];
+    
   }
 
   resetState(toggleKey) {
@@ -42,6 +40,10 @@ export default class Levels extends Phaser.Scene {
     this.load.image("arrowRight", "assets/arrowRight.png");
   }
   create() {
+    this.velocity = 100;
+    this.interval = 3750;
+    this.selectedCharacters = [1, 4, 7, 10];
+    
     const left = this.add.image(450, 750, "arrowLeft").setInteractive();
     const right = this.add.image(750, 750, "arrowRight").setInteractive();
 
