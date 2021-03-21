@@ -3,6 +3,7 @@ import Phaser from "phaser";
 export default class Levels extends Phaser.Scene {
   constructor() {
     super("Levels");
+
     this.levelState = {
       lvl1: true,
       lvl2: false,
@@ -15,6 +16,10 @@ export default class Levels extends Phaser.Scene {
       lvl9: false,
       lvl10: false,
     };
+
+    this.velocity = 100;
+    this.interval = 3750;
+    this.selectedCharacters = [1, 4, 7, 10];
   }
 
   resetState(toggleKey) {
@@ -42,10 +47,7 @@ export default class Levels extends Phaser.Scene {
 
     const slide = this.add.sprite(625, 700, "slider").setScale(5);
     let frame = 0;
-    this.velocity = 100;
     slide.setFrame(frame);
-    this.interval = 3750;
-    this.selectedCharacters = [1, 4, 7, 10];
 
     const lvl1 = this.add.text(500, 400, "Level 1").setInteractive();
     const lvl2 = this.add.text(500, 450, "Level 2").setInteractive();
@@ -78,12 +80,15 @@ export default class Levels extends Phaser.Scene {
     const kb = this.add.sprite(500, 200, "keyboard").setScale(5);
     kb.setFrame(1);
     lvl1.setTint(0x6aa84f);
+
     left.on("pointerdown", function () {
       if (frame > 0) {
         frame--;
         slide.setFrame(frame);
         this.velocity -= 100;
         this.interval += 1000;
+        console.log(this.velocity);
+        console.log(this.interval);
       }
     });
     right.on("pointerdown", function () {
