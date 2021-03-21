@@ -111,15 +111,22 @@ export default class Play extends Phaser.Scene {
       (Phaser.Input.Keyboard.JustDown(this.key_I) && char === "I") ||
       (Phaser.Input.Keyboard.JustDown(this.key_O) && char === "O") ||
       (Phaser.Input.Keyboard.JustDown(this.key_P) && char === "P")
-    ) {
-      console.log(this.hits.length);
-      destroy("top");
-      this.score += 100;
-      this.scoreText.setText('Score: ' + this.score);
-      this.streak += 1;
-      this.streakText.setText('Streak: ' + this.streak);
-      this.setHits(name);
-    }
+    ) if (!Phaser.Geom.Rectangle.Overlaps(charSprite.getBounds(), kbSprite.getBounds()))
+      {
+        destroy("top");
+        this.streak = 0;
+        this.streakText.setText('Streak: ' + this.streak);
+        this.setMisses(name);
+      
+      } else {
+        console.log(this.hits.length);
+        destroy("top");
+        this.score += 100;
+        this.scoreText.setText('Score: ' + this.score);
+        this.streak += 1;
+        this.streakText.setText('Streak: ' + this.streak);
+        this.setHits(name);
+      } 
   }
   collisionHandlerMid(charSprite, kbSprite) {
     const {
@@ -138,14 +145,20 @@ export default class Play extends Phaser.Scene {
       (Phaser.Input.Keyboard.JustDown(this.key_J) && char === "J") ||
       (Phaser.Input.Keyboard.JustDown(this.key_K) && char === "K") ||
       (Phaser.Input.Keyboard.JustDown(this.key_L) && char === "L")
-    ) {
-      console.log(this.hits.length);
-      destroy("mid");
-      this.score += 100;
-      this.scoreText.setText('Score: ' + this.score);
-      this.streak += 1;
-      this.streakText.setText('Streak: ' + this.streak);
-      this.setHits(name);
+    ) if (!Phaser.Geom.Rectangle.Overlaps(charSprite.getBounds(), kbSprite.getBounds()))
+      {
+        this.streak = 0;
+        this.streakText.setText('Streak: ' + this.streak);
+        this.setMisses(name);
+      
+      } else {
+        console.log(this.hits.length);
+        destroy("mid");
+        this.score += 100;
+        this.scoreText.setText('Score: ' + this.score);
+        this.streak += 1;
+        this.streakText.setText('Streak: ' + this.streak);
+        this.setHits(name);
     }
   }
   collisionHandlerBottom(charSprite, kbSprite) {
@@ -163,13 +176,30 @@ export default class Play extends Phaser.Scene {
       (Phaser.Input.Keyboard.JustDown(this.key_N) && char === "N") ||
       (Phaser.Input.Keyboard.JustDown(this.key_M) && char === "M")
     ) {
-      console.log(this.hits.length);
-      destroy("bot");
-      this.score += 100;
-      this.scoreText.setText('Score: ' + this.score);
-      this.streak += 1;
-      this.streakText.setText('Streak: ' + this.streak);
-      this.setHits(name);
+      if (!Phaser.Geom.Rectangle.Overlaps(charSprite.getBounds(), kbSprite.getBounds()))
+      {
+        destroy("bot");
+        this.streak = 0;
+        this.streakText.setText('Streak: ' + this.streak);
+        this.setMisses(name);
+      
+      } else {
+        console.log(this.hits.length);
+        destroy("bot");
+        this.score += 100;
+        this.scoreText.setText('Score: ' + this.score);
+        this.streak += 1;
+        this.streakText.setText('Streak: ' + this.streak);
+        this.setHits(name);
+
+      }
+      // console.log(this.hits.length);
+      // destroy("bot");
+      // this.score += 100;
+      // this.scoreText.setText('Score: ' + this.score);
+      // this.streak += 1;
+      // this.streakText.setText('Streak: ' + this.streak);
+      // this.setHits(name);
     }
   }
   getLetter() {
@@ -499,40 +529,49 @@ export default class Play extends Phaser.Scene {
 
   update() {
     //need to short circuit this with array length first so that when it is empty it doesn't give us an error at midCharactersInGame[0].getBounds();
-    if (
-      topCharactersInGame.length &&
-      !Phaser.Geom.Rectangle.Overlaps(
+    
+    if (topCharactersInGame.length) {
+      if (!Phaser.Geom.Rectangle.Overlaps(
         this.scene.scene.physics.world.bounds,
-        topCharactersInGame[0].getBounds()
-      )
-    ) {
-      this.setMisses(topCharactersInGame[0].frame.name);
-      this.streak = 0;
-      destroy("top");
+        topCharactersInGame[0].getBounds())
+      ){ 
+        this.setMisses(topCharactersInGame[0].frame.name);
+        this.streak = 0;
+        this.streakText.setText('Streak: ' + this.streak);
+        destroy("top");
+      } else {
+        this.collisionHandlerTop(topCharactersInGame[0], this.kb1)
+      }
+    }
+      
+   
+
+    if (midCharactersInGame.length) {
+      if (!Phaser.Geom.Rectangle.Overlaps(
+        this.scene.scene.physics.world.bounds,
+        midCharactersInGame[0].getBounds())
+      ){ 
+        this.setMisses(midCharactersInGame[0].frame.name);
+        this.streak = 0;
+        this.streakText.setText('Streak: ' + this.streak);
+        destroy("mid");
+      } else {
+        this.collisionHandlerMid(midCharactersInGame[0], this.kb1)
+      }
     }
 
-    if (
-      midCharactersInGame.length &&
-      !Phaser.Geom.Rectangle.Overlaps(
+    if (botCharactersInGame.length) {
+      if (!Phaser.Geom.Rectangle.Overlaps(
         this.scene.scene.physics.world.bounds,
-        midCharactersInGame[0].getBounds()
-      )
-    ) {
-      this.setMisses(midCharactersInGame[0].frame.name);
-      this.streak = 0;
-      destroy("mid");
-    }
-
-    if (
-      botCharactersInGame.length &&
-      !Phaser.Geom.Rectangle.Overlaps(
-        this.scene.scene.physics.world.bounds,
-        botCharactersInGame[0].getBounds()
-      )
-    ) {
-      this.setMisses(botCharactersInGame[0].frame.name);
-      this.streak = 0;
-      destroy("bot");
+        botCharactersInGame[0].getBounds())
+      ){ 
+        this.setMisses(botCharactersInGame[0].frame.name);
+        this.streak = 0;
+        this.streakText.setText('Streak: ' + this.streak);
+        destroy("bot");
+      } else {
+        this.collisionHandlerBot(botCharactersInGame[0], this.kb1)
+      }
     }
 
     // end game goes here
@@ -544,6 +583,7 @@ export default class Play extends Phaser.Scene {
     ) {
       // before scene change we'll send data to the back
       //change state, axios call, then change scene it that order
+
       console.log("endgame");
       console.log(this.hits);
     }
@@ -558,7 +598,7 @@ export default class Play extends Phaser.Scene {
     this.kb1.setPosition(width / 1.945, height / 5.05);
     this.kb2.setPosition(width / 2.01, height / 3.9);
     this.kb3.setPosition(width / 2.175, height / 3.1);
-    this.pause.setPosition(width / 2, height /2);
+    this.pause.setPosition(width / 2, height / 2);
   }
 }
 
