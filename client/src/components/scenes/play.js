@@ -3,6 +3,7 @@ import { decipher } from "../../helpers/selectors";
 const topCharactersInGame = [];
 const midCharactersInGame = [];
 const botCharactersInGame = [];
+let endgame = false;
 
 const position = [
   3.34, // Q
@@ -43,11 +44,11 @@ function checkOverlap(spriteA, spriteB) {
 function randomizer() {
   const listOfCharacters = [];
   if (!window.selectedCharacters.length) {
-    while (listOfCharacters.length < 140) {
+    while (listOfCharacters.length < 1) {
       listOfCharacters.push(Math.floor(Math.random() * (26 - 0)) + 0);
     }
   } else {
-    while (listOfCharacters.length < 140) {
+    while (listOfCharacters.length < 1) {
       listOfCharacters.push(
         window.selectedCharacters[
           Math.floor(Math.random() * window.selectedCharacters.length)
@@ -599,6 +600,31 @@ export default class Play extends Phaser.Scene {
       !topCharactersInGame.length &&
       !botCharactersInGame.length
     ) {
+      if (!endgame) {
+        endgame = true;
+        const accuracies = [];
+        this.hits.map((character) => {
+          return { character, hit: true }
+        });
+        this.misses.map((character) => {
+          return { character, hit: false }
+        });
+        accuracies.concat(this.hits).concat(this.misses);
+        console.log(accuracies);
+       // Promise.all([
+       //   axios.post('/api/games', {
+       //     score: this.score,
+       //     longest_streak: this.longest_streak, 
+       //     key_stroke_frequency: window.interval,
+       //     user_id: this.user_id
+        //  }),
+       //  axios.post('/api/accrucies', {
+        //    accuracies
+        //  })
+      //])
+      //this is where we'll add the change scene
+      
+      }
       // before scene change we'll send data to the back
       //change state, axios call, then change scene it that order
 
