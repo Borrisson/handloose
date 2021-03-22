@@ -11,7 +11,6 @@ import Game from "./Game";
 const App = () => {
   const {
     state,
-    dispatch,
     handleAppData,
     loggedIn,
     handleLogout,
