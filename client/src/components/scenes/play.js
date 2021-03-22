@@ -391,7 +391,7 @@ export default class Play extends Phaser.Scene {
       });
     }
   }
-  resize(gameSize, baseSize, displaySize, resolution) {
+  resize(gameSize) {
     const width = gameSize.width;
     const height = gameSize.height;
 
