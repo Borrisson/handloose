@@ -65,6 +65,7 @@ export default class Play extends Phaser.Scene {
             (27 - this.selectedCharacters.length)
         ));
     this.scoreText.setText("Score: " + this.score);
+    this.charactersLeft.setText("Characters Left: " + this.characters.length);
     this.streak += 1;
     this.longest_streak =
       this.longest_streak < this.streak ? this.streak : this.longest_streak;
@@ -214,6 +215,10 @@ export default class Play extends Phaser.Scene {
       fontSize: "32px",
       color: "#FF69B4",
     });
+    this.charactersLeft = this.add.text(16, 80, "Characters Left: 140", {
+      fontSize: "32px",
+      color: "#FF69B4",
+    });
 
     this.kb1 = this.physics.add
       .sprite(this.scale.width / 1.945, this.scale.height / 5.05, "kb1")
@@ -330,6 +335,7 @@ export default class Play extends Phaser.Scene {
     ) {
       this.setMisses(this.topCharactersInGame[0].frame.name);
       this.destroy("top");
+      this.charactersLeft.setText("Characters Left: " + this.characters.length);
     }
 
     if (
@@ -341,6 +347,7 @@ export default class Play extends Phaser.Scene {
     ) {
       this.setMisses(this.midCharactersInGame[0].frame.name);
       this.destroy("mid");
+      this.charactersLeft.setText("Characters Left: " + this.characters.length);
     }
 
     if (
@@ -352,6 +359,7 @@ export default class Play extends Phaser.Scene {
     ) {
       this.setMisses(this.botCharactersInGame[0].frame.name);
       this.destroy("bot");
+      this.charactersLeft.setText("Characters Left: " + this.characters.length);
     }
 
     if (
