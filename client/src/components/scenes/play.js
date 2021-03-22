@@ -200,7 +200,7 @@ export default class Play extends Phaser.Scene {
 
     this.music.play(musicConfig);
 
-    this.scoreText = this.add.text(16, 16, "Score: 0", {
+    this.scoreText = this.add.text(this.scale.width/100, this.scale.height / 10, "Score: 0", {
       fontSize: "32px",
       color: "#FF69B4",
     });
@@ -285,7 +285,7 @@ export default class Play extends Phaser.Scene {
       callbackScope: this,
     });
 
-    this.scale.on("resize", this.resize, this);
+    
 
     this.input.keyboard.on("keyup-SPACE", () => {
       if (!this.pausePhysics) {
@@ -395,17 +395,6 @@ export default class Play extends Phaser.Scene {
       });
     }
   }
-  resize(gameSize) {
-    const width = gameSize.width;
-    const height = gameSize.height;
-
-    this.cameras.resize(width, height);
-
-    this.kb1.setPosition(width / 1.945, height / 5.05);
-    this.kb2.setPosition(width / 2.01, height / 3.9);
-    this.kb3.setPosition(width / 2.175, height / 3.1);
-    if (this.pause) {
-      this.pause.setPosition(width / 2, height / 2);
-    }
-  }
+  
+  
 }
