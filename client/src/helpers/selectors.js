@@ -67,5 +67,7 @@ export function decipher(num) {
       return "L";
     case 25:
       return "P";
+    default:
+      break;
   }
 }

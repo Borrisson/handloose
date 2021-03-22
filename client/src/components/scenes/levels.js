@@ -355,6 +355,9 @@ export default class Levels extends Phaser.Scene {
             case "lvl10":
               this.selectedCharacters = [];
               break;
+            default:
+              this.selectedCharacters = [];
+              break;
           }
         },
         this

@@ -50,6 +50,8 @@ export default class Play extends Phaser.Scene {
         this.botCharactersInGame[0].destroy();
         this.botCharactersInGame.shift();
         break;
+      default:
+        break;
     }
   }
 
@@ -266,6 +268,8 @@ export default class Play extends Phaser.Scene {
                 eventName.originalEvent.key.toUpperCase(),
                 "bot"
               );
+              break;
+            default:
               break;
           }
         });
