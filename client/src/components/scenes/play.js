@@ -68,7 +68,7 @@ export default class Play extends Phaser.Scene {
     this.streakText.setText("Streak: " + this.streak);
   }
 
-  collisionHandlerTop(charSprite, kbSprite, keypress) {
+  collisionHandler(charSprite, kbSprite, keypress, row) {
     if (charSprite) {
       const {
         frame: { name },
@@ -83,52 +83,7 @@ export default class Play extends Phaser.Scene {
         ) &&
         keypress === char
       ) {
-        this.destroy("top");
-        this.setHits(name);
-      } else {
-        this.setMisses(name);
-      }
-    }
-  }
-  collisionHandlerMid(charSprite, kbSprite, keypress) {
-    if (charSprite) {
-      const {
-        frame: { name },
-      } = charSprite;
-
-      const char = decipher(name);
-
-      if (
-        Phaser.Geom.Rectangle.Overlaps(
-          charSprite.getBounds(),
-          kbSprite.getBounds()
-        ) &&
-        keypress === char
-      ) {
-        this.destroy("mid");
-        this.setHits(name);
-      } else {
-        this.setMisses(name);
-      }
-    }
-  }
-
-  collisionHandlerBottom(charSprite, kbSprite, keypress) {
-    if (charSprite) {
-      const {
-        frame: { name },
-      } = charSprite;
-
-      const char = decipher(name);
-
-      if (
-        Phaser.Geom.Rectangle.Overlaps(
-          charSprite.getBounds(),
-          kbSprite.getBounds()
-        ) &&
-        keypress === char
-      ) {
-        this.destroy("bot");
+        this.destroy(row);
         this.setHits(name);
       } else {
         this.setMisses(name);
@@ -284,24 +239,27 @@ export default class Play extends Phaser.Scene {
           this[`kb${index + 1}`].setFrame(keysArrayOfRow.indexOf(gameKey) + 1);
           switch (index) {
             case 0:
-              this.collisionHandlerTop(
+              this.collisionHandler(
                 this.topCharactersInGame[0],
                 this.kb1,
-                eventName.originalEvent.key.toUpperCase()
+                eventName.originalEvent.key.toUpperCase(),
+                "top"
               );
               break;
             case 1:
-              this.collisionHandlerMid(
+              this.collisionHandler(
                 this.midCharactersInGame[0],
                 this.kb2,
-                eventName.originalEvent.key.toUpperCase()
+                eventName.originalEvent.key.toUpperCase(),
+                "mid"
               );
               break;
             case 2:
-              this.collisionHandlerBottom(
+              this.collisionHandler(
                 this.botCharactersInGame[0],
                 this.kb3,
-                eventName.originalEvent.key.toUpperCase()
+                eventName.originalEvent.key.toUpperCase(),
+                "bot"
               );
               break;
           }
