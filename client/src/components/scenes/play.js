@@ -55,9 +55,17 @@ export default class Play extends Phaser.Scene {
 
   setHits(charNumber) {
     this.hits.push(decipher(charNumber));
+    this.score += 100;
+    this.scoreText.setText("Score: " + this.score);
+    this.streak += 1;
+    this.streakText.setText("Streak: " + this.streak);
   }
   setMisses(charNumber) {
     this.misses.push(decipher(charNumber));
+    this.streak = 0;
+    this.longest_streak =
+      this.longest_streak < this.streak ? this.streak : this.longest_streak;
+    this.streakText.setText("Streak: " + this.streak);
   }
 
   collisionHandlerTop(charSprite, kbSprite, keypress) {
@@ -68,24 +76,17 @@ export default class Play extends Phaser.Scene {
 
       const char = decipher(name);
 
-      if (char === keypress) {
-        if (
-          !Phaser.Geom.Rectangle.Overlaps(
-            charSprite.getBounds(),
-            kbSprite.getBounds()
-          )
-        ) {
-          this.streak = 0;
-          this.streakText.setText("Streak: " + this.streak);
-          this.setMisses(name);
-        } else {
-          this.destroy("top");
-          this.score += 100;
-          this.scoreText.setText("Score: " + this.score);
-          this.streak += 1;
-          this.streakText.setText("Streak: " + this.streak);
-          this.setHits(name);
-        }
+      if (
+        Phaser.Geom.Rectangle.Overlaps(
+          charSprite.getBounds(),
+          kbSprite.getBounds()
+        ) &&
+        keypress === char
+      ) {
+        this.destroy("top");
+        this.setHits(name);
+      } else {
+        this.setMisses(name);
       }
     }
   }
@@ -98,33 +99,16 @@ export default class Play extends Phaser.Scene {
       const char = decipher(name);
 
       if (
-        char === "A" ||
-        char === "S" ||
-        char === "D" ||
-        char === "F" ||
-        char === "G" ||
-        char === "H" ||
-        char === "J" ||
-        char === "K" ||
-        char === "L"
+        Phaser.Geom.Rectangle.Overlaps(
+          charSprite.getBounds(),
+          kbSprite.getBounds()
+        ) &&
+        keypress === char
       ) {
-        if (
-          !Phaser.Geom.Rectangle.Overlaps(
-            charSprite.getBounds(),
-            kbSprite.getBounds()
-          )
-        ) {
-          this.streak = 0;
-          this.streakText.setText("Streak: " + this.streak);
-          this.setMisses(name);
-        } else {
-          this.destroy("mid");
-          this.score += 100;
-          this.scoreText.setText("Score: " + this.score);
-          this.streak += 1;
-          this.streakText.setText("Streak: " + this.streak);
-          this.setHits(name);
-        }
+        this.destroy("mid");
+        this.setHits(name);
+      } else {
+        this.setMisses(name);
       }
     }
   }
@@ -136,36 +120,22 @@ export default class Play extends Phaser.Scene {
       } = charSprite;
 
       const char = decipher(name);
+
       if (
-        char === "Z" ||
-        char === "X" ||
-        char === "C" ||
-        char === "V" ||
-        char === "B" ||
-        char === "N" ||
-        char === "M"
+        Phaser.Geom.Rectangle.Overlaps(
+          charSprite.getBounds(),
+          kbSprite.getBounds()
+        ) &&
+        keypress === char
       ) {
-        if (
-          !Phaser.Geom.Rectangle.Overlaps(
-            charSprite.getBounds(),
-            kbSprite.getBounds()
-          )
-        ) {
-          this.streak = 0;
-          this.streakText.setText("Streak: " + this.streak);
-          this.setMisses(name);
-        } else {
-          console.log(this.hits.length);
-          this.destroy("bot");
-          this.score += 100;
-          this.scoreText.setText("Score: " + this.score);
-          this.streak += 1;
-          this.streakText.setText("Streak: " + this.streak);
-          this.setHits(name);
-        }
+        this.destroy("bot");
+        this.setHits(name);
+      } else {
+        this.setMisses(name);
       }
     }
   }
+
   getLetter() {
     if (!this.characters.length) {
       this.gameTime.remove(false);
@@ -193,11 +163,11 @@ export default class Play extends Phaser.Scene {
   randomizer() {
     this.listOfCharacters = [];
     if (!this.selectedCharacters.length) {
-      while (this.listOfCharacters.length < 3) {
+      while (this.listOfCharacters.length < 140) {
         this.listOfCharacters.push(Math.floor(Math.random() * 26));
       }
     } else {
-      while (this.listOfCharacters.length < 3) {
+      while (this.listOfCharacters.length < 140) {
         this.listOfCharacters.push(
           this.selectedCharacters[
             Math.floor(Math.random() * this.selectedCharacters.length)
@@ -423,6 +393,7 @@ export default class Play extends Phaser.Scene {
     // end game goes here
 
     if (
+      !this.characters.length &&
       !this.midCharactersInGame.length &&
       !this.topCharactersInGame.length &&
       !this.botCharactersInGame.length
