@@ -298,7 +298,7 @@ export default class Play extends Phaser.Scene {
           this.scale.height / 2,
           "PAUSE"
         );
-      } else if (this.pausePhysics) {
+      } else {
         this.pause.destroy();
         this.pausePhysics = false;
         this.physics.resume();
