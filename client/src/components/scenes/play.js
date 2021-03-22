@@ -523,46 +523,43 @@ export default class Play extends Phaser.Scene {
   update() {
     //need to short circuit this with array length first so that when it is empty it doesn't give us an error at midCharactersInGame[0].getBounds();
 
-    if (this.topCharactersInGame.length) {
-      if (
-        !Phaser.Geom.Rectangle.Overlaps(
-          this.scene.scene.physics.world.bounds,
-          this.topCharactersInGame[0].getBounds()
-        )
-      ) {
-        this.setMisses(this.topCharactersInGame[0].frame.name);
-        this.streak = 0;
-        this.streakText.setText("Streak: " + this.streak);
-        this.destroy("top");
-      }
+    if (
+      this.topCharactersInGame.length &&
+      !Phaser.Geom.Rectangle.Overlaps(
+        this.scene.scene.physics.world.bounds,
+        this.topCharactersInGame[0].getBounds()
+      )
+    ) {
+      this.setMisses(this.topCharactersInGame[0].frame.name);
+      this.streak = 0;
+      this.streakText.setText("Streak: " + this.streak);
+      this.destroy("top");
     }
 
-    if (this.midCharactersInGame.length) {
-      if (
-        !Phaser.Geom.Rectangle.Overlaps(
-          this.scene.scene.physics.world.bounds,
-          this.midCharactersInGame[0].getBounds()
-        )
-      ) {
-        this.setMisses(this.midCharactersInGame[0].frame.name);
-        this.streak = 0;
-        this.streakText.setText("Streak: " + this.streak);
-        this.destroy("mid");
-      }
+    if (
+      this.midCharactersInGame.length &&
+      !Phaser.Geom.Rectangle.Overlaps(
+        this.scene.scene.physics.world.bounds,
+        this.midCharactersInGame[0].getBounds()
+      )
+    ) {
+      this.setMisses(this.midCharactersInGame[0].frame.name);
+      this.streak = 0;
+      this.streakText.setText("Streak: " + this.streak);
+      this.destroy("mid");
     }
 
-    if (this.botCharactersInGame.length) {
-      if (
-        !Phaser.Geom.Rectangle.Overlaps(
-          this.scene.scene.physics.world.bounds,
-          this.botCharactersInGame[0].getBounds()
-        )
-      ) {
-        this.setMisses(this.botCharactersInGame[0].frame.name);
-        this.streak = 0;
-        this.streakText.setText("Streak: " + this.streak);
-        this.destroy("bot");
-      }
+    if (
+      this.botCharactersInGame.length &&
+      !Phaser.Geom.Rectangle.Overlaps(
+        this.scene.scene.physics.world.bounds,
+        this.botCharactersInGame[0].getBounds()
+      )
+    ) {
+      this.setMisses(this.botCharactersInGame[0].frame.name);
+      this.streak = 0;
+      this.streakText.setText("Streak: " + this.streak);
+      this.destroy("bot");
     }
 
     // end game goes here
