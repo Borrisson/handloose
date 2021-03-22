@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import React, { useEffect } from "react";
+import React from "react";
 import Menu from "./scenes/menu";
 import Levels from "./scenes/levels";
 import Play from "./scenes/play";
@@ -23,12 +23,33 @@ export default class Game extends React.Component {
       },
       scene: [Menu, Levels, new Play(this.props), Endgame],
     };
-    new Phaser.Game(config);
+    this.game = new Phaser.Game(config);
   }
 
-  shouldComponentUpdate() {
-    return false;
+  componentDidUpdate(prevProps) {
+    if (prevProps.user.id !== this.props.user.id) {
+      const config = {
+        scale: {
+          parent: document.getElementById("phaser-game"),
+          mode: Phaser.Scale.RESIZE,
+          autoCenter: Phaser.Scale.CENTER_BOTH,
+        },
+        type: Phaser.AUTO,
+        pixelArt: true,
+        physics: {
+          default: "arcade",
+          arcade: {
+            debug: true,
+          },
+        },
+        scene: [Menu, Levels, new Play(this.props), Endgame],
+      };
+
+      this.game.destroy(true, false);
+      this.game = new Phaser.Game(config);
+    }
   }
+
   render() {
     return <div id="phaser-game" />;
   }

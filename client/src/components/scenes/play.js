@@ -590,6 +590,7 @@ export default class Play extends Phaser.Scene {
           },
           accuracies
         );
+
         this.props.handleGamePost(
           {
             score: this.score,
