@@ -254,6 +254,7 @@ export default class Play extends Phaser.Scene {
     this.score = 0;
     this.streak = 0;
     this.endgame = false;
+    this.longest_streak = 0;
 
     this.characters = this.randomizer().map((x) => {
       return {
