@@ -1,5 +1,4 @@
 import "./styles/App.scss";
-import { useState } from "react";
 import useApplicationData from "../hooks/useApplicationData";
 import SideBar from "./Sidebar";
 import Login from "./Login";
@@ -17,13 +16,18 @@ const App = () => {
     loggedIn,
     handleLogout,
     handleGamePost,
+    handleGameData,
   } = useApplicationData();
 
   const { show, handleClose, handleShow } = useShowData();
 
   return (
     <>
-      <Game user={state.user} handleGamePost={handleGamePost} />
+      <Game
+        user={state.user}
+        handleGameData={handleGameData}
+        handleGamePost={handleGamePost}
+      />
       <SideBar
         handleShow={handleShow}
         handleLogout={handleLogout}

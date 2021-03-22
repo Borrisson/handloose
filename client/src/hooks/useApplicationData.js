@@ -3,6 +3,7 @@ import dataReducer, {
   DESTROY_USER,
   SET_APPLICATION_DATA,
   SET_USER,
+  SET_GAME_DATA,
 } from "../reducer/data_reducer";
 import axios from "axios";
 
@@ -58,6 +59,14 @@ const useApplicationData = () => {
     ]);
   }
 
+  function handleGameData(game, accuracies) {
+    dispatch({
+      type: SET_GAME_DATA,
+      games: [...state.games, game],
+      accuracies: [...state.accuracies, ...accuracies],
+    });
+  }
+
   return {
     state,
     dispatch,
@@ -65,6 +74,7 @@ const useApplicationData = () => {
     handleAppData,
     loggedIn,
     handleGamePost,
+    handleGameData,
   };
 };
 

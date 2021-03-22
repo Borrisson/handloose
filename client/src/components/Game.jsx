@@ -6,7 +6,6 @@ import Play from "./scenes/play";
 import Endgame from "./scenes/endgame";
 
 export default class Game extends React.Component {
-  
   componentDidMount() {
     const config = {
       scale: {
@@ -15,7 +14,6 @@ export default class Game extends React.Component {
         autoCenter: Phaser.Scale.CENTER_BOTH,
       },
       type: Phaser.AUTO,
-
       pixelArt: true,
       physics: {
         default: "arcade",
@@ -26,8 +24,8 @@ export default class Game extends React.Component {
       scene: [Menu, Levels, new Play(this.props), Endgame],
     };
     new Phaser.Game(config);
-    
   }
+
   shouldComponentUpdate() {
     return false;
   }

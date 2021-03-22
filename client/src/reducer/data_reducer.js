@@ -2,6 +2,7 @@ export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 export const SET_USER = "SET_USER";
 export const DESTROY_USER = "DESTROY_USER";
 export const SET_LEADERBOARD = "SET_LEADERBOARD";
+export const SET_GAME_DATA = "SET_GAME_DATA";
 
 const dataReducer = (state, { type, user, games, accuracies, leaderboard }) => {
   switch (type) {
@@ -30,6 +31,8 @@ const dataReducer = (state, { type, user, games, accuracies, leaderboard }) => {
         games: [],
         accuracies: [],
       };
+    case SET_GAME_DATA:
+      return { ...state, games, accuracies };
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${type}`);
   }

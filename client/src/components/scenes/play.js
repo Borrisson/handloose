@@ -570,40 +570,46 @@ export default class Play extends Phaser.Scene {
       !this.topCharactersInGame.length &&
       !this.botCharactersInGame.length
     ) {
-      if (!this.endgame) {
-        this.endgame = true;
-
-        if (this.props.user.id) {
-          const parsedHits = this.hits.map((character) => {
-            return { character, hit: true };
-          });
-
-          const parsedMisses = this.misses.map((character) => {
-            return { character, hit: false };
-          });
-
-          const accuracies = [].concat(parsedHits).concat(parsedMisses);
-
-          this.props.handleGamePost(
-            {
-              score: this.score,
-              longest_streak: this.longest_streak,
-              key_stroke_frequency: this.interval,
-              user_id: this.props.user.id,
-            },
-            accuracies
-          );
-        }
-        this.scene.stop();
-        this.scene.start("endgame", {
-          score: this.score,
-          top: this.topCharactersInGame,
-          mid: this.midCharactersInGame,
-          bot: this.botCharactersInGame,
-          hits: this.hit,
+      if (this.props.user.id) {
+        const parsedHits = this.hits.map((character) => {
+          return { character, hit: true };
         });
-        //this is where we'll add the change scene
+
+        const parsedMisses = this.misses.map((character) => {
+          return { character, hit: false };
+        });
+
+        const accuracies = [].concat(parsedHits).concat(parsedMisses);
+
+        this.props.handleGameData(
+          {
+            score: this.score,
+            longest_streak: this.longest_streak,
+            key_stroke_frequency: this.interval,
+            user_id: this.props.user.id,
+          },
+          accuracies
+        );
+        this.props.handleGamePost(
+          {
+            score: this.score,
+            longest_streak: this.longest_streak,
+            key_stroke_frequency: this.interval,
+            user_id: this.props.user.id,
+          },
+          accuracies
+        );
       }
+      this.scene.stop();
+      this.scene.start("endgame", {
+        score: this.score,
+        top: this.topCharactersInGame,
+        mid: this.midCharactersInGame,
+        bot: this.botCharactersInGame,
+        hits: this.hit,
+      });
+      //this is where we'll add the change scene
+
       // before scene change we'll send data to the back
       //change state, axios call, then change scene it that order
     }
