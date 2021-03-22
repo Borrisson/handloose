@@ -45,10 +45,12 @@ export default class Levels extends Phaser.Scene {
     this.selectedCharacters = [1, 4, 7, 10];
     
     
-    const left = this.add.image(590, 750, "arrowLeft").setInteractive();
-    const right = this.add.image(880 , 750, "arrowRight").setInteractive();
+    const left = this.add.image(600, 750, "arrowLeft").setInteractive();
+    const right = this.add.image(925, 750, "arrowRight").setInteractive();
 
-    const slide = this.add.sprite(742, 700, "slider").setScale(5);
+    const slide = this.add
+      .sprite(this.scale.width / 1.92, this.scale.height / 1.4, "slider")
+      .setScale(6);
     let frame = 0;
     slide.setFrame(frame);
 
@@ -57,11 +59,11 @@ export default class Levels extends Phaser.Scene {
     const lvl3 = this.add.text(600, 500, "Level 3").setInteractive();
     const lvl4 = this.add.text(600, 550, "Level 4").setInteractive();
     const lvl5 = this.add.text(600, 600, "Level 5").setInteractive();
-    const lvl6 = this.add.text(800, 400, "Level 6").setInteractive();
-    const lvl7 = this.add.text(800, 450, "Level 7").setInteractive();
-    const lvl8 = this.add.text(800, 500, "Level 8").setInteractive();
-    const lvl9 = this.add.text(800, 550, "Level 9").setInteractive();
-    const lvl10 = this.add.text(800, 600, "Level 10").setInteractive();
+    const lvl6 = this.add.text(850, 400, "Level 6").setInteractive();
+    const lvl7 = this.add.text(850, 450, "Level 7").setInteractive();
+    const lvl8 = this.add.text(850, 500, "Level 8").setInteractive();
+    const lvl9 = this.add.text(850, 550, "Level 9").setInteractive();
+    const lvl10 = this.add.text(850, 600, "Level 10").setInteractive();
 
     this.levels = {
       lvl1,
@@ -78,9 +80,11 @@ export default class Levels extends Phaser.Scene {
 
     const back = this.add.text(1400, 950, "Back").setInteractive();
 
-    const play = this.add.text(720, 850, "Play").setInteractive();
+    const play = this.add.text(740, 850, "Play").setInteractive();
 
-    const kb = this.add.sprite(725 , 200, "keyboard").setScale(5);
+    const kb = this.add
+      .sprite(this.scale.width / 2, this.scale.height / 4.5, "keyboard")
+      .setScale(5);
     kb.setFrame(1);
     lvl1.setTint(0x6aa84f);
 
