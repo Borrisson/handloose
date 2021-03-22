@@ -115,7 +115,7 @@ export default class Play extends Phaser.Scene {
         "text",
         shifty.x
       );
-      this.letter.setScale(6).setVelocityY(-this.velocity);
+      this.letter.setScale(5).setVelocityY(-this.velocity);
       const firstRow = [0, 3, 6, 9, 12, 15, 18, 21, 23, 25];
       const lastRow = [2, 5, 8, 11, 14, 17, 20];
       if (firstRow.includes(shifty.x)) {
@@ -237,28 +237,28 @@ export default class Play extends Phaser.Scene {
 
     this.music.play(musicConfig);
 
-    this.scoreText = this.add.text(this.scale.width/100, this.scale.height / 10, "Score: 0", {
-      fontSize: "32px",
+    this.scoreText = this.add.text(this.scale.width / 100, this.scale.height / 10, "Score: 0", {
+      fontSize: "20px",
       color: "#FF69B4",
     });
-    this.streakText = this.add.text(16, 48, "Streak: 0", {
-      fontSize: "32px",
+    this.streakText = this.add.text(this.scale.width / 100, this.scale.height / 9, "Streak: 0", {
+      fontSize: "20px",
       color: "#FF69B4",
     });
-    this.charactersLeft = this.add.text(16, 80, "Characters Left: 140", {
-      fontSize: "32px",
+    this.charactersLeft = this.add.text(this.scale.width / 100, this.scale.height / 11, "Characters Left: 140", {
+      fontSize: "20px",
       color: "#FF69B4",
     });
 
     this.kb1 = this.physics.add
       .sprite(this.scale.width / 1.945, this.scale.height / 5.05, "kb1")
-      .setScale(6);
+      .setScale(5);
     this.kb2 = this.physics.add
       .sprite(this.scale.width / 2.01, this.scale.height / 3.9, "kb2")
-      .setScale(6);
+      .setScale(5);
     this.kb3 = this.physics.add
       .sprite(this.scale.width / 2.175, this.scale.height / 3.1, "kb3")
-      .setScale(6);
+      .setScale(5);
 
     this.topGameKeys = this.input.keyboard.addKeys(
       "Q,W,E,R,T,Y,U,I,O,P",
@@ -391,11 +391,12 @@ export default class Play extends Phaser.Scene {
       this.destroy("bot");
       this.charactersLeft.setText("Characters Left: " + this.characters.length);
     }
-
+  
     if (
+      !this.characters.length &&
       !this.midCharactersInGame.length &&
       !this.topCharactersInGame.length &&
-      !this.botCharactersInGame.length
+      !this.botCharactersInGame.length 
     ) {
       if (this.props.user.id) {
         const parsedHits = this.hits.map((character) => {
