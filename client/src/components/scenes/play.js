@@ -39,9 +39,7 @@ export default class Play extends Phaser.Scene {
   constructor(props) {
     super("play");
     this.props = props;
-    this.topCharactersInGame = [];
-    this.midCharactersInGame = [];
-    this.botCharactersInGame = [];
+    
     
   }
   
@@ -69,123 +67,127 @@ export default class Play extends Phaser.Scene {
     this.misses.push(decipher(charNumber));
   }
 
+   
+
   collisionHandlerTop(charSprite, kbSprite) {
-    const {
-      frame: { name },
-    } = charSprite;
-
-    const char = decipher(name);
-
-    if (
-      (Phaser.Input.Keyboard.JustDown(this.key_Q) && char === "Q") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_W) && char === "W") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_E) && char === "E") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_R) && char === "R") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_T) && char === "T") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_Y) && char === "Y") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_U) && char === "U") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_I) && char === "I") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_O) && char === "O") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_P) && char === "P")
-    )
+    if(charSprite !== undefined) {
+      const {
+        frame: { name },
+      } = charSprite;
+  
+      const char = decipher(name);
+  
       if (
-        !Phaser.Geom.Rectangle.Overlaps(
-          charSprite.getBounds(),
-          kbSprite.getBounds()
-        )
+       char === "Q" ||
+       char === "W" ||
+       char === "E" ||
+       char === "R" ||
+       char === "T" ||
+       char === "Y" ||
+       char === "U" ||
+       char === "I" ||
+       char === "O" ||
+       char === "P"
       ) {
-        this.destroy("top");
-        this.streak = 0;
-        this.streakText.setText("Streak: " + this.streak);
-        this.setMisses(name);
-      } else {
-        console.log(this.hits.length);
-        this.destroy("top");
-        this.score += 100;
-        this.scoreText.setText("Score: " + this.score);
-        this.streak += 1;
-        this.streakText.setText("Streak: " + this.streak);
-        this.setHits(name);
+        if (
+          !Phaser.Geom.Rectangle.Overlaps(
+            charSprite.getBounds(),
+            kbSprite.getBounds()
+          )
+        ) {
+          this.streak = 0;
+          this.streakText.setText("Streak: " + this.streak);
+          this.setMisses(name);
+        } else {
+          this.destroy("top");
+          this.score += 100;
+          this.scoreText.setText("Score: " + this.score);
+          this.streak += 1;
+          this.streakText.setText("Streak: " + this.streak);
+          this.setHits(name);
+        }
       }
+    }
+    
+  
   }
   collisionHandlerMid(charSprite, kbSprite) {
-    const {
-      frame: { name },
-    } = charSprite;
-
-    const char = decipher(name);
-
-    if (
-      (Phaser.Input.Keyboard.JustDown(this.key_A) && char === "A") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_S) && char === "S") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_D) && char === "D") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_F) && char === "F") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_G) && char === "G") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_H) && char === "H") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_J) && char === "J") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_K) && char === "K") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_L) && char === "L")
-    )
+    if(charSprite !== undefined) {
+      const {
+        frame: { name },
+      } = charSprite;
+  
+      const char = decipher(name);
+  
       if (
-        !Phaser.Geom.Rectangle.Overlaps(
-          charSprite.getBounds(),
-          kbSprite.getBounds()
-        )
+        
+        char === "A" ||
+        char === "S" ||
+        char === "D" ||
+        char === "F" ||
+        char === "G" ||
+        char === "H" ||
+        char === "J" ||
+        char === "K" ||
+        char === "L"
       ) {
-        this.streak = 0;
-        this.streakText.setText("Streak: " + this.streak);
-        this.setMisses(name);
-      } else {
-        this.destroy("mid");
-        this.score += 100;
-        this.scoreText.setText("Score: " + this.score);
-        this.streak += 1;
-        this.streakText.setText("Streak: " + this.streak);
-        this.setHits(name);
+          if (
+            !Phaser.Geom.Rectangle.Overlaps(
+              charSprite.getBounds(),
+              kbSprite.getBounds()
+            )
+          ) {
+            this.streak = 0;
+            this.streakText.setText("Streak: " + this.streak);
+            this.setMisses(name);
+          } else {
+            this.destroy("mid");
+            this.score += 100;
+            this.scoreText.setText("Score: " + this.score);
+            this.streak += 1;
+            this.streakText.setText("Streak: " + this.streak);
+            this.setHits(name);
+          }
       }
+    } 
+    
   }
 
   collisionHandlerBottom(charSprite, kbSprite) {
-    const {
-      frame: { name },
-    } = charSprite;
-
-    const char = decipher(name);
-    if (
-      (Phaser.Input.Keyboard.JustDown(this.key_Z) && char === "Z") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_X) && char === "X") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_C) && char === "C") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_V) && char === "V") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_B) && char === "B") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_N) && char === "N") ||
-      (Phaser.Input.Keyboard.JustDown(this.key_M) && char === "M")
-    ) {
+    if(charSprite) {
+      const {
+        frame: { name },
+      } = charSprite;
+  
+      const char = decipher(name);
       if (
-        !Phaser.Geom.Rectangle.Overlaps(
-          charSprite.getBounds(),
-          kbSprite.getBounds()
-        )
+        char === "Z" ||
+        char === "X" ||
+        char === "C" ||
+        char === "V" ||
+        char === "B" ||
+        char === "N" ||
+        char === "M"
       ) {
-        this.destroy("bot");
-        this.streak = 0;
-        this.streakText.setText("Streak: " + this.streak);
-        this.setMisses(name);
-      } else {
-        console.log(this.hits.length);
-        this.destroy("bot");
-        this.score += 100;
-        this.scoreText.setText("Score: " + this.score);
-        this.streak += 1;
-        this.streakText.setText("Streak: " + this.streak);
-        this.setHits(name);
-      }
-      // console.log(this.hits.length);
-      // destroy("bot");
-      // this.score += 100;
-      // this.scoreText.setText('Score: ' + this.score);
-      // this.streak += 1;
-      // this.streakText.setText('Streak: ' + this.streak);
-      // this.setHits(name);
+        if (
+          !Phaser.Geom.Rectangle.Overlaps(
+            charSprite.getBounds(),
+            kbSprite.getBounds()
+          )
+        ) {
+          this.streak = 0;
+          this.streakText.setText("Streak: " + this.streak);
+          this.setMisses(name);
+        } else {
+          console.log(this.hits.length);
+          this.destroy("bot");
+          this.score += 100;
+          this.scoreText.setText("Score: " + this.score);
+          this.streak += 1;
+          this.streakText.setText("Streak: " + this.streak);
+          this.setHits(name);
+        }
+      } 
     }
   }
   getLetter() {
@@ -261,7 +263,9 @@ export default class Play extends Phaser.Scene {
   create() {
     this.hits = [];
     this.misses = [];
-    
+    this.topCharactersInGame = [];
+    this.midCharactersInGame = [];
+    this.botCharactersInGame = [];
     this.score = 0;
     this.streak = 0;
     this.endgame = false;
@@ -274,35 +278,7 @@ export default class Play extends Phaser.Scene {
       };
     });
 
-    this.key_SPACE = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.SPACE
-    );
-    this.key_A = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    this.key_B = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-    this.key_C = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
-    this.key_D = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-    this.key_E = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-    this.key_F = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
-    this.key_G = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.G);
-    this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
-    this.key_I = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
-    this.key_J = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.J);
-    this.key_K = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.K);
-    this.key_L = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L);
-    this.key_M = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
-    this.key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
-    this.key_O = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.O);
-    this.key_P = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
-    this.key_Q = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-    this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-    this.key_S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    this.key_T = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.T);
-    this.key_U = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.U);
-    this.key_V = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.V);
-    this.key_W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.key_X = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
-    this.key_Y = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Y);
-    this.key_Z = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Z);
+    
     this.pausePhysics = false;
 
     this.music = this.sound.add("main_theme");
@@ -340,156 +316,185 @@ export default class Play extends Phaser.Scene {
 
     this.input.keyboard.on("keydown-A", () => {
       this.kb2.setFrame(1);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2)
+      
+        
     });
     this.input.keyboard.on("keyup-A", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-B", () => {
       this.kb3.setFrame(5);
+      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3)
+      
     });
     this.input.keyboard.on("keyup-B", () => {
       this.kb3.setFrame(0);
     });
     this.input.keyboard.on("keydown-C", () => {
       this.kb3.setFrame(3);
+      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3)
     });
     this.input.keyboard.on("keyup-C", () => {
       this.kb3.setFrame(0);
     });
     this.input.keyboard.on("keydown-D", () => {
       this.kb2.setFrame(3);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2)
     });
     this.input.keyboard.on("keyup-D", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-E", () => {
       this.kb1.setFrame(3);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1)
     });
     this.input.keyboard.on("keyup-E", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-F", () => {
       this.kb2.setFrame(4);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2)
     });
     this.input.keyboard.on("keyup-F", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-G", () => {
       this.kb2.setFrame(5);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2)
     });
     this.input.keyboard.on("keyup-G", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-H", () => {
       this.kb2.setFrame(6);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2)
     });
     this.input.keyboard.on("keyup-H", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-I", () => {
       this.kb1.setFrame(8);
-    });
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1)
+;    });
     this.input.keyboard.on("keyup-I", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-J", () => {
       this.kb2.setFrame(7);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
     });
     this.input.keyboard.on("keyup-J", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-K", () => {
       this.kb2.setFrame(8);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
     });
     this.input.keyboard.on("keyup-K", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-L", () => {
       this.kb2.setFrame(9);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
     });
     this.input.keyboard.on("keyup-L", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-M", () => {
       this.kb3.setFrame(7);
+      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
     });
     this.input.keyboard.on("keyup-M", () => {
       this.kb3.setFrame(0);
     });
     this.input.keyboard.on("keydown-N", () => {
       this.kb3.setFrame(6);
+      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
     });
     this.input.keyboard.on("keyup-N", () => {
       this.kb3.setFrame(0);
     });
     this.input.keyboard.on("keydown-O", () => {
       this.kb1.setFrame(9);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
     });
     this.input.keyboard.on("keyup-O", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-P", () => {
       this.kb1.setFrame(10);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
     });
     this.input.keyboard.on("keyup-P", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-Q", () => {
       this.kb1.setFrame(1);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
     });
     this.input.keyboard.on("keyup-Q", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-R", () => {
       this.kb1.setFrame(4);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
     });
     this.input.keyboard.on("keyup-R", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-S", () => {
       this.kb2.setFrame(2);
+      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2)
     });
     this.input.keyboard.on("keyup-S", () => {
       this.kb2.setFrame(0);
     });
     this.input.keyboard.on("keydown-T", () => {
       this.kb1.setFrame(5);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
     });
     this.input.keyboard.on("keyup-T", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-U", () => {
       this.kb1.setFrame(7);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
     });
     this.input.keyboard.on("keyup-U", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-V", () => {
       this.kb3.setFrame(4);
+      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
     });
     this.input.keyboard.on("keyup-V", () => {
       this.kb3.setFrame(0);
     });
     this.input.keyboard.on("keydown-W", () => {
       this.kb1.setFrame(2);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
     });
     this.input.keyboard.on("keyup-W", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-X", () => {
       this.kb3.setFrame(2);
+      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
     });
     this.input.keyboard.on("keyup-X", () => {
       this.kb3.setFrame(0);
     });
     this.input.keyboard.on("keydown-Y", () => {
       this.kb1.setFrame(6);
+      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
     });
     this.input.keyboard.on("keyup-Y", () => {
       this.kb1.setFrame(0);
     });
     this.input.keyboard.on("keydown-Z", () => {
       this.kb3.setFrame(1);
+      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
     });
     this.input.keyboard.on("keyup-Z", () => {
       this.kb3.setFrame(0);
@@ -506,29 +511,6 @@ export default class Play extends Phaser.Scene {
 
     this.scale.on("resize", this.resize, this);
 
-    this.physics.add.overlap(
-      this.topCharactersInGame,
-      this.kb1,
-      this.collisionHandlerTop,
-      null,
-      this
-    );
-
-    this.physics.add.overlap(
-      this.midCharactersInGame,
-      this.kb2,
-      this.collisionHandlerMid,
-      null,
-      this
-    );
-
-    this.physics.add.overlap(
-      this.botCharactersInGame,
-      this.kb3,
-      this.collisionHandlerBottom,
-      null,
-      this
-    );
     this.input.keyboard.on("keyup-SPACE", () => {
       if (!this.pausePhysics) {
         this.pausePhysics = true;
@@ -571,7 +553,7 @@ export default class Play extends Phaser.Scene {
         this.streak = 0;
         this.streakText.setText("Streak: " + this.streak);
         this.destroy("top");
-      }
+      } 
     }
 
     if (this.midCharactersInGame.length) {
@@ -585,8 +567,10 @@ export default class Play extends Phaser.Scene {
         this.streak = 0;
         this.streakText.setText("Streak: " + this.streak);
         this.destroy("mid");
-      }
+      } 
     }
+
+    
 
     if (this.botCharactersInGame.length) {
       if (
@@ -599,7 +583,7 @@ export default class Play extends Phaser.Scene {
         this.streak = 0;
         this.streakText.setText("Streak: " + this.streak);
         this.destroy("bot");
-      }
+      } 
     }
 
     // end game goes here
@@ -635,7 +619,7 @@ export default class Play extends Phaser.Scene {
           
         }
         this.scene.stop();
-        this.scene.start('endgame', {score: this.score, top: this.topCharactersInGame, mid: this.midCharactersInGame, bot: this.botCharactersInGame });
+        this.scene.start('endgame', {score: this.score, top: this.topCharactersInGame, mid: this.midCharactersInGame, bot: this.botCharactersInGame, hits: this.hit });
         //this is where we'll add the change scene
       }
       // before scene change we'll send data to the back
