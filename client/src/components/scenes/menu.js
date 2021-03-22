@@ -21,20 +21,21 @@ export default class Menu extends Phaser.Scene {
     this.play = this.add
       .text(this.scale.width / 2.2, this.scale.height / 2, "Press Space")
       .setInteractive()
-      .setScale(1.5);
+      
 
-    this.floor = this.add.sprite(750, 850).setScale(10);
-    this.floor.scaleX = 16;
+    this.floor = this.add.sprite(this.scale.width / 2, this.scale.height / 1.2).setScale(5);
+    this.floor.scaleX = 10.5;
+    
 
     this.logo = this.add
       .sprite(this.scale.width / 2, this.scale.height / 3, "logo")
       .setScale(2);
     this.curtainLeft = this.add
       .image(this.scale.width / 10, this.scale.height / 3, "curtains")
-      .setScale(9);
+      .setScale(5);
     this.curtainRight = this.add
       .image(this.scale.width / 1.1, this.scale.height / 3, "curtains")
-      .setScale(9);
+      .setScale(5);
     this.curtainRight.flipX = true;
 
     this.anims.create({
@@ -62,7 +63,7 @@ export default class Menu extends Phaser.Scene {
       },
       this
     );
-    this.scale.on("resize", this.resize, this);
+    // this.scale.on("resize", this.resize, this);
 
     let start = this.sound.add("menu_space");
 
@@ -71,15 +72,15 @@ export default class Menu extends Phaser.Scene {
     });
   }
 
-  resize(gameSize, baseSize, displaySize, resolution) {
-    const width = gameSize.width;
-    const height = gameSize.height;
+  // resize(gameSize, baseSize, displaySize, resolution) {
+  //   const width = gameSize.width;
+  //   const height = gameSize.height;
 
-    this.cameras.resize(width, height);
-    this.play.setPosition(width / 2.2, height / 2);
-    this.curtainLeft.setPosition(width / 10, height / 3);
-    this.curtainRight.setPosition(width / 1.1, height / 3);
-    this.floor.setSize(width, height);
-    this.logo.setPosition(width / 2, height / 3);
-  }
+  //   this.cameras.resize(width, height);
+  //   this.play.setPosition(width / 2.2, height / 2);
+  //   this.curtainLeft.setPosition(width / 10, height / 3);
+  //   this.curtainRight.setPosition(width / 1.1, height / 3);
+  //   this.floor.setPosition(width/2, height/1.2);
+  //   this.logo.setPosition(width / 2, height / 3);
+  // }
 }
