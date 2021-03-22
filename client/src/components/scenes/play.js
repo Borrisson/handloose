@@ -294,7 +294,6 @@ export default class Play extends Phaser.Scene {
           this.scale.height / 2,
           "PAUSE"
         );
-        //load sprite to show that the user has paused
       } else if (this.pausePhysics) {
         this.pause.destroy();
         this.pausePhysics = false;
@@ -312,8 +311,6 @@ export default class Play extends Phaser.Scene {
   }
 
   update() {
-    //need to short circuit this with array length first so that when it is empty it doesn't give us an error at midCharactersInGame[0].getBounds();
-
     if (
       this.topCharactersInGame.length &&
       !Phaser.Geom.Rectangle.Overlaps(
@@ -346,8 +343,6 @@ export default class Play extends Phaser.Scene {
       this.setMisses(this.botCharactersInGame[0].frame.name);
       this.destroy("bot");
     }
-
-    // end game goes here
 
     if (
       !this.characters.length &&
@@ -394,10 +389,6 @@ export default class Play extends Phaser.Scene {
         bot: this.botCharactersInGame,
         hits: this.hit,
       });
-      //this is where we'll add the change scene
-
-      // before scene change we'll send data to the back
-      //change state, axios call, then change scene it that order
     }
   }
   resize(gameSize, baseSize, displaySize, resolution) {
@@ -405,8 +396,7 @@ export default class Play extends Phaser.Scene {
     const height = gameSize.height;
 
     this.cameras.resize(width, height);
-    //https://www.html5gamedevs.com/topic/7745-move-a-group-of-sprites-together-as-one-body/
-    //we need to fix the resizing I think the answer is in the link above
+
     this.kb1.setPosition(width / 1.945, height / 5.05);
     this.kb2.setPosition(width / 2.01, height / 3.9);
     this.kb3.setPosition(width / 2.175, height / 3.1);
@@ -415,14 +405,3 @@ export default class Play extends Phaser.Scene {
     }
   }
 }
-
-//To do:
-
-//End-game scene: Score, highest streak(gotta add), hits and misses, Replay and Go Back button, make it modal
-//Resize  (keyboards, decipher chars) responsive design
-//Pause display - done
-//Levels - Done (Just add the hover later)
-//Misses
-//Keyboard collision handle once
-//Sprites
-//Music toggle (Music note sprite) -Done, used ESC button to mute and unmute song.
