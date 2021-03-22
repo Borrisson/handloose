@@ -212,16 +212,16 @@ export default class Levels extends Phaser.Scene {
           this.resetState(key);
 
           switch (key) {
-            case "this.lvl1":
+            case "lvl1":
               this.selectedCharacters = [1, 4, 7, 10];
               break;
-            case "this.lvl2":
+            case "lvl2":
               this.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
               break;
-            case "this.lvl3":
+            case "lvl3":
               this.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
               break;
-            case "this.lvl4":
+            case "lvl4":
               this.selectedCharacters = [
                 0,
                 1,
@@ -237,7 +237,7 @@ export default class Levels extends Phaser.Scene {
                 24,
               ];
               break;
-            case "this.lvl5":
+            case "lvl5":
               this.selectedCharacters = [
                 0,
                 1,
@@ -256,7 +256,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "this.lvl6":
+            case "lvl6":
               this.selectedCharacters = [
                 0,
                 1,
@@ -277,7 +277,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "this.lvl7":
+            case "lvl7":
               this.selectedCharacters = [
                 0,
                 1,
@@ -300,7 +300,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "this.lvl8":
+            case "lvl8":
               this.selectedCharacters = [
                 0,
                 1,
@@ -325,7 +325,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "this.lvl9":
+            case "lvl9":
               this.selectedCharacters = [
                 0,
                 1,
@@ -352,7 +352,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "this.lvl10":
+            case "lvl10":
               this.selectedCharacters = [];
               break;
           }
