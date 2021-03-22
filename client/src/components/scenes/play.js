@@ -60,26 +60,15 @@ export default class Play extends Phaser.Scene {
     this.misses.push(decipher(charNumber));
   }
 
-  collisionHandlerTop(charSprite, kbSprite) {
-    if (charSprite !== undefined) {
+  collisionHandlerTop(charSprite, kbSprite, keypress) {
+    if (charSprite) {
       const {
         frame: { name },
       } = charSprite;
 
       const char = decipher(name);
 
-      if (
-        char === "Q" ||
-        char === "W" ||
-        char === "E" ||
-        char === "R" ||
-        char === "T" ||
-        char === "Y" ||
-        char === "U" ||
-        char === "I" ||
-        char === "O" ||
-        char === "P"
-      ) {
+      if (char === keypress) {
         if (
           !Phaser.Geom.Rectangle.Overlaps(
             charSprite.getBounds(),
@@ -100,8 +89,8 @@ export default class Play extends Phaser.Scene {
       }
     }
   }
-  collisionHandlerMid(charSprite, kbSprite) {
-    if (charSprite !== undefined) {
+  collisionHandlerMid(charSprite, kbSprite, keypress) {
+    if (charSprite) {
       const {
         frame: { name },
       } = charSprite;
@@ -140,7 +129,7 @@ export default class Play extends Phaser.Scene {
     }
   }
 
-  collisionHandlerBottom(charSprite, kbSprite) {
+  collisionHandlerBottom(charSprite, kbSprite, keypress) {
     if (charSprite) {
       const {
         frame: { name },
@@ -299,188 +288,56 @@ export default class Play extends Phaser.Scene {
       .sprite(this.scale.width / 2.175, this.scale.height / 3.1, "kb3")
       .setScale(6);
 
-    this.input.keyboard.on("keydown-A", () => {
-      this.kb2.setFrame(1);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-A", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-B", () => {
-      this.kb3.setFrame(5);
-      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
-    });
-    this.input.keyboard.on("keyup-B", () => {
-      this.kb3.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-C", () => {
-      this.kb3.setFrame(3);
-      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
-    });
-    this.input.keyboard.on("keyup-C", () => {
-      this.kb3.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-D", () => {
-      this.kb2.setFrame(3);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-D", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-E", () => {
-      this.kb1.setFrame(3);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-E", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-F", () => {
-      this.kb2.setFrame(4);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-F", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-G", () => {
-      this.kb2.setFrame(5);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-G", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-H", () => {
-      this.kb2.setFrame(6);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-H", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-I", () => {
-      this.kb1.setFrame(8);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-I", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-J", () => {
-      this.kb2.setFrame(7);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-J", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-K", () => {
-      this.kb2.setFrame(8);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-K", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-L", () => {
-      this.kb2.setFrame(9);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-L", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-M", () => {
-      this.kb3.setFrame(7);
-      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
-    });
-    this.input.keyboard.on("keyup-M", () => {
-      this.kb3.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-N", () => {
-      this.kb3.setFrame(6);
-      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
-    });
-    this.input.keyboard.on("keyup-N", () => {
-      this.kb3.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-O", () => {
-      this.kb1.setFrame(9);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-O", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-P", () => {
-      this.kb1.setFrame(10);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-P", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-Q", () => {
-      this.kb1.setFrame(1);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-Q", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-R", () => {
-      this.kb1.setFrame(4);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-R", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-S", () => {
-      this.kb2.setFrame(2);
-      this.collisionHandlerMid(this.midCharactersInGame[0], this.kb2);
-    });
-    this.input.keyboard.on("keyup-S", () => {
-      this.kb2.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-T", () => {
-      this.kb1.setFrame(5);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-T", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-U", () => {
-      this.kb1.setFrame(7);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-U", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-V", () => {
-      this.kb3.setFrame(4);
-      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
-    });
-    this.input.keyboard.on("keyup-V", () => {
-      this.kb3.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-W", () => {
-      this.kb1.setFrame(2);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-W", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-X", () => {
-      this.kb3.setFrame(2);
-      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
-    });
-    this.input.keyboard.on("keyup-X", () => {
-      this.kb3.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-Y", () => {
-      this.kb1.setFrame(6);
-      this.collisionHandlerTop(this.topCharactersInGame[0], this.kb1);
-    });
-    this.input.keyboard.on("keyup-Y", () => {
-      this.kb1.setFrame(0);
-    });
-    this.input.keyboard.on("keydown-Z", () => {
-      this.kb3.setFrame(1);
-      this.collisionHandlerBottom(this.botCharactersInGame[0], this.kb3);
-    });
-    this.input.keyboard.on("keyup-Z", () => {
-      this.kb3.setFrame(0);
-    });
+    this.topGameKeys = this.input.keyboard.addKeys(
+      "Q,W,E,R,T,Y,U,I,O,P",
+      true,
+      true
+    );
+    this.midGameKeys = this.input.keyboard.addKeys(
+      "A,S,D,F,G,H,J,K,L",
+      true,
+      true
+    );
+    this.botGameKeys = this.input.keyboard.addKeys("Z,X,C,V,B,N,M", true, true);
+
+    this.gameKeys = [this.topGameKeys, this.midGameKeys, this.botGameKeys];
+
+    for (const [index, row] of this.gameKeys.entries()) {
+      for (const gameKey in row) {
+        const keysArrayOfRow = Object.keys(row);
+        row[gameKey].on("up", () => {
+          this[`kb${index + 1}`].setFrame(0);
+        });
+
+        row[gameKey].on("down", (eventName, event) => {
+          event.stopPropagation();
+          this[`kb${index + 1}`].setFrame(keysArrayOfRow.indexOf(gameKey) + 1);
+          switch (index) {
+            case 0:
+              this.collisionHandlerTop(
+                this.topCharactersInGame[0],
+                this.kb1,
+                eventName.originalEvent.key.toUpperCase()
+              );
+              break;
+            case 1:
+              this.collisionHandlerMid(
+                this.midCharactersInGame[0],
+                this.kb2,
+                eventName.originalEvent.key.toUpperCase()
+              );
+              break;
+            case 2:
+              this.collisionHandlerBottom(
+                this.botCharactersInGame[0],
+                this.kb3,
+                eventName.originalEvent.key.toUpperCase()
+              );
+              break;
+          }
+        });
+      }
+    }
 
     this.getLetter();
 
