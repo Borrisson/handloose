@@ -57,7 +57,13 @@ export default class Play extends Phaser.Scene {
 
   setHits(charNumber) {
     this.hits.push(decipher(charNumber));
-    this.score += 100 * (1 + this.streak / 10);
+    this.score +=
+      100 *
+      (1 +
+        Math.ceil(
+          (this.streak * (this.interval / 1000)) /
+            (27 - this.selectedCharacters.length)
+        ));
     this.scoreText.setText("Score: " + this.score);
     this.streak += 1;
     this.longest_streak =
