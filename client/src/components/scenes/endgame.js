@@ -30,6 +30,14 @@ export default class Endgame extends Phaser.Scene {
       this.scene.stop();
       this.scene.start('Levels')
     }, this);
+    this.replay.on('pointerdown', function () {
+      this.sound.removeByKey("main_theme")
+      this.bot = [];
+      this.top = [];
+      this.mid = [];
+      this.scene.stop();
+      this.scene.start('play')
+    }, this);
   }
 
  
