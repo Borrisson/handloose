@@ -148,6 +148,14 @@ export default class Play extends Phaser.Scene {
 
   preload() {
     this.load.audio("main_theme", "assets/audio/main_theme.mp3");
+    this.load.spritesheet("Afroman", "assets/Afroman.png", {
+      frameWidth: 41,
+      frameHeight: 90
+    });
+    this.load.spritesheet("Prince", "assets/Prince.png", {
+      frameWidth: 66,
+      frameHeight: 44
+    })
     this.load.spritesheet("kb1", "assets/kb1.png", {
       frameWidth: 119,
       frameHeight: 10,
@@ -192,6 +200,28 @@ export default class Play extends Phaser.Scene {
     });
 
     this.pausePhysics = false;
+
+    this.afroman = this.add.sprite(this.scale.width / 6, this.scale.height / 3, "Afroman").setScale(2);
+
+    this.prince = this.add.sprite(this.scale.width / 6, this.scale.height / 1.5, "Prince").setScale(3);
+
+    this.anims.create({
+      key: "Afroman",
+      frames: this.anims.generateFrameNumbers("Afroman"),
+      frameRate: 2.25,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: "Prince",
+      frames: this.anims.generateFrameNumbers("Prince"),
+      frameRate: 2.25,
+      repeat: -1
+    });
+
+    this.afroman.play("Afroman");
+
+    this.prince.play("Prince");
 
     this.music = this.sound.add("main_theme");
 
