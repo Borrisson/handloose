@@ -34,7 +34,8 @@ export default class Menu extends Phaser.Scene {
       .setScale(9);
     this.curtainRight = this.add
       .image(this.scale.width / 1.1, this.scale.height / 3, "curtains")
-      .setScale(9).flipX = true;
+      .setScale(9);
+    this.curtainRight.flipX = true;
 
     this.anims.create({
       key: "logo",
