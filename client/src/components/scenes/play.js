@@ -61,7 +61,9 @@ export default class Play extends Phaser.Scene {
     this.streakText.setText("Streak: " + this.streak);
   }
   setMisses(charNumber) {
-    this.misses.push(decipher(charNumber));
+    if (charNumber) {
+      this.misses.push(decipher(charNumber));
+    }
     this.streak = 0;
     this.longest_streak =
       this.longest_streak < this.streak ? this.streak : this.longest_streak;
@@ -88,6 +90,8 @@ export default class Play extends Phaser.Scene {
       } else {
         this.setMisses(name);
       }
+    } else {
+      this.setMisses();
     }
   }
 
@@ -237,6 +241,7 @@ export default class Play extends Phaser.Scene {
         row[gameKey].on("down", (eventName, event) => {
           event.stopPropagation();
           this[`kb${index + 1}`].setFrame(keysArrayOfRow.indexOf(gameKey) + 1);
+
           switch (index) {
             case 0:
               this.collisionHandler(
