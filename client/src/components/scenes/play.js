@@ -317,8 +317,6 @@ export default class Play extends Phaser.Scene {
       )
     ) {
       this.setMisses(this.topCharactersInGame[0].frame.name);
-      this.streak = 0;
-      this.streakText.setText("Streak: " + this.streak);
       this.destroy("top");
     }
 
@@ -330,8 +328,6 @@ export default class Play extends Phaser.Scene {
       )
     ) {
       this.setMisses(this.midCharactersInGame[0].frame.name);
-      this.streak = 0;
-      this.streakText.setText("Streak: " + this.streak);
       this.destroy("mid");
     }
 
@@ -343,8 +339,6 @@ export default class Play extends Phaser.Scene {
       )
     ) {
       this.setMisses(this.botCharactersInGame[0].frame.name);
-      this.streak = 0;
-      this.streakText.setText("Streak: " + this.streak);
       this.destroy("bot");
     }
 
