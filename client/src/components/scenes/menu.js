@@ -58,6 +58,7 @@ export default class Menu extends Phaser.Scene {
       "keyup-SPACE",
       function () {
         this.scene.start("Levels");
+        this.scene.stop("Menu");
       },
       this
     );
@@ -75,13 +76,9 @@ export default class Menu extends Phaser.Scene {
     const height = gameSize.height;
 
     this.cameras.resize(width, height);
-
     this.play.setPosition(width / 2.2, height / 2);
     this.curtainLeft.setPosition(width / 10, height / 3);
-    this.curtainRight.setPosition(
-      this.scale.width / 1.1,
-      this.scale.height / 3
-    );
+    this.curtainRight.setPosition(width / 1.1, height / 3);
     this.floor.setSize(width, height);
     this.logo.setPosition(width / 2, height / 3);
   }

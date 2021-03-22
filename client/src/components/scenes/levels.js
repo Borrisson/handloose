@@ -16,8 +16,6 @@ export default class Levels extends Phaser.Scene {
       lvl9: false,
       lvl10: false,
     };
-
-    
   }
 
   resetState(toggleKey) {
@@ -43,60 +41,134 @@ export default class Levels extends Phaser.Scene {
     this.velocity = 100;
     this.interval = 3750;
     this.selectedCharacters = [1, 4, 7, 10];
-    
-    
-    const left = this.add.image(590, 750, "arrowLeft").setInteractive();
-    const right = this.add.image(880 , 750, "arrowRight").setInteractive();
+    this.frame = 0;
+    this.scale.on("resize", this.resize, this);
+    this.left = this.add
+      .image(
+        (this.scale.width / 10) * 4,
+        (this.scale.height / 20) * 17,
+        "arrowLeft"
+      )
+      .setInteractive();
+    this.right = this.add
+      .image(
+        (this.scale.width / 10) * 6,
+        (this.scale.height / 20) * 17,
+        "arrowRight"
+      )
+      .setInteractive();
 
-    const slide = this.add.sprite(742, 700, "slider").setScale(5);
-    let frame = 0;
-    slide.setFrame(frame);
+    this.slide = this.add
+      .sprite(this.scale.width / 2, (this.scale.height / 20) * 16, "slider")
+      .setScale(5)
+      .setFrame(this.frame);
 
-    const lvl1 = this.add.text(600, 400, "Level 1").setInteractive();
-    const lvl2 = this.add.text(600, 450, "Level 2").setInteractive();
-    const lvl3 = this.add.text(600, 500, "Level 3").setInteractive();
-    const lvl4 = this.add.text(600, 550, "Level 4").setInteractive();
-    const lvl5 = this.add.text(600, 600, "Level 5").setInteractive();
-    const lvl6 = this.add.text(800, 400, "Level 6").setInteractive();
-    const lvl7 = this.add.text(800, 450, "Level 7").setInteractive();
-    const lvl8 = this.add.text(800, 500, "Level 8").setInteractive();
-    const lvl9 = this.add.text(800, 550, "Level 9").setInteractive();
-    const lvl10 = this.add.text(800, 600, "Level 10").setInteractive();
+    this.lvl1 = this.add
+      .text(
+        (this.scale.width / 10) * 4,
+        (this.scale.height / 20) * 8,
+        "Level 1"
+      )
+      .setInteractive()
+      .setTint(0x6aa84f);
+    this.lvl2 = this.add
+      .text(
+        (this.scale.width / 10) * 4,
+        (this.scale.height / 20) * 9,
+        "Level 2"
+      )
+      .setInteractive();
+    this.lvl3 = this.add
+      .text(
+        (this.scale.width / 10) * 4,
+        (this.scale.height / 20) * 10,
+        "Level 3"
+      )
+      .setInteractive();
+    this.lvl4 = this.add
+      .text(
+        (this.scale.width / 10) * 4,
+        (this.scale.height / 20) * 11,
+        "Level 4"
+      )
+      .setInteractive();
+    this.lvl5 = this.add
+      .text(
+        (this.scale.width / 10) * 4,
+        (this.scale.height / 20) * 12,
+        "Level 5"
+      )
+      .setInteractive();
+    this.lvl6 = this.add
+      .text(
+        (this.scale.width / 10) * 6,
+        (this.scale.height / 20) * 8,
+        "Level 6"
+      )
+      .setInteractive();
+    this.lvl7 = this.add
+      .text(
+        (this.scale.width / 10) * 6,
+        (this.scale.height / 20) * 9,
+        "Level 7"
+      )
+      .setInteractive();
+    this.lvl8 = this.add
+      .text(
+        (this.scale.width / 10) * 6,
+        (this.scale.height / 20) * 10,
+        "Level 8"
+      )
+      .setInteractive();
+    this.lvl9 = this.add
+      .text(
+        (this.scale.width / 10) * 6,
+        (this.scale.height / 20) * 11,
+        "Level 9"
+      )
+      .setInteractive();
+    this.lvl10 = this.add
+      .text(
+        (this.scale.width / 10) * 6,
+        (this.scale.height / 20) * 12,
+        "Level 10"
+      )
+      .setInteractive();
 
     this.levels = {
-      lvl1,
-      lvl2,
-      lvl3,
-      lvl4,
-      lvl5,
-      lvl6,
-      lvl7,
-      lvl8,
-      lvl9,
-      lvl10,
+      lvl1: this.lvl1,
+      lvl2: this.lvl2,
+      lvl3: this.lvl3,
+      lvl4: this.lvl4,
+      lvl5: this.lvl5,
+      lvl6: this.lvl6,
+      lvl7: this.lvl7,
+      lvl8: this.lvl8,
+      lvl9: this.lvl9,
+      lvl10: this.lvl10,
     };
 
-    const back = this.add.text(1400, 950, "Back").setInteractive();
+    this.play = this.add
+      .text(this.scale.width / 2, (this.scale.height / 20) * 17, "Play")
+      .setInteractive();
 
-    const play = this.add.text(720, 850, "Play").setInteractive();
+    this.kb = this.add
+      .sprite(this.scale.width / 2, (this.scale.height / 20) * 5, "keyboard")
+      .setScale(5)
+      .setFrame(1);
 
-    const kb = this.add.sprite(725 , 200, "keyboard").setScale(5);
-    kb.setFrame(1);
-    lvl1.setTint(0x6aa84f);
-
-    left.on("pointerdown", () => {
-      if (frame > 0) {
-        frame--;
-        slide.setFrame(frame);
-
+    this.left.on("pointerdown", () => {
+      if (this.frame > 0) {
+        this.frame--;
+        this.slide.setFrame(this.frame);
         this.velocity -= 100;
         this.interval += 1000;
       }
     });
-    right.on("pointerdown", () => {
-      if (frame < 3) {
-        frame++;
-        slide.setFrame(frame);
+    this.right.on("pointerdown", () => {
+      if (this.frame < 3) {
+        this.frame++;
+        this.slide.setFrame(this.frame);
         this.velocity += 100;
         this.interval -= 1000;
       }
@@ -125,31 +197,31 @@ export default class Levels extends Phaser.Scene {
       lvl.on(
         "pointerdown",
         () => {
-          lvl10.setTint(0xffffff);
-          lvl9.setTint(0xffffff);
-          lvl8.setTint(0xffffff);
-          lvl7.setTint(0xffffff);
-          lvl6.setTint(0xffffff);
-          lvl5.setTint(0xffffff);
-          lvl4.setTint(0xffffff);
-          lvl3.setTint(0xffffff);
-          lvl2.setTint(0xffffff);
-          lvl1.setTint(0xffffff);
+          this.lvl10.setTint(0xffffff);
+          this.lvl9.setTint(0xffffff);
+          this.lvl8.setTint(0xffffff);
+          this.lvl7.setTint(0xffffff);
+          this.lvl6.setTint(0xffffff);
+          this.lvl5.setTint(0xffffff);
+          this.lvl4.setTint(0xffffff);
+          this.lvl3.setTint(0xffffff);
+          this.lvl2.setTint(0xffffff);
+          this.lvl1.setTint(0xffffff);
           lvl.setTint(0x6aa84f);
-          kb.setFrame(Number(key.match(/\d+/)[0]));
+          this.kb.setFrame(Number(key.match(/\d+/)[0]));
           this.resetState(key);
 
           switch (key) {
-            case "lvl1":
+            case "this.lvl1":
               this.selectedCharacters = [1, 4, 7, 10];
               break;
-            case "lvl2":
+            case "this.lvl2":
               this.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
               break;
-            case "lvl3":
+            case "this.lvl3":
               this.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
               break;
-            case "lvl4":
+            case "this.lvl4":
               this.selectedCharacters = [
                 0,
                 1,
@@ -165,7 +237,7 @@ export default class Levels extends Phaser.Scene {
                 24,
               ];
               break;
-            case "lvl5":
+            case "this.lvl5":
               this.selectedCharacters = [
                 0,
                 1,
@@ -184,7 +256,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "lvl6":
+            case "this.lvl6":
               this.selectedCharacters = [
                 0,
                 1,
@@ -205,7 +277,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "lvl7":
+            case "this.lvl7":
               this.selectedCharacters = [
                 0,
                 1,
@@ -228,7 +300,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "lvl8":
+            case "this.lvl8":
               this.selectedCharacters = [
                 0,
                 1,
@@ -253,7 +325,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "lvl9":
+            case "this.lvl9":
               this.selectedCharacters = [
                 0,
                 1,
@@ -280,7 +352,7 @@ export default class Levels extends Phaser.Scene {
                 25,
               ];
               break;
-            case "lvl10":
+            case "this.lvl10":
               this.selectedCharacters = [];
               break;
           }
@@ -289,43 +361,21 @@ export default class Levels extends Phaser.Scene {
       );
     }
 
-    back.on(
+    this.play.on(
       "pointerout",
       () => {
-        back.setTint(0xffffff);
+        this.play.setTint(0xffffff);
       },
       this
     );
-    back.on(
+    this.play.on(
       "pointerover",
       () => {
-        back.setTint(0xff00ff);
+        this.play.setTint(0xff00ff);
       },
       this
     );
-    back.on(
-      "pointerdown",
-      () => {
-        this.scene.start("Menu");
-      },
-      this
-    );
-
-    play.on(
-      "pointerout",
-      () => {
-        play.setTint(0xffffff);
-      },
-      this
-    );
-    play.on(
-      "pointerover",
-      () => {
-        play.setTint(0xff00ff);
-      },
-      this
-    );
-    play.on(
+    this.play.on(
       "pointerdown",
       () => {
         this.scene.start("play", {
@@ -336,5 +386,26 @@ export default class Levels extends Phaser.Scene {
       },
       this
     );
+  }
+
+  resize(gameSize, baseSize) {
+    const width = gameSize.width;
+    const height = gameSize.height;
+    this.cameras.resize(width, height);
+    this.left.setPosition((width / 10) * 4, (height / 20) * 17);
+    this.right.setPosition((width / 10) * 6, (height / 20) * 17);
+    this.slide.setPosition(width / 2, (height / 20) * 16);
+    this.kb.setPosition(width / 2, (height / 20) * 5);
+    this.lvl1.setPosition((width / 10) * 4, (height / 20) * 8);
+    this.lvl2.setPosition((width / 10) * 4, (height / 20) * 9);
+    this.lvl3.setPosition((width / 10) * 4, (height / 20) * 10);
+    this.lvl4.setPosition((width / 10) * 4, (height / 20) * 11);
+    this.lvl5.setPosition((width / 10) * 4, (height / 20) * 12);
+    this.lvl6.setPosition((width / 10) * 6, (height / 20) * 8);
+    this.lvl7.setPosition((width / 10) * 6, (height / 20) * 9);
+    this.lvl8.setPosition((width / 10) * 6, (height / 20) * 10);
+    this.lvl9.setPosition((width / 10) * 6, (height / 20) * 11);
+    this.lvl10.setPosition((width / 10) * 6, (height / 20) * 12);
+    this.play.setPosition(width / 2, (height / 20) * 17);
   }
 }
