@@ -234,8 +234,8 @@ export default class Play extends Phaser.Scene {
     this.gameKeys = [this.topGameKeys, this.midGameKeys, this.botGameKeys];
 
     for (const [index, row] of this.gameKeys.entries()) {
+      const keysArrayOfRow = Object.keys(row);
       for (const gameKey in row) {
-        const keysArrayOfRow = Object.keys(row);
         row[gameKey].on("up", () => {
           this[`kb${index + 1}`].setFrame(0);
         });
