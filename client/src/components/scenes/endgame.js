@@ -9,9 +9,6 @@ export default class Endgame extends Phaser.Scene {
   }
   init(data) {
     this.score = data.score;
-    this.top = data.top;
-    this.mid = data.mid;
-    this.bot = data.bot;
     this.hits = data.hits;
   }
   create() {
@@ -46,9 +43,6 @@ export default class Endgame extends Phaser.Scene {
       "pointerdown",
       function () {
         this.sound.removeByKey("main_theme");
-        this.bot = [];
-        this.top = [];
-        this.mid = [];
         this.scene.stop();
         this.scene.start("Levels");
       },
@@ -58,9 +52,6 @@ export default class Endgame extends Phaser.Scene {
       "pointerdown",
       function () {
         this.sound.removeByKey("main_theme");
-        this.bot = [];
-        this.top = [];
-        this.mid = [];
         this.scene.stop();
         this.scene.start("play");
       },

@@ -34,6 +34,27 @@ export default class Play extends Phaser.Scene {
   constructor(props) {
     super("play");
     this.props = props;
+    this.hits = [];
+    this.misses = [];
+    this.topCharactersInGame = [];
+    this.midCharactersInGame = [];
+    this.botCharactersInGame = [];
+    this.score = 0;
+    this.streak = 0;
+    this.endgame = false;
+    this.longest_streak = 0;
+  }
+
+  resetGame() {
+    this.hits = [];
+    this.misses = [];
+    this.topCharactersInGame = [];
+    this.midCharactersInGame = [];
+    this.botCharactersInGame = [];
+    this.score = 0;
+    this.streak = 0;
+    this.endgame = false;
+    this.longest_streak = 0;
   }
 
   destroy(row) {
@@ -198,16 +219,6 @@ export default class Play extends Phaser.Scene {
   }
 
   create() {
-    this.hits = [];
-    this.misses = [];
-    this.topCharactersInGame = [];
-    this.midCharactersInGame = [];
-    this.botCharactersInGame = [];
-    this.score = 0;
-    this.streak = 0;
-    this.endgame = false;
-    this.longest_streak = 0;
-
     this.characters = this.randomizer().map((x) => {
       return {
         width: this.scale.width / position[x],
@@ -438,12 +449,7 @@ export default class Play extends Phaser.Scene {
         this.exit.on(
           "pointerdown",
           function () {
-            this.hits = [];
-
-            this.topCharactersInGame = [];
-            this.midCharactersInGame = [];
-            this.botCharactersInGame = [];
-
+            this.resetGame();
             this.sound.removeByKey("main_theme");
             this.scene.stop();
             this.scene.start("Levels");
@@ -533,7 +539,7 @@ export default class Play extends Phaser.Scene {
       this.charactersLeft.setText("Characters Left: " + this.characters.length);
     }
 
-    if ((this.streak + 1) % 20 === 0) {
+    if (this.streak && !(this.streak % 20)) {
       this.onFire.setVisible(true);
       this.time.addEvent({
         delay: 3000,
@@ -543,7 +549,7 @@ export default class Play extends Phaser.Scene {
       });
     }
 
-    if ((this.streak + 1) % 15 === 0) {
+    if (this.streak && !(this.streak % 15)) {
       this.nice.setVisible(true);
       this.time.addEvent({
         delay: 3000,
@@ -584,11 +590,9 @@ export default class Play extends Phaser.Scene {
       this.scene.stop();
       this.scene.start("endgame", {
         score: this.score,
-        top: this.topCharactersInGame,
-        mid: this.midCharactersInGame,
-        bot: this.botCharactersInGame,
         hits: this.hits.length,
       });
+      this.resetGame();
     }
   }
 }
