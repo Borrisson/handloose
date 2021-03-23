@@ -14,20 +14,14 @@ const App = () => {
     handleAppData,
     loggedIn,
     handleLogout,
-    handleGamePost,
     handleGameData,
   } = useApplicationData();
 
   const { show, handleClose, handleShow } = useShowData();
-  console.log(state.leaderboard);
 
   return (
     <>
-      <Game
-        user={state.user}
-        handleGameData={handleGameData}
-        handleGamePost={handleGamePost}
-      />
+      <Game user={state.user} handleGameData={handleGameData} />
       <SideBar
         handleShow={handleShow}
         handleLogout={handleLogout}

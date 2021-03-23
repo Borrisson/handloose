@@ -436,16 +436,6 @@ export default class Play extends Phaser.Scene {
           accuracies,
           this.props.user.name
         );
-
-        this.props.handleGamePost(
-          {
-            score: this.score,
-            longest_streak: this.longest_streak,
-            key_stroke_frequency: this.interval,
-            user_id: this.props.user.id,
-          },
-          accuracies
-        );
       }
       this.scene.stop();
       this.scene.start("endgame", {
