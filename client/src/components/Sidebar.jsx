@@ -54,11 +54,11 @@ export default function SideBar({ state, handleShow, handleLogout, score }) {
   }, []);
 
   function handleCollapse() {
-    if (windowSize.width <= 655 && !collapse) {
+    if (windowSize.width <= 922 && !collapse) {
       setCollapse(true);
     }
 
-    if (windowSize.width > 655 && collapse) {
+    if (windowSize.width > 922 && collapse) {
       setCollapse(false);
     }
   }
