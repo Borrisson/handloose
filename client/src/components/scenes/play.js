@@ -64,7 +64,7 @@ export default class Play extends Phaser.Scene {
       100 *
       (1 +
         Math.ceil(
-          (this.streak * (this.interval / 1000)) /
+          (this.streak * (37500 / this.interval)) /
             (27 - this.selectedCharacters.length)
         ));
     this.streak += 1;
