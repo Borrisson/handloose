@@ -131,11 +131,11 @@ export default class Play extends Phaser.Scene {
   randomizer() {
     this.listOfCharacters = [];
     if (!this.selectedCharacters.length) {
-      while (this.listOfCharacters.length < 140) {
+      while (this.listOfCharacters.length < 1) {
         this.listOfCharacters.push(Math.floor(Math.random() * 26));
       }
     } else {
-      while (this.listOfCharacters.length < 140) {
+      while (this.listOfCharacters.length < 1) {
         this.listOfCharacters.push(
           this.selectedCharacters[
             Math.floor(Math.random() * this.selectedCharacters.length)
@@ -443,7 +443,7 @@ export default class Play extends Phaser.Scene {
         top: this.topCharactersInGame,
         mid: this.midCharactersInGame,
         bot: this.botCharactersInGame,
-        hits: this.hit,
+        hits: this.hits.length,
       });
     }
   }
