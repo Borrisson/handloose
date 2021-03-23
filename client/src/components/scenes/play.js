@@ -56,6 +56,9 @@ export default class Play extends Phaser.Scene {
   }
 
   setHits(charNumber) {
+    this.scoreText.setText("Score: " + this.score);
+    this.charactersLeft.setText("Characters Left: " + this.characters.length);
+    this.streakText.setText("Streak: " + this.streak);
     this.hits.push(decipher(charNumber));
     this.score +=
       100 *
@@ -64,12 +67,9 @@ export default class Play extends Phaser.Scene {
           (this.streak * (this.interval / 1000)) /
             (27 - this.selectedCharacters.length)
         ));
-    this.scoreText.setText("Score: " + this.score);
-    this.charactersLeft.setText("Characters Left: " + this.characters.length);
     this.streak += 1;
     this.longest_streak =
       this.longest_streak < this.streak ? this.streak : this.longest_streak;
-    this.streakText.setText("Streak: " + this.streak);
   }
   setMisses(charNumber) {
     if (charNumber) {

@@ -52,15 +52,8 @@ const useApplicationData = () => {
     });
   }
 
-  function handleGamePost(game, accuracies) {
-    return Promise.all([
-      axios.post("/api/accuracies", { accuracies }),
-      axios.post("/api/games", { game }),
-    ]);
-  }
-
   function handleGameData(game, accuracies, name) {
-    let leaderboardCopy = [{ ...game, name }]
+    const leaderboardCopy = [{ ...game, name }]
       .concat(
         state.leaderboard.map((el) => {
           return { ...el };
@@ -75,6 +68,11 @@ const useApplicationData = () => {
       accuracies: [...state.accuracies, ...accuracies],
       leaderboard: leaderboardCopy,
     });
+
+    return Promise.all([
+      axios.post("/api/accuracies", { accuracies }),
+      axios.post("/api/games", { game }),
+    ]);
   }
 
   return {
@@ -83,7 +81,6 @@ const useApplicationData = () => {
     handleLogout,
     handleAppData,
     loggedIn,
-    handleGamePost,
     handleGameData,
   };
 };
