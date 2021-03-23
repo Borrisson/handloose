@@ -64,7 +64,7 @@ export default class Play extends Phaser.Scene {
       100 *
       (1 +
         Math.ceil(
-          (this.streak * (this.interval / 1000)) /
+          (this.streak * (37500 / this.interval)) /
             (27 - this.selectedCharacters.length)
         ));
     this.streak += 1;
@@ -305,6 +305,35 @@ export default class Play extends Phaser.Scene {
       .sprite(this.scale.width / 2.175, this.scale.height / 3.1, "kb3")
       .setScale(5);
 
+    this.add.text(
+      this.scale.width / 1.1,
+      this.scale.height / 1.1,
+      "Controls",
+      {
+        fontsize: "20px",
+        color: "#FF69B4"
+      }
+    );
+    this.add.text(
+      this.scale.width / 1.15,
+      this.scale.height / 1.06,
+      "[SPACE]: Pause",
+      {
+        fontsize: "20px",
+        color: "#FF69B4"
+      }
+    );
+
+    this.add.text(
+      this.scale.width / 1.15,
+      this.scale.height / 1.03,
+      "[ESC]: Mute",
+      {
+        fontsize: "20px",
+        color: "#FF69B4"
+      }
+    );
+
     this.topGameKeys = this.input.keyboard.addKeys(
       "Q,W,E,R,T,Y,U,I,O,P",
       true,
@@ -380,10 +409,41 @@ export default class Play extends Phaser.Scene {
         this.pause = this.add.text(
           this.scale.width / 2,
           this.scale.height / 2,
-          "PAUSE"
+          "PAUSE",
+          {
+            fontSize: "18px",
+            color: "#FF69B4"
+          }
         );
+        this.exit = this.add.text(
+          this.scale.width / 2.08, 
+          this.scale.height / 1.8,
+          "Exit Game",
+          {
+            fontSize: '18px'
+          }
+        )
+        .setInteractive();
+
+        this.exit.on(
+          "pointerdown",
+          function() {
+            this.sound.removeByKey("main_theme");
+            this.bot = [];
+            this.top = [];
+            this.mid = [];
+            this.scene.stop();
+            this.scene.start("Levels");
+          }, this)
+        this.exit.on("pointerover", function() {
+          this.exit.setTint(0xff001b);
+        },this)
+        this.exit.on("pointerout", function() {
+          this.exit.setTint(0xffffff);
+        }, this)
       } else {
         this.pause.destroy();
+        this.exit.destroy();
         this.pausePhysics = false;
         this.physics.resume();
         this.gameTime.paused = false;
