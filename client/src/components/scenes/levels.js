@@ -222,7 +222,7 @@ export default class Levels extends Phaser.Scene {
               break;
             case "lvl3":
               this.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
-              this.level = 3
+              this.level = 3;
               break;
             case "lvl4":
               this.selectedCharacters = [
@@ -391,6 +391,7 @@ export default class Levels extends Phaser.Scene {
     this.play.on(
       "pointerdown",
       () => {
+        console.log(this.scene.get("play"));
         this.scene.start("play", {
           interval: this.interval,
           selectedCharacters: this.selectedCharacters,

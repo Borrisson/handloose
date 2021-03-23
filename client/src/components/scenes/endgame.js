@@ -43,7 +43,6 @@ export default class Endgame extends Phaser.Scene {
       "pointerdown",
       function () {
         this.sound.removeByKey("main_theme");
-        this.scene.stop();
         this.scene.start("Levels");
       },
       this
@@ -52,7 +51,6 @@ export default class Endgame extends Phaser.Scene {
       "pointerdown",
       function () {
         this.sound.removeByKey("main_theme");
-        this.scene.stop();
         this.scene.start("play");
       },
       this

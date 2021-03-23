@@ -91,6 +91,7 @@ export default class Play extends Phaser.Scene {
     this.scoreText.setText("Score: " + this.score);
     this.charactersLeft.setText("Characters Left: " + this.characters.length);
     this.streakText.setText("Streak: " + this.streak);
+    console.log(this);
   }
   setMisses(charNumber) {
     if (charNumber) {
@@ -451,7 +452,6 @@ export default class Play extends Phaser.Scene {
           function () {
             this.resetGame();
             this.sound.removeByKey("main_theme");
-            this.scene.stop();
             this.scene.start("Levels");
           },
           this
