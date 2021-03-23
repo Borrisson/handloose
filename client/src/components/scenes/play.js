@@ -30,15 +30,11 @@ const position = [
   1.286, // P
 ];
 
-
-
 export default class Play extends Phaser.Scene {
   constructor(props) {
     super("play");
     this.props = props;
   }
-
-  
 
   destroy(row) {
     switch (row) {
@@ -60,9 +56,6 @@ export default class Play extends Phaser.Scene {
   }
 
   setHits(charNumber) {
-    this.scoreText.setText("Score: " + this.score);
-    this.charactersLeft.setText("Characters Left: " + this.characters.length);
-    this.streakText.setText("Streak: " + this.streak);
     this.hits.push(decipher(charNumber));
     this.score +=
       100 *
@@ -74,6 +67,9 @@ export default class Play extends Phaser.Scene {
     this.streak += 1;
     this.longest_streak =
       this.longest_streak < this.streak ? this.streak : this.longest_streak;
+    this.scoreText.setText("Score: " + this.score);
+    this.charactersLeft.setText("Characters Left: " + this.characters.length);
+    this.streakText.setText("Streak: " + this.streak);
   }
   setMisses(charNumber) {
     if (charNumber) {
@@ -154,11 +150,11 @@ export default class Play extends Phaser.Scene {
     this.load.audio("main_theme", "assets/audio/main_theme.mp3");
     this.load.spritesheet("musicOn", "assets/musicOn-sheet.png", {
       frameWidth: 55,
-      frameHeight: 66
+      frameHeight: 66,
     });
     this.load.spritesheet("musicOff", "assets/musicOff-sheet.png", {
       frameWidth: 60,
-      frameHeight: 62
+      frameHeight: 62,
     });
     this.load.spritesheet("Afroman", "assets/Afroman.png", {
       frameWidth: 41,
@@ -186,11 +182,11 @@ export default class Play extends Phaser.Scene {
     });
     this.load.spritesheet("OnFire", "assets/onFire.png", {
       frameWidth: 34,
-      frameHeight: 9
+      frameHeight: 9,
     });
     this.load.spritesheet("Nice", "assets/Nice.png", {
       frameWidth: 20,
-      frameHeight: 8
+      frameHeight: 8,
     });
   }
 
@@ -219,7 +215,7 @@ export default class Play extends Phaser.Scene {
         x,
       };
     });
-    
+
     this.pausePhysics = false;
 
     this.afroman = this.add
@@ -227,7 +223,7 @@ export default class Play extends Phaser.Scene {
       .setScale(2);
 
     this.prince = this.add
-      .sprite(this.scale.width / 9, this.scale.height / 2,4, "Prince")
+      .sprite(this.scale.width / 9, this.scale.height / 2, 4, "Prince")
       .setScale(3);
 
     this.anims.create({
@@ -247,7 +243,7 @@ export default class Play extends Phaser.Scene {
     this.afroman.play("Afroman");
 
     this.prince.play("Prince");
-    
+
     this.musicOn = this.add
       .sprite(this.scale.width / 1.1, this.scale.height / 16, "musicOn")
       .setScale(0.6);
@@ -318,22 +314,17 @@ export default class Play extends Phaser.Scene {
       .sprite(this.scale.width / 2.175, this.scale.height / 3.1, "kb3")
       .setScale(5);
 
-    this.add.text(
-      this.scale.width / 1.1,
-      this.scale.height / 1.1,
-      "Controls",
-      {
-        fontsize: "20px",
-        color: "#FF69B4"
-      }
-    );
+    this.add.text(this.scale.width / 1.1, this.scale.height / 1.1, "Controls", {
+      fontsize: "20px",
+      color: "#FF69B4",
+    });
     this.add.text(
       this.scale.width / 1.15,
       this.scale.height / 1.06,
       "[SPACE]: Pause",
       {
         fontsize: "20px",
-        color: "#FF69B4"
+        color: "#FF69B4",
       }
     );
 
@@ -343,19 +334,17 @@ export default class Play extends Phaser.Scene {
       "[ESC]: Mute",
       {
         fontsize: "20px",
-        color: "#FF69B4"
+        color: "#FF69B4",
       }
     );
-    
-    
+
     this.add.text(
-      
       this.scale.width / 100,
       this.scale.height / 1.03,
       `Level: ${this.level}`,
       {
         fontsize: "20px",
-        color: "#FF69B4"
+        color: "#FF69B4",
       }
     );
 
@@ -437,38 +426,44 @@ export default class Play extends Phaser.Scene {
           "PAUSE",
           {
             fontSize: "18px",
-            color: "#FF69B4"
+            color: "#FF69B4",
           }
         );
-        this.exit = this.add.text(
-          this.scale.width / 2.08, 
-          this.scale.height / 1.8,
-          "Exit Game",
-          {
-            fontSize: '18px'
-          }
-        )
-        .setInteractive();
+        this.exit = this.add
+          .text(this.scale.width / 2.08, this.scale.height / 1.8, "Exit Game", {
+            fontSize: "18px",
+          })
+          .setInteractive();
 
         this.exit.on(
           "pointerdown",
-          function() {
+          function () {
             this.hits = [];
-    
+
             this.topCharactersInGame = [];
             this.midCharactersInGame = [];
             this.botCharactersInGame = [];
-    
+
             this.sound.removeByKey("main_theme");
             this.scene.stop();
             this.scene.start("Levels");
-          }, this)
-        this.exit.on("pointerover", function() {
-          this.exit.setTint(0xff001b);
-        },this)
-        this.exit.on("pointerout", function() {
-          this.exit.setTint(0xffffff);
-        }, this)
+          },
+          this
+        );
+        this.exit.on(
+          "pointerover",
+          function () {
+            this.exit.setTint(0xff001b);
+          },
+          this
+        );
+        this.exit.on(
+          "pointerout",
+          function () {
+            this.exit.setTint(0xffffff);
+          },
+          this
+        );
       } else {
         this.pause.destroy();
         this.exit.destroy();
@@ -489,7 +484,7 @@ export default class Play extends Phaser.Scene {
         this.musicOn.setVisible(true);
       }
     });
-    
+
     this.onFire = this.add
       .sprite(this.scale.width / 9, this.scale.height / 2.7, "OnFire")
       .setScale(3)
@@ -499,7 +494,7 @@ export default class Play extends Phaser.Scene {
       .sprite(this.scale.width / 1.09, this.scale.height / 2.9, "Nice")
       .setScale(3)
       .setVisible(false);
-  } 
+  }
 
   update() {
     if (
@@ -546,7 +541,7 @@ export default class Play extends Phaser.Scene {
         callback: () => this.onFire.setVisible(false),
         callbackScope: this,
       });
-    } 
+    }
 
     if ((this.streak + 1) % 15 === 0) {
       this.nice.setVisible(true);
@@ -556,7 +551,7 @@ export default class Play extends Phaser.Scene {
         callback: () => this.nice.setVisible(false),
         callbackScope: this,
       });
-    } 
+    }
 
     if (
       !this.characters.length &&
