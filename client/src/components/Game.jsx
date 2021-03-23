@@ -17,9 +17,6 @@ export default class Game extends React.Component {
       pixelArt: true,
       physics: {
         default: "arcade",
-        arcade: {
-          debug: true,
-        },
       },
       scene: [Menu, Levels, new Play(this.props), Endgame],
     };
