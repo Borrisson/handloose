@@ -389,25 +389,4 @@ export default class Levels extends Phaser.Scene {
       this
     );
   }
-
-  // resize(gameSize, baseSize) {
-  //   const width = gameSize.width;
-  //   const height = gameSize.height;
-  //   this.cameras.resize(width, height);
-  //   this.left.setPosition((width / 10) * 4, (height / 20) * 17);
-  //   this.right.setPosition((width / 10) * 6, (height / 20) * 17);
-  //   this.slide.setPosition(width / 2, (height / 20) * 16);
-  //   this.kb.setPosition(width / 2, (height / 20) * 5);
-  //   this.lvl1.setPosition((width / 10) * 4, (height / 20) * 8);
-  //   this.lvl2.setPosition((width / 10) * 4, (height / 20) * 9);
-  //   this.lvl3.setPosition((width / 10) * 4, (height / 20) * 10);
-  //   this.lvl4.setPosition((width / 10) * 4, (height / 20) * 11);
-  //   this.lvl5.setPosition((width / 10) * 4, (height / 20) * 12);
-  //   this.lvl6.setPosition((width / 10) * 6, (height / 20) * 8);
-  //   this.lvl7.setPosition((width / 10) * 6, (height / 20) * 9);
-  //   this.lvl8.setPosition((width / 10) * 6, (height / 20) * 10);
-  //   this.lvl9.setPosition((width / 10) * 6, (height / 20) * 11);
-  //   this.lvl10.setPosition((width / 10) * 6, (height / 20) * 12);
-  //   this.play.setPosition(width / 2, (height / 20) * 17);
-  // }
 }
