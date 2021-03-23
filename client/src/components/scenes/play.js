@@ -180,6 +180,10 @@ export default class Play extends Phaser.Scene {
       frameWidth: 7,
       frameHeight: 8,
     });
+    this.load.spritesheet("OnFire", "assets/onFire.png", {
+      frameWidth: 34,
+      frameHeight: 9
+    });
   }
 
   init(data) {
@@ -210,11 +214,11 @@ export default class Play extends Phaser.Scene {
     this.pausePhysics = false;
 
     this.afroman = this.add
-      .sprite(this.scale.width / 6, this.scale.height / 3, "Afroman")
+      .sprite(this.scale.width / 1.09, this.scale.height / 2.1, "Afroman")
       .setScale(2);
 
     this.prince = this.add
-      .sprite(this.scale.width / 6, this.scale.height / 1.5, "Prince")
+      .sprite(this.scale.width / 9, this.scale.height / 2,4, "Prince")
       .setScale(3);
 
     this.anims.create({
@@ -460,7 +464,12 @@ export default class Play extends Phaser.Scene {
         this.musicOn.setVisible(true);
       }
     });
-  }
+    
+    this.onFire = this.add
+      .sprite(this.scale.width / 9, this.scale.height / 2.7, "OnFire")
+      .setScale(3)
+      .setVisible(false);
+  } 
 
   update() {
     if (
@@ -498,6 +507,17 @@ export default class Play extends Phaser.Scene {
       this.destroy("bot");
       this.charactersLeft.setText("Characters Left: " + this.characters.length);
     }
+
+    if ((this.streak + 1) % 5 === 0) {
+      console.log("ON FIRE!")
+      this.onFire.setVisible(true);
+      this.time.addEvent({
+        delay: 3000,
+        loop: false,
+        callback: () => this.onFire.setVisible(false),
+        callbackScope: this,
+      });
+    } 
 
     if (
       !this.characters.length &&
