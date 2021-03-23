@@ -15,7 +15,14 @@ class Api::GamesController < ApplicationController
         accuracies: @accuracies,
       }
     elsif required_query_params
-      @leaderboard = Game.joins(:user).select("games.*, users.name").order("#{game_query[:order_by]} desc").limit(game_query[:limit].to_i)
+      leaderboard_query_mappings = {
+        "score_asc" => "score ASC",
+        "score_desc" => "score DESC",
+      }
+
+      sanitize_order_by = leaderboard_query_mappings[game_query[:order_by]]
+
+      @leaderboard = Game.joins(:user).select("games.*, users.name").order(sanitize_order_by).limit(game_query[:limit].to_i)
 
       render json: {
         status: :ok,

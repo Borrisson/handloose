@@ -18,7 +18,7 @@ const useApplicationData = () => {
   useEffect(() => {
     Promise.all([
       axios.get("/api/users", { withCredentials: true }),
-      axios.get("/api/games?order_by=score&limit=10", {
+      axios.get("/api/games?order_by=score_desc&limit=10", {
         withCredentials: true,
       }),
     ])
