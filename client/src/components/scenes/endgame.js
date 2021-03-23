@@ -18,11 +18,6 @@ export default class Endgame extends Phaser.Scene {
       .image(this.scale.width / 2, this.scale.height / 2, "overlay")
       .setScale(6);
     this.add.text(
-      this.scale.width / 2.1,
-      this.scale.height / 2.5,
-      "Well done!"
-    );
-    this.add.text(
       this.scale.width / 1.9,
       this.scale.height / 1.9,
       `Score: ${this.score}`
