@@ -148,6 +148,14 @@ export default class Play extends Phaser.Scene {
 
   preload() {
     this.load.audio("main_theme", "assets/audio/main_theme.mp3");
+    this.load.spritesheet("musicOn", "assets/musicOn-sheet.png", {
+      frameWidth: 55,
+      frameHeight: 66
+    });
+    this.load.spritesheet("musicOff", "assets/musicOff-sheet.png", {
+      frameWidth: 60,
+      frameHeight: 62
+    });
     this.load.spritesheet("Afroman", "assets/Afroman.png", {
       frameWidth: 41,
       frameHeight: 90,
@@ -226,6 +234,24 @@ export default class Play extends Phaser.Scene {
     this.afroman.play("Afroman");
 
     this.prince.play("Prince");
+    
+    this.musicOn = this.add
+      .sprite(this.scale.width / 1.1, this.scale.height / 16, "musicOn")
+      .setScale(0.6);
+
+    this.musicOff = this.add
+      .sprite(this.scale.width / 1.1, this.scale.height / 16, "musicOff")
+      .setScale(0.6)
+      .setVisible(false);
+
+    this.anims.create({
+      key: "musicOn",
+      frames: this.anims.generateFrameNumbers("musicOn"),
+      frameRate: 5,
+      repeat: -1,
+    });
+
+    this.musicOn.play("musicOn");
 
     this.music = this.sound.add("main_theme");
 
@@ -366,8 +392,12 @@ export default class Play extends Phaser.Scene {
     this.input.keyboard.on("keydown-ESC", () => {
       if (!this.music.mute) {
         this.music.mute = true;
+        this.musicOn.setVisible(false);
+        this.musicOff.setVisible(true);
       } else if (this.music.mute) {
         this.music.mute = false;
+        this.musicOff.setVisible(false);
+        this.musicOn.setVisible(true);
       }
     });
   }
