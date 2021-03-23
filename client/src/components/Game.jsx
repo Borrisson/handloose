@@ -10,7 +10,7 @@ export default class Game extends React.Component {
     const config = {
       scale: {
         parent: document.getElementById("phaser-game"),
-        mode: Phaser.Scale.ENVELOP,
+        mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
       },
       type: Phaser.AUTO,
@@ -31,7 +31,7 @@ export default class Game extends React.Component {
       const config = {
         scale: {
           parent: document.getElementById("phaser-game"),
-          mode: Phaser.Scale.ENVELOP,
+          mode: Phaser.Scale.FIT,
           autoCenter: Phaser.Scale.CENTER_BOTH,
         },
         type: Phaser.AUTO,
