@@ -279,6 +279,35 @@ export default class Play extends Phaser.Scene {
       .sprite(this.scale.width / 2.175, this.scale.height / 3.1, "kb3")
       .setScale(5);
 
+    this.add.text(
+      this.scale.width / 1.1,
+      this.scale.height / 1.1,
+      "Controls",
+      {
+        fontsize: "20px",
+        color: "#FF69B4"
+      }
+    );
+    this.add.text(
+      this.scale.width / 1.15,
+      this.scale.height / 1.06,
+      "[SPACE]: Pause",
+      {
+        fontsize: "20px",
+        color: "#FF69B4"
+      }
+    );
+
+    this.add.text(
+      this.scale.width / 1.15,
+      this.scale.height / 1.03,
+      "[ESC]: Mute",
+      {
+        fontsize: "20px",
+        color: "#FF69B4"
+      }
+    );
+
     this.topGameKeys = this.input.keyboard.addKeys(
       "Q,W,E,R,T,Y,U,I,O,P",
       true,
