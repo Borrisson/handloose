@@ -18,7 +18,6 @@ const dataReducer = (state, { type, user, games, accuracies, leaderboard }) => {
         ...state,
         user,
       };
-
     case DESTROY_USER:
       return {
         ...state,
