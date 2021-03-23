@@ -85,7 +85,7 @@ export default class Play extends Phaser.Scene {
           (this.streak * (37500 / this.interval)) /
             (27 - this.selectedCharacters.length)
         ));
-    this.streak += 1;
+    this.streak++;
     this.longest_streak =
       this.longest_streak < this.streak ? this.streak : this.longest_streak;
     this.scoreText.setText("Score: " + this.score);
