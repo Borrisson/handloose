@@ -55,12 +55,33 @@ export default function About({ show, handleClose }) {
                 freqency of key presses, if you would like the characters to
                 appear slower or faster.
               </p>
-              <h5>Character Selection</h5>
+              <h5>Levels</h5>
               <p>
                 You can pick and choose which characters you would like to play
-                with by clicking the on-screen keyboard keys or you can click on
-                the levels, these are presets that will auto select the keys for
-                you.
+                with by clicking on the levels, these are presets that will auto
+                select the keys for you.
+              </p>
+              <br />
+            </Carousel.Item>
+            <Carousel.Item>
+              <br />
+              <h3>Scoring</h3>
+
+              <h5>Speed</h5>
+              <p>
+                The faster you set the frequency of the key presses, set with
+                the slider, the more points you'll earn!
+              </p>
+              <h5>Streak</h5>
+              <p>
+                Think you can handle a streak? Well you're in luck! The higher
+                the sreak, the greater the multiplier!
+              </p>
+              <h5>Levels</h5>
+              <p>
+                By choosing to play with more characters, the difficuly
+                increases naturally, but don't worry we got you covered with a
+                greater multiplier.
               </p>
               <br />
             </Carousel.Item>
