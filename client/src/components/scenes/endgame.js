@@ -12,21 +12,34 @@ export default class Endgame extends Phaser.Scene {
     this.top = data.top;
     this.mid = data.mid;
     this.bot = data.bot;
+    this.hits = data.hits;
   }
   create() {
     this.add
       .image(this.scale.width / 2, this.scale.height / 2, "overlay")
       .setScale(6);
     this.add.text(
-      this.scale.width / 1.9,
-      this.scale.height / 1.9,
-      `Score: ${this.score}`
+      this.scale.width / 2,
+      this.scale.height / 2.3,
+      `${this.score}`,
+      {
+        fontSize: "48px",
+      }
     );
+
+    this.add.text(this.scale.width / 2, this.scale.height / 2, `${this.hits}`, {
+      fontSize: "48px",
+    });
+
     this.replay = this.add
-      .text(this.scale.width / 1.8, this.scale.height / 1.8, "Replay")
+      .text(this.scale.width / 3, this.scale.height / 1.8, "Replay", {
+        fontSize: "48px",
+      })
       .setInteractive();
     this.menu = this.add
-      .text(this.scale.width / 2.1, this.scale.height / 1.8, "Menu")
+      .text(this.scale.width / 1.7, this.scale.height / 1.8, "Menu", {
+        fontSize: "48px",
+      })
       .setInteractive();
 
     this.menu.on(

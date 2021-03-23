@@ -443,7 +443,7 @@ export default class Play extends Phaser.Scene {
         top: this.topCharactersInGame,
         mid: this.midCharactersInGame,
         bot: this.botCharactersInGame,
-        hits: this.hit,
+        hits: this.hits.length,
       });
     }
   }
