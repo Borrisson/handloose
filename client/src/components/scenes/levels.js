@@ -42,6 +42,7 @@ export default class Levels extends Phaser.Scene {
     this.interval = 3750;
     this.selectedCharacters = [1, 4, 7, 10];
     this.frame = 0;
+    this.level = 1;
     this.left = this.add
       .image(
         (this.scale.width / 10) * 4,
@@ -213,12 +214,15 @@ export default class Levels extends Phaser.Scene {
           switch (key) {
             case "lvl1":
               this.selectedCharacters = [1, 4, 7, 10];
+              this.level = 1;
               break;
             case "lvl2":
               this.selectedCharacters = [1, 4, 7, 10, 19, 22, 24];
+              this.level = 2;
               break;
             case "lvl3":
               this.selectedCharacters = [1, 4, 7, 10, 13, 16, 19, 22, 24];
+              this.level = 3
               break;
             case "lvl4":
               this.selectedCharacters = [
@@ -235,6 +239,7 @@ export default class Levels extends Phaser.Scene {
                 22,
                 24,
               ];
+              this.level = 4;
               break;
             case "lvl5":
               this.selectedCharacters = [
@@ -254,6 +259,7 @@ export default class Levels extends Phaser.Scene {
                 24,
                 25,
               ];
+              this.level = 5;
               break;
             case "lvl6":
               this.selectedCharacters = [
@@ -275,6 +281,7 @@ export default class Levels extends Phaser.Scene {
                 24,
                 25,
               ];
+              this.level = 6;
               break;
             case "lvl7":
               this.selectedCharacters = [
@@ -298,6 +305,7 @@ export default class Levels extends Phaser.Scene {
                 24,
                 25,
               ];
+              this.level = 7;
               break;
             case "lvl8":
               this.selectedCharacters = [
@@ -323,6 +331,7 @@ export default class Levels extends Phaser.Scene {
                 24,
                 25,
               ];
+              this.level = 8;
               break;
             case "lvl9":
               this.selectedCharacters = [
@@ -350,9 +359,11 @@ export default class Levels extends Phaser.Scene {
                 24,
                 25,
               ];
+              this.level = 9;
               break;
             case "lvl10":
               this.selectedCharacters = [];
+              this.level = 10;
               break;
             default:
               this.selectedCharacters = [];
@@ -384,6 +395,7 @@ export default class Levels extends Phaser.Scene {
           interval: this.interval,
           selectedCharacters: this.selectedCharacters,
           velocity: this.velocity,
+          level: this.level,
         });
       },
       this

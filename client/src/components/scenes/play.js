@@ -194,6 +194,7 @@ export default class Play extends Phaser.Scene {
     this.interval = data.interval;
     this.velocity = data.velocity;
     this.selectedCharacters = data.selectedCharacters;
+    this.level = data.level;
   }
 
   create() {
@@ -206,41 +207,6 @@ export default class Play extends Phaser.Scene {
     this.streak = 0;
     this.endgame = false;
     this.longest_streak = 0;
-
-    let lvlNum = 1;
-    console.log(this.selectedCharacters.length);
-    switch (this.selectedCharacters.length) {
-      default:
-        lvlNum = 1;
-        break;
-      case 7:
-        lvlNum = 2;
-        break;
-      case 9:
-        lvlNum = 3;
-        break;
-      case 12:
-        lvlNum = 4;
-         break;
-      case 15:
-        lvlNum = 5;
-        break;
-      case 17:
-        lvlNum = 6;
-        break;
-      case 19:
-        lvlNum = 7;
-        break;
-      case 21:
-        lvlNum = 8;
-        break;
-      case 23:
-        lvlNum = 9;
-        break;
-      case 0:
-        lvlNum = 10;
-        break;        
-      };
 
     this.characters = this.randomizer().map((x) => {
       return {
@@ -382,7 +348,7 @@ export default class Play extends Phaser.Scene {
       
       this.scale.width / 100,
       this.scale.height / 1.03,
-      `Level: ${lvlNum}`,
+      `Level: ${this.level}`,
       {
         fontsize: "20px",
         color: "#FF69B4"
