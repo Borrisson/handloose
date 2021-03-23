@@ -188,6 +188,10 @@ export default class Play extends Phaser.Scene {
       frameWidth: 34,
       frameHeight: 9
     });
+    this.load.spritesheet("Nice", "assets/Nice.png", {
+      frameWidth: 20,
+      frameHeight: 8
+    });
   }
 
   init(data) {
@@ -487,6 +491,11 @@ export default class Play extends Phaser.Scene {
       .sprite(this.scale.width / 9, this.scale.height / 2.7, "OnFire")
       .setScale(3)
       .setVisible(false);
+
+    this.nice = this.add
+      .sprite(this.scale.width / 1.09, this.scale.height / 2.9, "Nice")
+      .setScale(3)
+      .setVisible(false);
   } 
 
   update() {
@@ -527,12 +536,21 @@ export default class Play extends Phaser.Scene {
     }
 
     if ((this.streak + 1) % 20 === 0) {
-      console.log("ON FIRE!")
       this.onFire.setVisible(true);
       this.time.addEvent({
         delay: 3000,
         loop: false,
         callback: () => this.onFire.setVisible(false),
+        callbackScope: this,
+      });
+    } 
+
+    if ((this.streak + 1) % 15 === 0) {
+      this.nice.setVisible(true);
+      this.time.addEvent({
+        delay: 3000,
+        loop: false,
+        callback: () => this.nice.setVisible(false),
         callbackScope: this,
       });
     } 
