@@ -453,10 +453,13 @@ export default class Play extends Phaser.Scene {
         this.exit.on(
           "pointerdown",
           function() {
+            this.hits = [];
+    
+            this.topCharactersInGame = [];
+            this.midCharactersInGame = [];
+            this.botCharactersInGame = [];
+    
             this.sound.removeByKey("main_theme");
-            this.bot = [];
-            this.top = [];
-            this.mid = [];
             this.scene.stop();
             this.scene.start("Levels");
           }, this)
