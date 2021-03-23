@@ -23,7 +23,7 @@ export default class Menu extends Phaser.Scene {
       .setInteractive();
 
     this.floor = this.add
-      .sprite(this.scale.width / 2, this.scale.height / 1.2)
+      .sprite(this.scale.width / 2, this.scale.height / 1.1)
       .setScale(5);
     this.floor.scaleX = 10.5;
 
