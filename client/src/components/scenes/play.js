@@ -354,10 +354,41 @@ export default class Play extends Phaser.Scene {
         this.pause = this.add.text(
           this.scale.width / 2,
           this.scale.height / 2,
-          "PAUSE"
+          "PAUSE",
+          {
+            fontSize: "18px",
+            color: "#FF69B4"
+          }
         );
+        this.exit = this.add.text(
+          this.scale.width / 2.08, 
+          this.scale.height / 1.8,
+          "Exit Game",
+          {
+            fontSize: '18px'
+          }
+        )
+        .setInteractive();
+
+        this.exit.on(
+          "pointerdown",
+          function() {
+            this.sound.removeByKey("main_theme");
+            this.bot = [];
+            this.top = [];
+            this.mid = [];
+            this.scene.stop();
+            this.scene.start("Levels");
+          }, this)
+        this.exit.on("pointerover", function() {
+          this.exit.setTint(0xff001b);
+        },this)
+        this.exit.on("pointerout", function() {
+          this.exit.setTint(0xffffff);
+        }, this)
       } else {
         this.pause.destroy();
+        this.exit.destroy();
         this.pausePhysics = false;
         this.physics.resume();
         this.gameTime.paused = false;
