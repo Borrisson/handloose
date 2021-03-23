@@ -526,7 +526,7 @@ export default class Play extends Phaser.Scene {
       this.charactersLeft.setText("Characters Left: " + this.characters.length);
     }
 
-    if ((this.streak + 1) % 5 === 0) {
+    if ((this.streak + 1) % 20 === 0) {
       console.log("ON FIRE!")
       this.onFire.setVisible(true);
       this.time.addEvent({
