@@ -6,7 +6,9 @@ class Api::GamesController < ApplicationController
     @games
     @accuracies
     if params[:user_id]
-      @games = Game.where(user_id: params[:user_id]).order("score DESC").limit(10)
+      @games = Game.where(user_id: params[:user_id])
+        .order("score DESC")
+        .limit(10)
       @accuracies = Accuracy.where(game_id: @games.ids)
 
       render json: {
@@ -22,7 +24,10 @@ class Api::GamesController < ApplicationController
 
       sanitize_order_by = leaderboard_query_mappings[game_query[:order_by]]
 
-      @leaderboard = Game.joins(:user).select("games.*, users.name").order(sanitize_order_by).limit(game_query[:limit].to_i)
+      @leaderboard = Game.joins(:user)
+        .select("games.*, users.name")
+        .order(sanitize_order_by)
+        .limit(game_query[:limit].to_i)
 
       render json: {
         status: :ok,
@@ -47,7 +52,8 @@ class Api::GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:score, :key_stroke_frequency, :longest_streak, :user_id)
+    params.require(:game)
+      .permit(:score, :key_stroke_frequency, :longest_streak, :user_id)
   end
 
   def game_query
