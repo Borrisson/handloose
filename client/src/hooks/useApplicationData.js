@@ -59,11 +59,21 @@ const useApplicationData = () => {
     ]);
   }
 
-  function handleGameData(game, accuracies) {
+  function handleGameData(game, accuracies, name) {
+    let leaderboardCopy = [{ ...game, name }]
+      .concat(
+        state.leaderboard.map((el) => {
+          return { ...el };
+        })
+      )
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10);
+
     dispatch({
       type: SET_GAME_DATA,
       games: [...state.games, game],
       accuracies: [...state.accuracies, ...accuracies],
+      leaderboard: leaderboardCopy,
     });
   }
 

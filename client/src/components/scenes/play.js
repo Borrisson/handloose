@@ -131,11 +131,11 @@ export default class Play extends Phaser.Scene {
   randomizer() {
     this.listOfCharacters = [];
     if (!this.selectedCharacters.length) {
-      while (this.listOfCharacters.length < 140) {
+      while (this.listOfCharacters.length < 2) {
         this.listOfCharacters.push(Math.floor(Math.random() * 26));
       }
     } else {
-      while (this.listOfCharacters.length < 140) {
+      while (this.listOfCharacters.length < 2) {
         this.listOfCharacters.push(
           this.selectedCharacters[
             Math.floor(Math.random() * this.selectedCharacters.length)
@@ -150,12 +150,12 @@ export default class Play extends Phaser.Scene {
     this.load.audio("main_theme", "assets/audio/main_theme.mp3");
     this.load.spritesheet("Afroman", "assets/Afroman.png", {
       frameWidth: 41,
-      frameHeight: 90
+      frameHeight: 90,
     });
     this.load.spritesheet("Prince", "assets/Prince.png", {
       frameWidth: 66,
-      frameHeight: 44
-    })
+      frameHeight: 44,
+    });
     this.load.spritesheet("kb1", "assets/kb1.png", {
       frameWidth: 119,
       frameHeight: 10,
@@ -201,22 +201,26 @@ export default class Play extends Phaser.Scene {
 
     this.pausePhysics = false;
 
-    this.afroman = this.add.sprite(this.scale.width / 6, this.scale.height / 3, "Afroman").setScale(2);
+    this.afroman = this.add
+      .sprite(this.scale.width / 6, this.scale.height / 3, "Afroman")
+      .setScale(2);
 
-    this.prince = this.add.sprite(this.scale.width / 6, this.scale.height / 1.5, "Prince").setScale(3);
+    this.prince = this.add
+      .sprite(this.scale.width / 6, this.scale.height / 1.5, "Prince")
+      .setScale(3);
 
     this.anims.create({
       key: "Afroman",
       frames: this.anims.generateFrameNumbers("Afroman"),
       frameRate: 2.25,
-      repeat: -1
+      repeat: -1,
     });
 
     this.anims.create({
       key: "Prince",
       frames: this.anims.generateFrameNumbers("Prince"),
       frameRate: 2.25,
-      repeat: -1
+      repeat: -1,
     });
 
     this.afroman.play("Afroman");
@@ -237,18 +241,33 @@ export default class Play extends Phaser.Scene {
 
     this.music.play(musicConfig);
 
-    this.scoreText = this.add.text(this.scale.width / 100, this.scale.height / 10, "Score: 0", {
-      fontSize: "20px",
-      color: "#FF69B4",
-    });
-    this.streakText = this.add.text(this.scale.width / 100, this.scale.height / 9, "Streak: 0", {
-      fontSize: "20px",
-      color: "#FF69B4",
-    });
-    this.charactersLeft = this.add.text(this.scale.width / 100, this.scale.height / 11, "Characters Left: 140", {
-      fontSize: "20px",
-      color: "#FF69B4",
-    });
+    this.scoreText = this.add.text(
+      this.scale.width / 100,
+      this.scale.height / 10,
+      "Score: 0",
+      {
+        fontSize: "20px",
+        color: "#FF69B4",
+      }
+    );
+    this.streakText = this.add.text(
+      this.scale.width / 100,
+      this.scale.height / 9,
+      "Streak: 0",
+      {
+        fontSize: "20px",
+        color: "#FF69B4",
+      }
+    );
+    this.charactersLeft = this.add.text(
+      this.scale.width / 100,
+      this.scale.height / 11,
+      "Characters Left: 140",
+      {
+        fontSize: "20px",
+        color: "#FF69B4",
+      }
+    );
 
     this.kb1 = this.physics.add
       .sprite(this.scale.width / 1.945, this.scale.height / 5.05, "kb1")
@@ -326,8 +345,6 @@ export default class Play extends Phaser.Scene {
       callbackScope: this,
     });
 
-    
-
     this.input.keyboard.on("keyup-SPACE", () => {
       if (!this.pausePhysics) {
         this.pausePhysics = true;
@@ -391,12 +408,12 @@ export default class Play extends Phaser.Scene {
       this.destroy("bot");
       this.charactersLeft.setText("Characters Left: " + this.characters.length);
     }
-  
+
     if (
       !this.characters.length &&
       !this.midCharactersInGame.length &&
       !this.topCharactersInGame.length &&
-      !this.botCharactersInGame.length 
+      !this.botCharactersInGame.length
     ) {
       if (this.props.user.id) {
         const parsedHits = this.hits.map((character) => {
@@ -416,7 +433,8 @@ export default class Play extends Phaser.Scene {
             key_stroke_frequency: this.interval,
             user_id: this.props.user.id,
           },
-          accuracies
+          accuracies,
+          this.props.user.name
         );
 
         this.props.handleGamePost(
@@ -439,6 +457,4 @@ export default class Play extends Phaser.Scene {
       });
     }
   }
-  
-  
 }

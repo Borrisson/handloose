@@ -19,6 +19,7 @@ const App = () => {
   } = useApplicationData();
 
   const { show, handleClose, handleShow } = useShowData();
+  console.log(state.leaderboard);
 
   return (
     <>
