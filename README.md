@@ -41,7 +41,7 @@ yarn storybook
 or
 
 ```
-npm storybook
+npm run storybook
 ```
 
 - run jest
