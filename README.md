@@ -8,7 +8,8 @@ This application will help individuals increase their keyboard typing skill whil
 
 1. ReactJS
 2. Ruby on Rails
-3. Tailwind or Bootstrap
+3. Bootstrap
+4. Phaser
 
 ## Getting Started
 
@@ -25,15 +26,25 @@ Make sure to npm install all dependencies inside CLIENT and all bundle install a
 yarn start
 ```
 
+or
+
+```
+npm start
+```
+
 - start storybook
 
 ```
 yarn storybook
 ```
 
-- run jest
+or
 
-pick your flavour
+```
+npm storybook
+```
+
+- run jest
 
 ```
 yarn test
