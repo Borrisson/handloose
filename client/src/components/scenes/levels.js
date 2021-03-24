@@ -391,7 +391,6 @@ export default class Levels extends Phaser.Scene {
     this.play.on(
       "pointerdown",
       () => {
-        console.log(this.scene.get("play"));
         this.scene.start("play", {
           interval: this.interval,
           selectedCharacters: this.selectedCharacters,

@@ -55,6 +55,7 @@ export default class Play extends Phaser.Scene {
     this.streak = 0;
     this.endgame = false;
     this.longest_streak = 0;
+    this.input.keyboard.removeAllKeys(true);
   }
 
   destroy(row) {
