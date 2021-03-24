@@ -36,7 +36,7 @@ export default class Game extends React.Component {
         physics: {
           default: "arcade",
           arcade: {
-            debug: true,
+            debug: false,
           },
         },
         scene: [Menu, Levels, new Play(this.props), Endgame],

@@ -153,11 +153,11 @@ export default class Play extends Phaser.Scene {
   randomizer() {
     this.listOfCharacters = [];
     if (!this.selectedCharacters.length) {
-      while (this.listOfCharacters.length < 140) {
+      while (this.listOfCharacters.length < 10) {
         this.listOfCharacters.push(Math.floor(Math.random() * 26));
       }
     } else {
-      while (this.listOfCharacters.length < 140) {
+      while (this.listOfCharacters.length < 10) {
         this.listOfCharacters.push(
           this.selectedCharacters[
             Math.floor(Math.random() * this.selectedCharacters.length)
@@ -309,7 +309,7 @@ export default class Play extends Phaser.Scene {
     this.charactersLeft = this.add.text(
       this.scale.width / 100,
       this.scale.height / 11,
-      "Characters Left: 140",
+      "Characters Left: " + this.characters.length,
       {
         fontSize: "20px",
         color: "#FF69B4",
