@@ -278,7 +278,7 @@ export default class Play extends Phaser.Scene {
 
     const musicConfig = {
       mute: false,
-      volume: 0.5,
+      volume: 0.1,
       rate: 1,
       detune: 0,
       seek: 0,

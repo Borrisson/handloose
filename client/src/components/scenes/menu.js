@@ -64,7 +64,7 @@ export default class Menu extends Phaser.Scene {
       this
     );
 
-    let start = this.sound.add("menu_space");
+    let start = this.sound.add("menu_space", { volume: 0.1});
 
     this.input.keyboard.on("keydown-SPACE", function () {
       start.play();
