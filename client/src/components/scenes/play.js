@@ -156,11 +156,11 @@ export default class Play extends Phaser.Scene {
   randomizer() {
     this.listOfCharacters = [];
     if (!this.selectedCharacters.length) {
-      while (this.listOfCharacters.length < 10) {
+      while (this.listOfCharacters.length < 140) {
         this.listOfCharacters.push(Math.floor(Math.random() * 26));
       }
     } else {
-      while (this.listOfCharacters.length < 10) {
+      while (this.listOfCharacters.length < 140) {
         this.listOfCharacters.push(
           this.selectedCharacters[
             Math.floor(Math.random() * this.selectedCharacters.length)
