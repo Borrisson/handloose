@@ -24,7 +24,7 @@ export default class Game extends React.Component {
   }
 
   componentDidUpdate() {
-    this.game.config.sceneConfig[2].props = this.props;
+    this.game.config.sceneConfig[2].props.user = { ...this.props.user };
   }
 
   shouldComponentUpdate(prevState) {
