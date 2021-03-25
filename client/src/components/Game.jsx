@@ -23,8 +23,12 @@ export default class Game extends React.Component {
     this.game = new Phaser.Game(config);
   }
 
-  componentDidUpdate() {
-    this.game.config.sceneConfig[2].props.user = { ...this.props.user };
+  componentDidUpdate(prevState) {
+    this.game.config.sceneConfig[2].props = {
+      ...prevState,
+      user: this.props.user,
+      handleGameData: this.props.handleGameData,
+    };
   }
 
   shouldComponentUpdate(prevState) {
