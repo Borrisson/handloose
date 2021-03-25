@@ -365,15 +365,19 @@ export default class Play extends Phaser.Scene {
 
     this.topGameKeys = this.input.keyboard.addKeys(
       "Q,W,E,R,T,Y,U,I,O,P",
-      true,
+      false,
       true
     );
     this.midGameKeys = this.input.keyboard.addKeys(
       "A,S,D,F,G,H,J,K,L",
-      true,
+      false,
       true
     );
-    this.botGameKeys = this.input.keyboard.addKeys("Z,X,C,V,B,N,M", true, true);
+    this.botGameKeys = this.input.keyboard.addKeys(
+      "Z,X,C,V,B,N,M",
+      false,
+      true
+    );
 
     this.gameKeys = [this.topGameKeys, this.midGameKeys, this.botGameKeys];
 

@@ -23,27 +23,19 @@ export default class Game extends React.Component {
     this.game = new Phaser.Game(config);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.user.id !== this.props.user.id) {
-      const config = {
-        scale: {
-          parent: document.getElementById("phaser-game"),
-          mode: Phaser.Scale.FIT,
-          autoCenter: Phaser.Scale.CENTER_BOTH,
-        },
-        type: Phaser.AUTO,
-        pixelArt: true,
-        physics: {
-          default: "arcade",
-          arcade: {
-            debug: false,
-          },
-        },
-        scene: [Menu, Levels, new Play(this.props), Endgame],
-      };
+  componentDidUpdate(prevState) {
+    this.game.config.sceneConfig[2].props = {
+      ...prevState,
+      user: this.props.user,
+      handleGameData: this.props.handleGameData,
+    };
+  }
 
-      this.game.destroy(true, false);
-      this.game = new Phaser.Game(config);
+  shouldComponentUpdate(prevState) {
+    if (this.props.user.id === prevState.user.id) {
+      return false;
+    } else {
+      return true;
     }
   }
 
