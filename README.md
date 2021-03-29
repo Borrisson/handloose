@@ -1,8 +1,10 @@
 # HandLoose
 
+!["Main Title"](screenshots/Logon_leaderboard.gif)
+
 ## Description
 
-This application will help individuals increase their keyboard typing skill whilst playing a game.
+This application will help individuals increase their keyboard typing skill whilst playing a game. [Below are screenshots of the project](#DEMO)
 
 ## Stack
 
@@ -71,3 +73,9 @@ The -p flag changes port to 3001 and -b stands for IP binding, it will bind the 
 - test server
 
 This has not been setup yet!
+
+## DEMO
+
+!["Initial Game"](screenshots/game.gif)
+!["End Game"](screenshots/game2.gif)
+!["About"](screenshots/about.gif)
