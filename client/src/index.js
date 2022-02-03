@@ -3,11 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+import setUpEnv from './environment';
 import {
   BrowserRouter as Router,
   Route,
   Routes,
 } from "react-router-dom";
+
+setUpEnv()
 
 ReactDOM.render(
   <React.StrictMode>
