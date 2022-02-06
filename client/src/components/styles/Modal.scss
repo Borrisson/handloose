@@ -55,12 +55,11 @@ div.modal-content {
 .table {
   color: inherit;
 }
-
-.table-striped tbody {
-  tr:nth-of-type(even) {
+.table-striped > tbody {
+  > tr:nth-of-type(even) > * {
     @include colorTheme($modal-color-theme, $modal-bg-color-theme);
   }
-  tr:nth-of-type(odd) {
+  > tr:nth-of-type(odd) > * {
     @include colorTheme($modal-alt-color-theme-2, $modal-bg-color-theme);
   }
 }
