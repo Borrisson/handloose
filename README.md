@@ -16,7 +16,17 @@ This application will help individuals increase their keyboard typing skill whil
 ## Getting Started
 
 In order to get your development environment set up.
-Make sure to npm install all dependencies inside CLIENT and all bundle install all inside BACKEND.
+
+1. Make sure you have Postgresql installed and make sure the server is running.
+   To download [v14](https://www.postgresql.org/download/).
+2. Make sure to `npm install` all dependencies inside CLIENT and `bundle install` all inside BACKEND.
+3. Next run `bin/rails db:create` to create the required tables.
+4. Then `bin/rails db:migrate`
+5. Then `rake db:seed`
+
+```
+sudo service postgresql status/start/restart/stop
+```
 
 > **_NOTE:_** Make sure to npm install inside client and bundle install inside backend
 
@@ -25,37 +35,17 @@ Make sure to npm install all dependencies inside CLIENT and all bundle install a
 - start development
 
 ```
-yarn start
-```
 
-or
-
-```
 npm start
-```
 
-- start storybook
-
-```
-yarn storybook
-```
-
-or
-
-```
-npm run storybook
 ```
 
 - run jest
 
 ```
-yarn test
-```
 
-or
-
-```
 npm test
+
 ```
 
 ### Backend
@@ -63,12 +53,14 @@ npm test
 - development server
 
 ```
-rails s -p 3001 -b 0.0.0.0
+
+rails s -b 0.0.0.0
+
 ```
 
-The -p flag changes port to 3001 and -b stands for IP binding, it will bind the server to localhost. This is only needed if using a VM.
+The -b flag stands for IP binding, it will bind the server to localhost. This is only needed if using a VM.
 
-> **_NOTE:_** You can use "rails s -p 3001" simply if not using VM.
+> **_NOTE:_** You can use "rails s" simply if not using VM.
 
 - test server
 
